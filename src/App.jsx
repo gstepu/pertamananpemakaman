@@ -12,6 +12,8 @@ import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ParkSchedulePage from "./pages/ParkSchedulePage";
+import ParkApplicationPage from "./pages/ParkApplicationPage";
 
 // App.jsx sekarang berfungsi sebagai "Layout Shell" atau kerangka utama
 export default function App() {
@@ -25,12 +27,16 @@ export default function App() {
         return <RegisterPage onNavigate={setCurrentPage} />;
       case "forgot-password":
         return <ForgotPasswordPage onNavigate={setCurrentPage} />;
+      case "park-schedule":
+        return <ParkSchedulePage onNavigate={setCurrentPage} />;
+      case "park-application":
+        return <ParkApplicationPage onNavigate={setCurrentPage} />;
       default:
         return (
           <div className="bg-gray-50 min-h-screen flex flex-col">
             <Header onNavigate={setCurrentPage} />
             <main className="flex-1">
-              <LandingPage />
+              <LandingPage onNavigate={setCurrentPage} />
             </main>
             <Footer />
           </div>

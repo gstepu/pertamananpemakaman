@@ -1,25 +1,28 @@
+"use client";
+
 //==================================================================
 // KOMPONEN HERO SECTION
 // Didefinisikan di sini karena hanya dipakai di LandingPage
 //==================================================================
 const HeroSection = () => (
-  <section className="hero-section text-white">
-    <div className="container mx-auto px-6 py-24 md:py-32 text-center">
+  <section className="bg-gradient-to-br from-green-700 to-green-800 text-white relative">
+    <div className="absolute inset-0 bg-black/10"></div>
+    <div className="container mx-auto px-6 py-24 md:py-32 text-center relative z-10">
       <h1 className="text-3xl md:text-5xl font-bold mb-4">
-        Mewujudkan Ruang Terbuka Hijau yang Nyaman dan Berkelanjutan
+        Layanan Digital Dinas Pertamanan dan Hutan Kota DKI Jakarta
       </h1>
-      <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
-        Informasi dan layanan resmi dari Dinas Pertamanan dan Hutan Kota
-        Provinsi DKI Jakarta.
+      <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-green-50">
+        Akses mudah untuk layanan pemakaian taman, informasi jadwal acara, dan
+        berbagai layanan digital lainnya.
       </p>
       <div className="max-w-xl mx-auto">
         <div className="relative">
           <input
             type="text"
-            placeholder="Cari informasi, layanan, atau berita..."
-            className="w-full py-4 px-6 pr-14 rounded-full text-gray-800 bg-white shadow-lg focus:outline-none focus:ring-4 focus:ring-white/30 focus:shadow-xl placeholder-gray-500 border-2 border-white/20"
+            placeholder="Cari layanan, taman, atau informasi..."
+            className="w-full py-4 px-6 pr-14 rounded-full text-gray-800 bg-white shadow-lg focus:outline-none focus:ring-4 focus:ring-green-300 focus:shadow-xl placeholder-gray-500 border-2 border-white/20"
           />
-          <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-green-600 hover:bg-green-700 text-white rounded-full p-3 w-12 h-12 shadow-lg transition-all duration-200 hover:scale-105">
+          <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-green-700 hover:bg-green-800 text-white rounded-full p-3 w-12 h-12 shadow-lg transition-all duration-200 hover:scale-105">
             <svg
               className="w-5 h-5"
               fill="none"
@@ -44,15 +47,31 @@ const HeroSection = () => (
 // KOMPONEN SERVICES SECTION
 // Didefinisikan di sini karena hanya dipakai di LandingPage
 //==================================================================
-const ServiceCard = ({ icon, title, description }) => (
-  <div className="icon-card bg-gray-50 p-6 rounded-lg text-center hover:shadow-lg transition-shadow duration-300">
+const ServiceCard = ({
+  icon,
+  title,
+  description,
+  href,
+  action,
+  onNavigate,
+}) => (
+  <div
+    onClick={() => {
+      if (action && onNavigate) {
+        onNavigate(action);
+      }
+    }}
+    className={`block bg-white p-6 rounded-lg text-center hover:shadow-xl hover:bg-green-50 transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 ${
+      action ? "cursor-pointer" : ""
+    }`}
+  >
     <div className="text-4xl text-green-700 mb-4">{icon}</div>
     <h3 className="text-lg font-semibold mb-2 text-gray-800">{title}</h3>
     <p className="text-gray-600 text-sm">{description}</p>
   </div>
 );
 
-const ServicesSection = () => {
+const ServicesSection = ({ onNavigate }) => {
   const services = [
     {
       icon: (
@@ -64,8 +83,11 @@ const ServicesSection = () => {
           <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
         </svg>
       ),
-      title: "Cek Data Makam",
-      description: "Temukan informasi data makam di TPU seluruh DKI Jakarta.",
+      title: "Jadwal Acara Taman",
+      description:
+        "Lihat jadwal dan ajukan pemakaian taman untuk berbagai kegiatan.",
+      href: "#park-schedule",
+      action: "park-schedule",
     },
     {
       icon: (
@@ -82,7 +104,9 @@ const ServicesSection = () => {
         </svg>
       ),
       title: "Informasi Retribusi",
-      description: "Lihat detail dan status pembayaran retribusi makam.",
+      description:
+        "Lihat detail dan status pembayaran retribusi pemakaian fasilitas.",
+      href: "#retribusi",
     },
     {
       icon: (
@@ -98,8 +122,10 @@ const ServicesSection = () => {
           />
         </svg>
       ),
-      title: "Izin Pemakaman",
-      description: "Informasi alur dan persyaratan untuk izin pemakaman baru.",
+      title: "Perizinan Kegiatan",
+      description:
+        "Informasi persyaratan dan proses pengajuan izin kegiatan di taman.",
+      href: "#perizinan",
     },
     {
       icon: (
@@ -115,23 +141,29 @@ const ServicesSection = () => {
           />
         </svg>
       ),
-      title: "Peta TPU & RTH",
-      description:
-        "Jelajahi lokasi Taman Pemakaman Umum dan Ruang Terbuka Hijau.",
+      title: "Peta Lokasi Taman",
+      description: "Jelajahi lokasi dan fasilitas taman-taman di DKI Jakarta.",
+      href: "#peta-taman",
     },
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold text-gray-800 mb-2">Layanan Utama</h2>
+        <h2 className="text-3xl font-bold text-gray-800 mb-2">
+          Layanan Digital
+        </h2>
         <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
-          Akses cepat ke layanan-layanan yang paling sering dibutuhkan oleh
-          masyarakat.
+          Akses mudah ke berbagai layanan digital yang tersedia untuk masyarakat
+          DKI Jakarta.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service) => (
-            <ServiceCard key={service.title} {...service} />
+            <ServiceCard
+              key={service.title}
+              {...service}
+              onNavigate={onNavigate}
+            />
           ))}
         </div>
       </div>
@@ -144,21 +176,34 @@ const ServicesSection = () => {
 // Didefinisikan di sini karena hanya dipakai di LandingPage
 //==================================================================
 const NewsCard = ({ imageUrl, date, title, excerpt, link }) => (
-  <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+  <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
     <img
       src={imageUrl || "/placeholder.svg"}
       alt={title}
       className="w-full h-48 object-cover"
     />
     <div className="p-6">
-      <span className="text-sm text-gray-500">{date}</span>
+      <span className="text-sm text-green-600 font-medium">{date}</span>
       <h3 className="font-semibold text-lg my-2 text-gray-800">{title}</h3>
       <p className="text-gray-600 text-sm mb-4">{excerpt}</p>
       <a
         href={link}
-        className="text-green-700 hover:text-green-900 font-semibold transition-colors duration-200"
+        className="text-green-700 hover:text-green-800 font-semibold transition-colors duration-200 flex items-center"
       >
-        Baca Selengkapnya →
+        Baca Selengkapnya
+        <svg
+          className="w-4 h-4 ml-1"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
       </a>
     </div>
   </div>
@@ -168,38 +213,42 @@ const NewsSection = () => {
   const newsItems = [
     {
       imageUrl:
-        "https://placehold.co/600x400/a0aec0/ffffff?text=Kegiatan+Penanaman",
-      date: "18 Juli 2025",
+        "https://placehold.co/600x400/047857/ffffff?text=Kegiatan+Penanaman",
+      date: "5 Januari 2025",
       title: "Program Jumat Menanam di Hutan Kota Srengseng",
-      excerpt: "Kegiatan ini bertujuan untuk menambah tutupan hijau...",
+      excerpt:
+        "Kegiatan penanaman pohon rutin setiap hari Jumat untuk menambah tutupan hijau di Jakarta...",
       link: "#",
     },
     {
       imageUrl:
-        "https://placehold.co/600x400/718096/ffffff?text=Perawatan+Taman",
-      date: "15 Juli 2025",
-      title: "Revitalisasi Taman Suropati Selesai, Wajah Baru untuk Warga",
+        "https://placehold.co/600x400/065f46/ffffff?text=Revitalisasi+Taman",
+      date: "3 Januari 2025",
+      title: "Revitalisasi Taman Suropati Selesai dengan Wajah Baru",
       excerpt:
-        "Setelah melalui proses revitalisasi selama 3 bulan, Taman Suropati kini hadir...",
+        "Setelah melalui proses revitalisasi selama 3 bulan, Taman Suropati kini hadir dengan fasilitas yang lebih lengkap...",
       link: "#",
     },
     {
-      imageUrl: "https://placehold.co/600x400/4a5568/ffffff?text=Sosialisasi",
-      date: "12 Juli 2025",
-      title: "Sosialisasi Aturan Baru Retribusi Makam di Kecamatan Cipayung",
-      excerpt: "Dinas Pertamanan dan Hutan Kota mengadakan sosialisasi...",
+      imageUrl:
+        "https://placehold.co/600x400/064e3b/ffffff?text=Sosialisasi+Layanan",
+      date: "1 Januari 2025",
+      title: "Sosialisasi Layanan Digital Pemakaian Taman",
+      description:
+        "Dinas Pertamanan dan Hutan Kota mengadakan sosialisasi layanan digital untuk kemudahan masyarakat...",
       link: "#",
     },
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-white">
       <div className="container mx-auto px-6">
         <h2 className="text-3xl font-bold text-gray-800 mb-2 text-center">
           Berita & Informasi Terkini
         </h2>
         <p className="text-gray-600 mb-12 max-w-2xl mx-auto text-center">
-          Ikuti perkembangan terbaru dari program dan kegiatan kami.
+          Ikuti perkembangan terbaru dari program dan kegiatan Dinas Pertamanan
+          dan Hutan Kota DKI Jakarta.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {newsItems.map((item) => (
@@ -209,9 +258,22 @@ const NewsSection = () => {
         <div className="text-center mt-12">
           <a
             href="#"
-            className="bg-green-700 text-white font-bold py-3 px-8 rounded-full hover:bg-green-800 transition-all duration-200"
+            className="bg-green-700 text-white font-semibold py-3 px-8 rounded-lg hover:bg-green-800 transition-all duration-200 inline-flex items-center"
           >
             Lihat Semua Berita
+            <svg
+              className="w-4 h-4 ml-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
           </a>
         </div>
       </div>
@@ -223,11 +285,11 @@ const NewsSection = () => {
 // KOMPONEN UTAMA LANDING PAGE
 // Menggabungkan semua section di atas
 //==================================================================
-export default function LandingPage() {
+export default function LandingPage({ onNavigate }) {
   return (
     <main>
       <HeroSection />
-      <ServicesSection />
+      <ServicesSection onNavigate={onNavigate} />
       <NewsSection />
     </main>
   );
