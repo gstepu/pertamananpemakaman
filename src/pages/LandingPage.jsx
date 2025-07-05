@@ -144,6 +144,7 @@ const ServicesSection = ({ onNavigate }) => {
       title: "Peta Lokasi Taman",
       description: "Jelajahi lokasi dan fasilitas taman-taman di DKI Jakarta.",
       href: "#peta-taman",
+      action: "map",
     },
   ];
 

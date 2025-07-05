@@ -17,7 +17,7 @@ const Header = ({ onNavigate }) => {
         { name: "Cek Data Makam", href: "#" },
         { name: "Informasi Retribusi", href: "#" },
         { name: "Izin Pemakaman", href: "#" },
-        { name: "Peta TPU & RTH", href: "#" },
+        { name: "Peta TPU & RTH", href: "#", action: "map" },
         { name: "Jadwal Acara Taman", href: "#", action: "park-schedule" },
       ],
     },
@@ -29,6 +29,9 @@ const Header = ({ onNavigate }) => {
   const handleDropdownClick = (action) => {
     if (action === "park-schedule") {
       onNavigate("park-schedule");
+    }
+    if (action === "map") {
+      onNavigate("map");
     }
     setServicesDropdownOpen(false);
   };
