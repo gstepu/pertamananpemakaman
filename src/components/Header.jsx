@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+"use client";
 
-const Header = () => {
+import { useState } from "react";
+
+const Header = ({ onNavigate }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
@@ -25,6 +27,8 @@ const Header = () => {
             Distamhut DKI Jakarta
           </span>
         </div>
+
+        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
           {navLinks.map((link) => (
             <a
@@ -35,18 +39,45 @@ const Header = () => {
               {link.name}
             </a>
           ))}
+          {/* Login Button for Desktop */}
+          <a
+            href="#login"
+            className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg transition duration-200 font-medium"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate("login");
+            }}
+          >
+            Login
+          </a>
         </div>
+
+        {/* Mobile Menu Button */}
         <button
           className="md:hidden text-gray-700 focus:outline-none"
           onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <i className="fas fa-bars fa-lg"></i>
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
         </button>
       </nav>
+
+      {/* Mobile Navigation */}
       <div
         className={`${
           isMobileMenuOpen ? "block" : "hidden"
-        } md:hidden px-6 pb-4`}
+        } md:hidden px-6 pb-4 border-t border-gray-200`}
       >
         {navLinks.map((link) => (
           <a
@@ -57,6 +88,17 @@ const Header = () => {
             {link.name}
           </a>
         ))}
+        {/* Login Button for Mobile */}
+        <a
+          href="#login"
+          className="block mt-3 bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg transition duration-200 font-medium text-center"
+          onClick={(e) => {
+            e.preventDefault();
+            onNavigate("login");
+          }}
+        >
+          Login
+        </a>
       </div>
     </header>
   );

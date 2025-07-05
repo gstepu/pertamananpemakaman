@@ -2,27 +2,86 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
 @import "tailwindcss";
 
-/* Global Styles */
-body {
-  font-family: "Inter", sans-serif;
-}
-
+/* Custom styles untuk hero section */
 .hero-section {
-  background-image: linear-gradient(
-      to right,
-      rgba(0, 74, 38, 0.8),
-      rgba(0, 100, 50, 0.6)
-    ),
-    url("https://placehold.co/1600x800/e2e8f0/cccccc?text=Taman+Kota+Jakarta");
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(135deg, #065f46 0%, #047857 50%, #059669 100%);
+  position: relative;
 }
 
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+}
+
+.hero-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Custom search box styling */
+.hero-section input[type="text"] {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.hero-section input[type="text"]:focus {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2), 0 10px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.hero-section input[type="text"]::placeholder {
+  color: rgba(107, 114, 128, 0.8);
+}
+
+/* Search button enhancement */
+.hero-section button {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hero-section button:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom hover effects */
 .icon-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .icon-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  transform: translateY(-4px);
+}
+
+/* Custom focus styles */
+input:focus {
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom button animations */
+button,
+a {
+  transition: all 0.2s ease;
+}
+
+/* Loading animation untuk gambar */
+img {
+  transition: opacity 0.3s ease;
+}
+
+img:not([src]) {
+  opacity: 0;
 }
