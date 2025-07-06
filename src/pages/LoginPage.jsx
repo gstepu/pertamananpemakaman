@@ -8,6 +8,9 @@ const LoginPage = ({ onNavigate }) => {
     password: "",
     rememberMe: false,
   });
+
+  // 1. State baru untuk menampung pesan kesalahan
+  const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,24 +20,48 @@ const LoginPage = ({ onNavigate }) => {
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
+    // Hapus pesan error saat pengguna mulai mengetik
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: null }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const newErrors = {};
+
+    // 2. Logika validasi untuk setiap field
+    if (!formData.username) {
+      newErrors.username = "Username atau email wajib diisi.";
+    }
+    if (!formData.password) {
+      newErrors.password = "Password wajib diisi.";
+    }
+
+    // Jika ada error, tampilkan dan hentikan proses
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({}); // Kosongkan error jika validasi berhasil
     setIsLoading(true);
 
-    // Simulasi proses login
     setTimeout(() => {
       console.log("Login data:", formData);
-      alert("Login berhasil! (Demo)");
-      setIsLoading(false);
+      onNavigate("home", "Login berhasil!");
     }, 2000);
   };
+
+  // Helper untuk menambahkan kelas error secara dinamis
+  const errorClass = (field) =>
+    errors[field]
+      ? "border-red-500 focus:ring-red-500"
+      : "border-gray-300 focus:ring-green-500";
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
-        {/* Header */}
         <div className="text-center">
           <div className="flex justify-center mb-6">
             <div className="w-20 h-20 bg-green-700 rounded-full flex items-center justify-center">
@@ -53,9 +80,9 @@ const LoginPage = ({ onNavigate }) => {
           </p>
         </div>
 
-        {/* Login Form */}
         <div className="bg-white rounded-xl shadow-xl p-8">
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          {/* 3. Tambahkan `noValidate` untuk mematikan validasi browser */}
+          <form className="space-y-6" onSubmit={handleSubmit} noValidate>
             {/* Username Input */}
             <div>
               <label
@@ -84,13 +111,18 @@ const LoginPage = ({ onNavigate }) => {
                   id="username"
                   name="username"
                   type="text"
-                  required
                   value={formData.username}
                   onChange={handleInputChange}
-                  className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-200"
+                  className={`block w-full pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 transition duration-200 ${errorClass(
+                    "username"
+                  )}`}
                   placeholder="Masukkan username atau email"
                 />
               </div>
+              {/* 4. Tampilkan pesan error di bawah input */}
+              {errors.username && (
+                <p className="mt-1 text-sm text-red-600">{errors.username}</p>
+              )}
             </div>
 
             {/* Password Input */}
@@ -121,10 +153,11 @@ const LoginPage = ({ onNavigate }) => {
                   id="password"
                   name="password"
                   type={showPassword ? "text" : "password"}
-                  required
                   value={formData.password}
                   onChange={handleInputChange}
-                  className="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-200"
+                  className={`block w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 transition duration-200 ${errorClass(
+                    "password"
+                  )}`}
                   placeholder="Masukkan password"
                 />
                 <button
@@ -169,6 +202,10 @@ const LoginPage = ({ onNavigate }) => {
                   )}
                 </button>
               </div>
+              {/* 4. Tampilkan pesan error di bawah input */}
+              {errors.password && (
+                <p className="mt-1 text-sm text-red-600">{errors.password}</p>
+              )}
             </div>
 
             {/* Remember Me & Forgot Password */}
@@ -258,15 +295,16 @@ const LoginPage = ({ onNavigate }) => {
           </form>
         </div>
 
-        {/* Additional Info */}
         <div className="text-center">
           <p className="text-xs text-gray-500">
             Dengan masuk, Anda menyetujui{" "}
             <a href="#terms" className="text-green-600 hover:text-green-500">
+              {" "}
               Syarat & Ketentuan
             </a>{" "}
             dan{" "}
             <a href="#privacy" className="text-green-600 hover:text-green-500">
+              {" "}
               Kebijakan Privasi
             </a>
           </p>
