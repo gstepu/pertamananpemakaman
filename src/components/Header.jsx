@@ -6,6 +6,7 @@ const Header = ({ onNavigate }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setServicesDropdownOpen] = useState(false);
 
+  // Update dropdown items untuk menambahkan "Katalog Produk"
   const navLinks = [
     { name: "Beranda", href: "#" },
     { name: "Profil", href: "#" },
@@ -17,6 +18,7 @@ const Header = ({ onNavigate }) => {
         { name: "Cek Data Makam", href: "#" },
         { name: "Informasi Retribusi", href: "#" },
         { name: "Izin Pemakaman", href: "#" },
+        { name: "Katalog Produk", href: "#", action: "catalog" },
         { name: "Peta TPU & RTH", href: "#", action: "map" },
         { name: "Jadwal Acara Taman", href: "#", action: "park-schedule" },
       ],
@@ -26,12 +28,16 @@ const Header = ({ onNavigate }) => {
     { name: "Kontak", href: "#" },
   ];
 
+  // Update handleDropdownClick function
   const handleDropdownClick = (action) => {
     if (action === "park-schedule") {
       onNavigate("park-schedule");
     }
     if (action === "map") {
       onNavigate("map");
+    }
+    if (action === "catalog") {
+      onNavigate("catalog");
     }
     setServicesDropdownOpen(false);
   };
