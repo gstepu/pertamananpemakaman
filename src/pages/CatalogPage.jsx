@@ -4,12 +4,55 @@ import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
+// New Component: A stylish, reusable confirmation modal
+// Ganti komponen ConfirmationModal yang ada dengan kode baru ini.
+const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, children }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div
+      // --- MODIFIKASI DI SINI ---
+      // Semua kelas untuk background (warna, opacity, blur) telah dihapus.
+      // Div ini sekarang hanya berfungsi sebagai lapisan transparan untuk menengahkan modal
+      // dan akan menutup modal jika area di luarnya diklik.
+      className="fixed inset-0 z-50 flex justify-center items-center"
+      onClick={onClose}
+    >
+      <div
+        // Bayangan dipertahankan agar modal tetap terlihat jelas
+        className="bg-white rounded-lg shadow-2xl p-6 m-4 w-full max-w-md"
+        onClick={(e) => e.stopPropagation()} // Mencegah modal tertutup saat bagian dalamnya diklik
+      >
+        <div className="text-center">
+          <h3 className="text-xl font-bold text-gray-800 mb-2">{title}</h3>
+          <p className="text-gray-600 mb-6">{children}</p>
+        </div>
+        <div className="flex justify-center gap-4">
+          <button
+            onClick={onClose}
+            className="px-6 py-2 rounded-lg font-medium bg-gray-200 text-gray-800 hover:bg-gray-300 transition-colors"
+          >
+            Batal
+          </button>
+          <button
+            onClick={onConfirm}
+            className="px-6 py-2 rounded-lg font-medium bg-green-600 text-white hover:bg-green-700 transition-colors"
+          >
+            Ya, Unduh
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const CatalogPage = ({ onNavigate }) => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("name");
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the modal
 
-  // Sample product data based on the images
+  // Sample product data... (omitted for brevity, no changes here)
   const products = [
     {
       id: 1,
@@ -149,7 +192,7 @@ const CatalogPage = ({ onNavigate }) => {
     },
   ];
 
-  // Filter and sort products
+  // Filter and sort products... (omitted for brevity, no changes here)
   const filteredProducts = products
     .filter((product) => {
       const matchesCategory =
@@ -171,19 +214,21 @@ const CatalogPage = ({ onNavigate }) => {
       }
     });
 
-  const handleDownloadCatalog = () => {
-    // Simulate PDF download
+  // This function now handles the actual download logic
+  const startDownload = () => {
     const link = document.createElement("a");
-    link.href = "/images/catalog-cover.png"; // In real app, this would be a PDF file
+    link.href = "/images/catalog-cover.png"; // In a real app, this would be a PDF file
     link.download = "Katalog-Produk-KTH-Jakarta-2024.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
 
-    // Show success message
-    alert("Katalog sedang diunduh...");
+    // Close the modal and show success message
+    setIsModalOpen(false);
+    alert("Katalog Anda sedang diunduh...");
   };
 
+  // Other functions like formatPrice and ProductCard... (omitted for brevity, no changes here)
   const formatPrice = (price) => {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
@@ -327,9 +372,9 @@ const CatalogPage = ({ onNavigate }) => {
                 Produk berkualitas dari Kelompok Tani Hutan DKI Jakarta
               </p>
 
-              {/* Download Catalog Button */}
+              {/* MODIFIED: This button now opens the modal */}
               <button
-                onClick={handleDownloadCatalog}
+                onClick={() => setIsModalOpen(true)}
                 className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center mx-auto"
               >
                 <svg
@@ -351,7 +396,7 @@ const CatalogPage = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Filters and Search */}
+        {/* Filters and Search... (omitted for brevity) */}
         <div className="container mx-auto px-6 py-6">
           <div className="bg-white rounded-lg shadow-md p-6 mb-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -463,7 +508,7 @@ const CatalogPage = ({ onNavigate }) => {
             </div>
           )}
 
-          {/* Contact Information */}
+          {/* Contact Information... (omitted for brevity) */}
           <div className="mt-12 bg-green-50 rounded-lg p-6 border border-green-200">
             <div className="text-center">
               <h3 className="text-lg font-semibold text-green-800 mb-2">
@@ -509,6 +554,17 @@ const CatalogPage = ({ onNavigate }) => {
         </div>
       </main>
       <Footer />
+
+      {/* NEW: Render the modal here */}
+      <ConfirmationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={startDownload}
+        title="Konfirmasi Unduhan"
+      >
+        Apakah Anda yakin ingin mengunduh file
+        "Katalog-Produk-KTH-Jakarta-2024.pdf"?
+      </ConfirmationModal>
     </div>
   );
 };
