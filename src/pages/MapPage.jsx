@@ -621,21 +621,6 @@ const MapPage = ({ onNavigate }) => {
     <div className="bg-gray-50 min-h-screen flex flex-col">
       <Header onNavigate={onNavigate} />
       <main className="flex-1">
-        {/* Hero Section */}
-        <div className="bg-green-700 text-white p-6">
-          <div className="container mx-auto">
-            <div className="text-center">
-              <h1 className="text-3xl font-bold mb-2">
-                Peta TPU & RTH DKI Jakarta
-              </h1>
-              <p className="text-green-100">
-                Peta interaktif lokasi Taman Pemakaman Umum dan Ruang Terbuka
-                Hijau
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Map Container */}
         <div className="relative h-screen overflow-hidden">
           {/* Search Bar */}
