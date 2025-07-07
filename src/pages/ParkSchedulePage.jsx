@@ -1,6 +1,7 @@
 "use client";
-
 import { useState } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const ParkSchedulePage = ({ onNavigate }) => {
   const [selectedPark, setSelectedPark] = useState("TAMAN WIJAYA KUSUMA");
@@ -19,7 +20,7 @@ const ParkSchedulePage = ({ onNavigate }) => {
       endTime: "10:00",
       duration: 2,
       day: 1, // Monday
-      color: "bg-blue-200 border-blue-400",
+      color: "#0ea5e9",
       organizer: "Komunitas Ling Tien Kung Jakarta",
       description:
         "Senam terapi untuk kesehatan tubuh dan pikiran dengan gerakan Ling Tien Kung",
@@ -34,7 +35,7 @@ const ParkSchedulePage = ({ onNavigate }) => {
       endTime: "11:00",
       duration: 1,
       day: 1,
-      color: "bg-blue-200 border-blue-400",
+      color: "#0ea5e9",
       organizer: "Sanggar Tari Nusantara",
       description: "Latihan rutin tari tradisional untuk persiapan pertunjukan",
       participants: 15,
@@ -48,7 +49,7 @@ const ParkSchedulePage = ({ onNavigate }) => {
       endTime: "14:00",
       duration: 1,
       day: 1,
-      color: "bg-blue-200 border-blue-400",
+      color: "#0ea5e9",
       organizer: "Tim Arsitektur Lansekap",
       description: "Review desain taman dan penataan ruang hijau",
       participants: 8,
@@ -62,7 +63,7 @@ const ParkSchedulePage = ({ onNavigate }) => {
       endTime: "10:00",
       duration: 1,
       day: 2, // Tuesday
-      color: "bg-green-200 border-green-400",
+      color: "#22c55e",
       organizer: "Klub Senam Lansia",
       description:
         "Senam aerobik khusus untuk lansia dengan musik yang menyenangkan",
@@ -77,7 +78,7 @@ const ParkSchedulePage = ({ onNavigate }) => {
       endTime: "14:00",
       duration: 2,
       day: 2,
-      color: "bg-blue-200 border-blue-400",
+      color: "#0ea5e9",
       organizer: "SMAN 1 Jakarta",
       description: "Latihan rutin pasukan pengibar bendera sekolah",
       participants: 20,
@@ -91,7 +92,7 @@ const ParkSchedulePage = ({ onNavigate }) => {
       endTime: "17:00",
       duration: 3,
       day: 2,
-      color: "bg-blue-200 border-blue-400",
+      color: "#0ea5e9",
       organizer: "Universitas Indonesia",
       description: "Sesi foto wisuda mahasiswa dengan latar belakang taman",
       participants: 50,
@@ -105,7 +106,7 @@ const ParkSchedulePage = ({ onNavigate }) => {
       endTime: "10:00",
       duration: 1,
       day: 3, // Wednesday
-      color: "bg-blue-200 border-blue-400",
+      color: "#0ea5e9",
       organizer: "Komunitas Sehat Jakarta",
       description: "Senam aerobik untuk menjaga kebugaran tubuh",
       participants: 35,
@@ -119,7 +120,7 @@ const ParkSchedulePage = ({ onNavigate }) => {
       endTime: "12:00",
       duration: 1,
       day: 3,
-      color: "bg-green-200 border-green-400",
+      color: "#22c55e",
       organizer: "Studio Foto Harmoni",
       description: "Sesi foto prewedding dengan konsep natural di taman",
       participants: 4,
@@ -133,7 +134,7 @@ const ParkSchedulePage = ({ onNavigate }) => {
       endTime: "14:00",
       duration: 1,
       day: 3,
-      color: "bg-blue-200 border-blue-400",
+      color: "#0ea5e9",
       organizer: "Production House Creative",
       description: "Pembuatan video promosi wisata taman kota",
       participants: 10,
@@ -147,7 +148,7 @@ const ParkSchedulePage = ({ onNavigate }) => {
       endTime: "11:00",
       duration: 1,
       day: 4, // Thursday
-      color: "bg-green-200 border-green-400",
+      color: "#22c55e",
       organizer: "Keluarga Besar Wijaya",
       description: "Piknik keluarga dengan berbagai permainan tradisional",
       participants: 25,
@@ -161,7 +162,7 @@ const ParkSchedulePage = ({ onNavigate }) => {
       endTime: "14:00",
       duration: 1,
       day: 4,
-      color: "bg-blue-200 border-blue-400",
+      color: "#0ea5e9",
       organizer: "Media Televisi Lokal",
       description: "Liputan berita tentang program perawatan taman",
       participants: 6,
@@ -175,7 +176,7 @@ const ParkSchedulePage = ({ onNavigate }) => {
       endTime: "11:00",
       duration: 2,
       day: 5, // Friday
-      color: "bg-blue-200 border-blue-400",
+      color: "#0ea5e9",
       organizer: "MA FD Kafila Jakarta Timur",
       description: "Gathering dan diskusi santri tentang lingkungan hidup",
       participants: 40,
@@ -189,7 +190,7 @@ const ParkSchedulePage = ({ onNavigate }) => {
       endTime: "13:00",
       duration: 1,
       day: 5,
-      color: "bg-blue-200 border-blue-400",
+      color: "#0ea5e9",
       organizer: "Tim Dokumentasi Kota",
       description: "Pembuatan video dokumenter tentang taman kota",
       participants: 8,
@@ -211,16 +212,93 @@ const ParkSchedulePage = ({ onNavigate }) => {
     "16:00",
     "17:00",
   ];
+  const weekDays = ["MIN", "SEN", "SEL", "RAB", "KAM", "JUM", "SAB"];
+  const weekDates = [21, 22, 23, 24, 25, 26, 27];
 
-  const days = ["MIN", "SEN", "SEL", "RAB", "KAM", "JUM", "SAB"];
-  const dates = [21, 22, 23, 24, 25, 26, 27];
+  const monthDays = [
+    [31, 1, 2, 3, 4, 5, 6],
+    [7, 8, 9, 10, 11, 12, 13],
+    [14, 15, 16, 17, 18, 19, 20],
+    [21, 22, 23, 24, 25, 26, 27],
+    [28, 1, 2, 3, 4, 5, 6],
+    [7, 8, 9, 10, 11, 12, 13],
+  ];
 
-  const getEventsForTimeAndDay = (timeIndex, dayIndex) => {
+  const sidebarEvents = [
+    {
+      date: "2/22/2025",
+      temp: "55°/40°",
+      events: [
+        {
+          time: "08:00 - 09:00",
+          title: "Senam Terapi (Ling Tien Kung)",
+          color: "#22c55e",
+        },
+        { time: "10:00 - 11:00", title: "Latihan Tari", color: "#22c55e" },
+      ],
+    },
+    {
+      date: "2/23/2021",
+      temp: "55°/40°",
+      events: [
+        { time: "09:00 - 10:00", title: "Senam Landsdance", color: "#22c55e" },
+        { time: "12:00 - 13:00", title: "Paskibraka", color: "#22c55e" },
+      ],
+    },
+    {
+      date: "2/24/2021",
+      temp: "55°/40°",
+      events: [
+        {
+          time: "8:30 - 9:00",
+          title: "City Sales Pitch",
+          color: "#22c55e",
+          link: "https://zoom.us/j/1983475281",
+        },
+        {
+          time: "8:30 - 9:00",
+          title: "City Sales Pitch",
+          color: "#22c55e",
+          link: "https://zoom.us/j/1983475281",
+        },
+      ],
+    },
+    {
+      date: "3/2/2021",
+      temp: "55°/40°",
+      events: [
+        {
+          time: "8:30 - 9:00",
+          title: "Visit to discuss improvements",
+          color: "#22c55e",
+        },
+      ],
+    },
+    { date: "3/3/2021", temp: "55°/40°", events: [] },
+  ];
+
+  // Get events that start at a specific time and day
+  const getEventsStartingAtTimeAndDay = (timeIndex, dayIndex) => {
     return events.filter((event) => {
       const eventHour = Number.parseInt(event.time.split(":")[0]);
       const slotHour = Number.parseInt(timeSlots[timeIndex].split(":")[0]);
-      return event.day === dayIndex && eventHour === slotHour;
+      return event.day === dayIndex + 1 && eventHour === slotHour;
     });
+  };
+
+  // Calculate the position and height for events based on time slots
+  const getEventPosition = (event, timeIndex) => {
+    const eventStartHour = Number.parseInt(event.time.split(":")[0]);
+    const slotHour = Number.parseInt(timeSlots[timeIndex].split(":")[0]);
+
+    if (eventStartHour === slotHour) {
+      // This is the starting time slot for the event
+      return {
+        height: `${event.duration * 60}px`, // 60px per hour
+        zIndex: 10,
+      };
+    }
+    return null;
   };
 
   const navigateWeek = (direction) => {
@@ -242,12 +320,11 @@ const ParkSchedulePage = ({ onNavigate }) => {
   // Event Detail Modal Component
   const EventDetailModal = () => {
     if (!selectedEvent) return null;
-
     return (
-      <div className="fixed inset-0 backdrop-blur-sm bg-white/10 flex items-center justify-center z-50 p-4">
+      <div className="fixed inset-0 backdrop-blur-sm bg-black/50 flex items-center justify-center z-50 p-4">
         <div className="bg-white rounded-lg shadow-xl max-w-sm w-full">
           {/* Modal Header */}
-          <div className="bg-green-600 text-white p-3 rounded-t-lg">
+          <div className="bg-[#2e7d32] text-white p-3 rounded-t-lg">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-semibold">Detail Acara</h2>
               <button
@@ -270,7 +347,6 @@ const ParkSchedulePage = ({ onNavigate }) => {
               </button>
             </div>
           </div>
-
           {/* Modal Content */}
           <div className="p-4 space-y-3">
             {/* Event Title */}
@@ -288,7 +364,6 @@ const ParkSchedulePage = ({ onNavigate }) => {
                 {selectedEvent.status}
               </div>
             </div>
-
             {/* Schedule */}
             <div>
               <h4 className="text-sm font-medium text-gray-700 mb-2 flex items-center">
@@ -308,14 +383,13 @@ const ParkSchedulePage = ({ onNavigate }) => {
                 Jadwal Acara
               </h4>
               <div className="text-sm text-gray-600 space-y-1">
-                <p>Tanggal: {dates[selectedEvent.day]} Februari 2025</p>
+                <p>Tanggal: {weekDates[selectedEvent.day - 1]} Februari 2025</p>
                 <p>
                   Waktu: {selectedEvent.time} - {selectedEvent.endTime} WIB
                 </p>
                 <p>Durasi: {selectedEvent.duration} jam</p>
               </div>
             </div>
-
             {/* Organizer */}
             <div>
               <h4 className="text-sm font-medium text-gray-700 mb-2 flex items-center">
@@ -339,7 +413,6 @@ const ParkSchedulePage = ({ onNavigate }) => {
                 <p>Kontak: {selectedEvent.contact}</p>
               </div>
             </div>
-
             {/* Description */}
             <div>
               <h4 className="text-sm font-medium text-gray-700 mb-2 flex items-center">
@@ -362,7 +435,6 @@ const ParkSchedulePage = ({ onNavigate }) => {
                 {selectedEvent.description}
               </p>
             </div>
-
             {/* Participants */}
             <div>
               <h4 className="text-sm font-medium text-gray-700 mb-2 flex items-center">
@@ -386,7 +458,6 @@ const ParkSchedulePage = ({ onNavigate }) => {
               </p>
             </div>
           </div>
-
           {/* Modal Footer */}
           <div className="p-4 border-t">
             <button
@@ -401,22 +472,203 @@ const ParkSchedulePage = ({ onNavigate }) => {
     );
   };
 
+  // Get events for the current selected day
+  const getCurrentDayEvents = () => {
+    const currentDayOfWeek = currentDate.getDay(); // 0 = Sunday, 1 = Monday, etc.
+    const adjustedDay = currentDayOfWeek === 0 ? 7 : currentDayOfWeek; // Convert Sunday to 7
+    return events.filter((event) => event.day === adjustedDay);
+  };
+
+  // Navigate to previous/next day
+  const navigateDay = (direction) => {
+    const newDate = new Date(currentDate);
+    newDate.setDate(currentDate.getDate() + direction);
+    setCurrentDate(newDate);
+  };
+
+  // Get day name in Indonesian
+  const getDayName = (date) => {
+    const days = [
+      "Minggu",
+      "Senin",
+      "Selasa",
+      "Rabu",
+      "Kamis",
+      "Jumat",
+      "Sabtu",
+    ];
+    return days[date.getDay()];
+  };
+
+  // Get month name in Indonesian
+  const getMonthName = (date) => {
+    const months = [
+      "Januari",
+      "Februari",
+      "Maret",
+      "April",
+      "Mei",
+      "Juni",
+      "Juli",
+      "Agustus",
+      "September",
+      "Oktober",
+      "November",
+      "Desember",
+    ];
+    return months[date.getMonth()];
+  };
+
+  // Render Daily View - Simplified
+  const renderDailyView = () => {
+    const dayEvents = getCurrentDayEvents();
+    const dayName = getDayName(currentDate);
+    const monthName = getMonthName(currentDate);
+    const dayNames = ["MIN", "SEN", "SEL", "RAB", "KAM", "JUM", "SAB"];
+    const currentDayName = dayNames[currentDate.getDay()];
+
+    return (
+      <div className="flex-1 overflow-auto">
+        <div className="min-w-full">
+          {/* Daily Header - Simple */}
+          <div className="bg-white border-b border-gray-200 p-4 sticky top-0 z-10">
+            <div className="flex items-center justify-center gap-4">
+              <button
+                onClick={() => navigateDay(-1)}
+                className="p-2 hover:bg-gray-100 rounded-lg"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </button>
+              <div className="text-center">
+                <h2 className="text-xl font-bold text-gray-800">
+                  {dayName}, {currentDate.getDate()} {monthName}{" "}
+                  {currentDate.getFullYear()}
+                </h2>
+              </div>
+              <button
+                onClick={() => navigateDay(1)}
+                className="p-2 hover:bg-gray-100 rounded-lg"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Simple Daily Grid */}
+          <div className="grid grid-cols-6 border-b border-gray-200 bg-white sticky top-16 z-10">
+            <div className="p-3"></div>
+            <div className="col-span-5 p-3 text-center border-l border-gray-200">
+              <div className="text-sm text-gray-600 mb-1">{currentDayName}</div>
+              <div className="text-2xl font-semibold">
+                {currentDate.getDate()}
+              </div>
+            </div>
+          </div>
+
+          {/* Time Grid for Daily View - Simple */}
+          <div className="relative">
+            {timeSlots.map((time, timeIndex) => {
+              const timeEvents = dayEvents.filter((event) => {
+                const eventHour = Number.parseInt(event.time.split(":")[0]);
+                const slotHour = Number.parseInt(time.split(":")[0]);
+                return eventHour === slotHour;
+              });
+
+              return (
+                <div
+                  key={time}
+                  className="grid grid-cols-6 border-b border-gray-100 min-h-[60px]"
+                >
+                  <div className="p-3 text-sm text-gray-500 border-r border-gray-200 bg-white text-right">
+                    {time}
+                  </div>
+                  <div className="col-span-5 border-l border-gray-200 relative hover:bg-gray-50 transition-colors">
+                    {timeEvents.map((event, eventIndex) => (
+                      <div
+                        key={eventIndex}
+                        className="absolute left-0 right-0 top-0 p-2 text-sm font-medium cursor-pointer hover:shadow-lg transition-shadow border-l-4 mb-1"
+                        style={{
+                          backgroundColor:
+                            event.color === "#0ea5e9"
+                              ? "#dbeafe"
+                              : event.color === "#22c55e"
+                              ? "#dcfce7"
+                              : "#dbeafe",
+                          borderLeftColor: event.color,
+                          color:
+                            event.color === "#0ea5e9"
+                              ? "#1e40af"
+                              : event.color === "#22c55e"
+                              ? "#166534"
+                              : "#1e40af",
+                          height: `${event.duration * 60 - 4}px`,
+                          zIndex: 10,
+                        }}
+                        onClick={() => handleEventClick(event)}
+                      >
+                        <div className="font-semibold text-sm">
+                          {event.time}
+                        </div>
+                        <div className="leading-tight">{event.title}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const days = ["MIN", "SEN", "SEL", "RAB", "KAM", "JUM", "SAB"];
+  const dates = [21, 22, 23, 24, 25, 26, 27];
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f8f9fa] flex flex-col">
       {/* Header */}
-      <div className="bg-green-700 text-white p-6">
-        <div className="container mx-auto">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h1 className="text-2xl font-bold">{selectedPark}</h1>
-              <div className="flex items-center mt-2">
-                <span className="text-lg">Februari 2025</span>
+      <Header onNavigate={onNavigate} />
+
+      {/* Main Calendar Content */}
+      <div className="flex flex-1">
+        {/* Left Sidebar */}
+        <div className="w-72 bg-[#2e7d32] text-white p-3 overflow-y-auto">
+          <div className="mb-4">
+            <h1 className="text-lg font-bold mb-2">{selectedPark}</h1>
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-xl font-bold">Februari 2025</h2>
+              <div className="flex gap-1">
                 <button
                   onClick={() => navigateWeek(-1)}
-                  className="ml-4 p-1 hover:bg-green-600 rounded"
+                  className="text-white hover:bg-white/20 p-1 rounded"
                 >
                   <svg
-                    className="w-5 h-5"
+                    className="w-4 h-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -429,13 +681,12 @@ const ParkSchedulePage = ({ onNavigate }) => {
                     />
                   </svg>
                 </button>
-                <span className="mx-2">Hari ini</span>
                 <button
                   onClick={() => navigateWeek(1)}
-                  className="p-1 hover:bg-green-600 rounded"
+                  className="text-white hover:bg-white/20 p-1 rounded"
                 >
                   <svg
-                    className="w-5 h-5"
+                    className="w-4 h-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -450,75 +701,7 @@ const ParkSchedulePage = ({ onNavigate }) => {
                 </button>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Taman WIJAYA KUSUMA"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="px-4 py-2 rounded-lg text-gray-800 bg-white border-2 border-white w-64 focus:outline-none focus:ring-2 focus:ring-green-300 focus:border-green-300"
-                />
-                <svg
-                  className="absolute right-3 top-2.5 w-5 h-5 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </div>
-              <button
-                onClick={() => onNavigate("park-application")}
-                className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-medium flex items-center"
-              >
-                <svg
-                  className="w-4 h-4 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 4v16m8-8H4"
-                  />
-                </svg>
-                Ajukan
-              </button>
-            </div>
-          </div>
 
-          {/* View Mode Tabs */}
-          <div className="flex space-x-1">
-            {["Harian", "Mingguan", "Bulanan", "Tahunan"].map((mode) => (
-              <button
-                key={mode}
-                onClick={() => setViewMode(mode)}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  viewMode === mode
-                    ? "bg-yellow-500 text-white"
-                    : "bg-green-600 hover:bg-green-500 text-white"
-                }`}
-              >
-                {mode}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Calendar Content */}
-      <div className="container mx-auto p-6">
-        <div className="flex gap-6">
-          {/* Sidebar Calendar */}
-          <div className="w-80 bg-green-700 text-white rounded-lg p-6">
             {/* Mini Calendar */}
             <div className="mb-6">
               <div className="grid grid-cols-7 gap-1 text-xs mb-2">
@@ -530,145 +713,380 @@ const ParkSchedulePage = ({ onNavigate }) => {
                   )
                 )}
               </div>
-              <div className="grid grid-cols-7 gap-1 text-sm">
-                {Array.from({ length: 35 }, (_, i) => {
-                  const date = i - 2; // Adjust for month start
-                  const isCurrentMonth = date > 0 && date <= 28;
-                  const isSelected = date === 22;
-                  return (
+              <div className="grid grid-cols-7 gap-1 text-xs">
+                {[
+                  [31, 1, 2, 3, 4, 5, 6],
+                  [7, 8, 9, 10, 11, 12, 13],
+                  [14, 15, 16, 17, 18, 19, 20],
+                  [21, 22, 23, 24, 25, 26, 27],
+                  [28, 1, 2, 3, 4, 5, 6],
+                  [7, 8, 9, 10, 11, 12, 13],
+                ].map((week, weekIndex) =>
+                  week.map((day, dayIndex) => (
                     <div
-                      key={i}
-                      className={`text-center p-2 rounded cursor-pointer ${
-                        isSelected
-                          ? "bg-blue-500"
-                          : isCurrentMonth
-                          ? "hover:bg-green-600"
-                          : "text-green-300"
+                      key={`${weekIndex}-${dayIndex}`}
+                      className={`text-center p-1 rounded ${
+                        day === 22
+                          ? "bg-blue-500 text-white"
+                          : weekIndex === 0 && dayIndex === 0
+                          ? "text-gray-400"
+                          : weekIndex >= 4 && day <= 13
+                          ? "text-gray-400"
+                          : ""
                       }`}
                     >
-                      {isCurrentMonth ? date : ""}
+                      {day}
                     </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Today's Events */}
-            <div className="space-y-4">
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-medium">
-                    HARI INI 2/22/2025
-                  </span>
-                  <span className="text-xs">55°/40° ☀️</span>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <div className="text-sm">
-                      <div className="font-medium">08:00 - 09:00</div>
-                      <div className="text-green-200">
-                        Senam Terapi (Ling Tien Kung)
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <div className="text-sm">
-                      <div className="font-medium">10:00 - 11:00</div>
-                      <div className="text-green-200">Latihan Tari</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Upcoming Events */}
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-medium">BESOK 2/23/2025</span>
-                  <span className="text-xs">55°/40° ☀️</span>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <div className="text-sm">
-                      <div className="font-medium">09:00 - 10:00</div>
-                      <div className="text-green-200">Senam Lansdance</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <div className="text-sm">
-                      <div className="font-medium">12:00 - 13:00</div>
-                      <div className="text-green-200">Paskibra</div>
-                    </div>
-                  </div>
-                </div>
+                  ))
+                )}
               </div>
             </div>
           </div>
 
-          {/* Main Calendar Grid */}
-          <div className="flex-1 bg-white rounded-lg shadow-xl overflow-hidden">
-            {/* Calendar Header */}
-            <div className="grid grid-cols-8 border-b">
-              <div className="p-4 bg-gray-50"></div>
-              {days.map((day, index) => (
-                <div key={day} className="p-4 text-center bg-gray-50 border-l">
-                  <div className="font-medium text-gray-600">{day}</div>
-                  <div className="text-2xl font-bold text-gray-800 mt-1">
-                    {dates[index]}
+          {/* Events List */}
+          <div className="space-y-3">
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <div className="text-xs font-medium text-[#66bb6a]">
+                  HARI INI 2/22/2025
+                </div>
+                <div className="flex items-center gap-1 text-xs">
+                  55°/40°
+                  <svg
+                    className="w-4 h-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-start gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#22c55e] mt-2 flex-shrink-0"></div>
+                  <div className="text-sm">
+                    <div className="text-[#66bb6a] font-medium">
+                      08:00 - 10:00
+                    </div>
+                    <div>Senam Terapi (Ling Tien Kung)</div>
                   </div>
                 </div>
-              ))}
+                <div className="flex items-start gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#22c55e] mt-2 flex-shrink-0"></div>
+                  <div className="text-sm">
+                    <div className="text-[#66bb6a] font-medium">
+                      10:00 - 11:00
+                    </div>
+                    <div>Latihan Tari</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Calendar Body */}
-            <div className="grid grid-cols-8">
-              {timeSlots.map((time, timeIndex) => (
-                <div key={time} className="contents">
-                  {/* Time Column */}
-                  <div className="p-4 text-right text-gray-500 bg-gray-50 border-b border-r font-medium">
-                    {time}
-                  </div>
-                  {/* Day Columns */}
-                  {Array.from({ length: 7 }, (_, dayIndex) => {
-                    const dayEvents = getEventsForTimeAndDay(
-                      timeIndex,
-                      dayIndex
-                    );
-                    return (
-                      <div
-                        key={`${timeIndex}-${dayIndex}`}
-                        className="relative h-16 border-b border-l hover:bg-gray-50 transition-colors"
-                      >
-                        {dayEvents.map((event) => (
-                          <div
-                            key={event.id}
-                            className={`absolute inset-x-1 top-1 p-2 rounded text-xs font-medium border-l-4 ${event.color} cursor-pointer hover:shadow-lg transition-shadow`}
-                            style={{
-                              height: `${event.duration * 60 - 8}px`,
-                              zIndex: 10,
-                            }}
-                            onClick={() => handleEventClick(event)}
-                          >
-                            <div className="font-semibold text-blue-800">
-                              {event.time}
-                            </div>
-                            <div className="text-blue-700 leading-tight">
-                              {event.title}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    );
-                  })}
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <div className="text-xs font-medium text-[#66bb6a]">
+                  BESOK 2/23/2025
                 </div>
-              ))}
+                <div className="flex items-center gap-1 text-xs">
+                  55°/40°
+                  <svg
+                    className="w-4 h-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-start gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#22c55e] mt-2 flex-shrink-0"></div>
+                  <div className="text-sm">
+                    <div className="text-[#66bb6a] font-medium">
+                      09:00 - 10:00
+                    </div>
+                    <div>Senam Landsdance</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#22c55e] mt-2 flex-shrink-0"></div>
+                  <div className="text-sm">
+                    <div className="text-[#66bb6a] font-medium">
+                      12:00 - 14:00
+                    </div>
+                    <div>Paskibraka</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <div className="text-xs font-medium text-[#66bb6a]">
+                  RABU 2/24/2021
+                </div>
+                <div className="flex items-center gap-1 text-xs">
+                  55°/40°
+                  <svg
+                    className="w-4 h-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-start gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#22c55e] mt-2 flex-shrink-0"></div>
+                  <div className="text-sm">
+                    <div className="text-[#66bb6a] font-medium">
+                      14:00 - 17:00
+                    </div>
+                    <div>FOTO WISUDA</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+        {/* Main Content */}
+        <div className="flex-1 flex flex-col">
+          {/* Top Navigation */}
+          <div className="bg-white border-b border-gray-200 p-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={() => navigateWeek(-1)}
+                  className="p-1 hover:bg-gray-100 rounded"
+                >
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                </button>
+                <span className="text-sm">Hari ini</span>
+                <button
+                  onClick={() => navigateWeek(1)}
+                  className="p-1 hover:bg-gray-100 rounded"
+                >
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+
+                <div className="flex gap-2 ml-8">
+                  <button
+                    onClick={() => setViewMode("Harian")}
+                    className={`px-4 py-2 rounded-lg font-medium transition-colors text-sm ${
+                      viewMode === "Harian"
+                        ? "bg-[#fdd835] text-black"
+                        : "text-gray-600 hover:bg-gray-100"
+                    }`}
+                  >
+                    Harian
+                  </button>
+                  <button
+                    onClick={() => setViewMode("Mingguan")}
+                    className={`px-4 py-2 rounded-lg font-medium transition-colors text-sm ${
+                      viewMode === "Mingguan"
+                        ? "bg-[#fdd835] text-black"
+                        : "text-gray-600 hover:bg-gray-100"
+                    }`}
+                  >
+                    Mingguan
+                  </button>
+                  <button
+                    onClick={() => setViewMode("Bulanan")}
+                    className={`px-4 py-2 rounded-lg font-medium transition-colors text-sm ${
+                      viewMode === "Bulanan"
+                        ? "bg-[#fdd835] text-black"
+                        : "text-gray-600 hover:bg-gray-100"
+                    }`}
+                  >
+                    Bulanan
+                  </button>
+                  <button
+                    onClick={() => setViewMode("Tahunan")}
+                    className={`px-4 py-2 rounded-lg font-medium transition-colors text-sm ${
+                      viewMode === "Tahunan"
+                        ? "bg-[#fdd835] text-black"
+                        : "text-gray-600 hover:bg-gray-100"
+                    }`}
+                  >
+                    Tahunan
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="relative">
+                  <svg
+                    className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
+                  <input
+                    type="text"
+                    placeholder="Taman WIJAYA KUSUMA"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                  />
+                </div>
+                <button
+                  onClick={() => onNavigate && onNavigate("park-application")}
+                  className="bg-[#22c55e] hover:bg-[#22c55e]/90 text-white px-4 py-2 rounded-lg font-medium flex items-center"
+                >
+                  <svg
+                    className="w-4 h-4 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 4v16m8-8H4"
+                    />
+                  </svg>
+                  Ajukan
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Calendar Grid */}
+          {viewMode === "Harian" ? (
+            renderDailyView()
+          ) : (
+            <div className="flex-1 overflow-auto">
+              <div className="min-w-full">
+                {/* Week Header */}
+                <div className="grid grid-cols-8 border-b border-gray-200 bg-white sticky top-0 z-10">
+                  <div className="p-3"></div>
+                  {days.map((day, index) => (
+                    <div
+                      key={day}
+                      className="p-3 text-center border-l border-gray-200"
+                    >
+                      <div className="text-xs text-gray-600 mb-1">{day}</div>
+                      <div className="text-xl font-semibold">
+                        {dates[index]}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Time Grid */}
+                <div className="relative">
+                  {timeSlots.map((time, timeIndex) => (
+                    <div
+                      key={time}
+                      className="grid grid-cols-8 border-b border-gray-100 min-h-[60px]"
+                    >
+                      <div className="p-3 text-sm text-gray-500 border-r border-gray-200 bg-white text-right">
+                        {time}
+                      </div>
+                      {dates.map((date, dayIndex) => (
+                        <div
+                          key={`${time}-${dayIndex}`}
+                          className="border-l border-gray-200 relative hover:bg-gray-50 transition-colors"
+                        >
+                          {getEventsStartingAtTimeAndDay(
+                            timeIndex,
+                            dayIndex
+                          ).map((event, eventIndex) => {
+                            const position = getEventPosition(event, timeIndex);
+                            if (!position) return null;
+
+                            return (
+                              <div
+                                key={eventIndex}
+                                className="absolute left-0 right-0 top-0 p-2 text-xs font-medium cursor-pointer hover:shadow-lg transition-shadow border-l-4 mb-1"
+                                style={{
+                                  backgroundColor:
+                                    event.color === "#0ea5e9"
+                                      ? "#dbeafe"
+                                      : event.color === "#22c55e"
+                                      ? "#dcfce7"
+                                      : "#dbeafe",
+                                  borderLeftColor: event.color,
+                                  color:
+                                    event.color === "#0ea5e9"
+                                      ? "#1e40af"
+                                      : event.color === "#22c55e"
+                                      ? "#166534"
+                                      : "#1e40af",
+                                  height: `${event.duration * 60 - 4}px`,
+                                  zIndex: position.zIndex,
+                                }}
+                                onClick={() => handleEventClick(event)}
+                              >
+                                <div className="font-semibold">
+                                  {event.time}
+                                </div>
+                                <div className="leading-tight">
+                                  {event.title}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
 
       {/* Event Detail Modal */}
       {isModalOpen && <EventDetailModal />}
