@@ -9,7 +9,6 @@ const Header = ({ onNavigate }) => {
   // Update dropdown items untuk menambahkan "Katalog Produk"
   const navLinks = [
     { name: "Beranda", href: "#" },
-    { name: "Profil", href: "#" },
     {
       name: "Layanan",
       href: "#",
@@ -23,9 +22,9 @@ const Header = ({ onNavigate }) => {
         { name: "Jadwal Acara Taman", href: "#", action: "park-schedule" },
       ],
     },
-    { name: "Berita", href: "#" },
-    { name: "Regulasi", href: "#" },
-    { name: "Kontak", href: "#" },
+    { name: "Berita dan Informasi", href: "#" },
+    { name: "Dasar Hukum", href: "#" },
+    { name: "Tentang Kami", href: "#" },
   ];
 
   // Update handleDropdownClick function
@@ -47,12 +46,12 @@ const Header = ({ onNavigate }) => {
       <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
         <div className="flex items-center space-x-4">
           <img
-            src="https://placehold.co/40x40/004a26/ffffff?text=DKI"
+            src="public/images/logo.png"
             alt="Logo DKI"
             className="h-10"
           />
           <span className="text-lg font-bold text-gray-800">
-            Distamhut DKI Jakarta
+            Dinas Pertamanan dan Pemakaman DKI Jakarta
           </span>
         </div>
 
