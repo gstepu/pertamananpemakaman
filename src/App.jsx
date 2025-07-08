@@ -1,7 +1,7 @@
 "use client";
 
 import "./index.css";
-import { useState, useEffect } from "react"; // 1. Import useEffect
+import { useState, useEffect } from "react";
 
 // Import komponen layout
 import Header from "./components/Header";
@@ -16,12 +16,10 @@ import ParkSchedulePage from "./pages/ParkSchedulePage";
 import ParkApplicationPage from "./pages/ParkApplicationPage";
 import MapPage from "./pages/MapPage";
 import CatalogPage from "./pages/CatalogPage";
+import KTHProfilePage from "./pages/Kthprofile";
 
-// 2. BUAT KOMPONEN NOTIFIKASI BARU
-// Komponen ini akan tampil di atas semua halaman lain
 const Notification = ({ message, onClear }) => {
   useEffect(() => {
-    // Sembunyikan notifikasi setelah 3 detik
     if (message) {
       const timer = setTimeout(() => {
         onClear();
@@ -33,8 +31,6 @@ const Notification = ({ message, onClear }) => {
   if (!message) return null;
 
   return (
-    // --- PERUBAHAN DI SINI ---
-    // Naikkan z-index agar notifikasi muncul di atas header
     <div className="fixed top-5 right-5 z-[100] bg-green-600 text-white py-2 px-5 rounded-lg shadow-lg animate-fade-in-down">
       {message}
     </div>
@@ -42,11 +38,10 @@ const Notification = ({ message, onClear }) => {
 };
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState("home");
-  // 3. Tambah state untuk notifikasi
+  // Atur halaman default ke "LandingPage" agar konsisten
+  const [currentPage, setCurrentPage] = useState("LandingPage");
   const [notificationMessage, setNotificationMessage] = useState("");
 
-  // 4. Buat fungsi navigasi baru yang bisa membawa pesan notifikasi
   const handleNavigate = (page, message = "") => {
     setCurrentPage(page);
     if (message) {
@@ -54,9 +49,12 @@ export default function App() {
     }
   };
 
-  const renderPage = () => {
-    // 5. Ganti semua `onNavigate={setCurrentPage}` menjadi `onNavigate={handleNavigate}`
+  // --- PERUBAHAN DI SINI ---
+  // Fungsi ini sekarang hanya bertanggung jawab untuk merender *konten* halaman
+  const renderPageContent = () => {
     switch (currentPage) {
+      case "LandingPage":
+        return <LandingPage onNavigate={handleNavigate} />;
       case "login":
         return <LoginPage onNavigate={handleNavigate} />;
       case "register":
@@ -71,27 +69,31 @@ export default function App() {
         return <MapPage onNavigate={handleNavigate} />;
       case "catalog":
         return <CatalogPage onNavigate={handleNavigate} />;
+      case "Kthprofile":
+        return <KTHProfilePage onNavigate={handleNavigate} />;
       default:
-        return (
-          <div className="bg-gray-50 min-h-screen flex flex-col">
-            <Header onNavigate={handleNavigate} />
-            <main className="flex-1">
-              <LandingPage onNavigate={handleNavigate} />
-            </main>
-            <Footer />
-          </div>
-        );
+        // Halaman default jika state tidak cocok
+        return <LandingPage onNavigate={handleNavigate} />;
     }
   };
 
+  // --- DAN PERUBAHAN DI SINI ---
+  // Header dan Footer sekarang menjadi layout tetap
   return (
-    <div>
-      {/* 6. Render komponen Notifikasi di sini */}
+    <div className="bg-gray-50 min-h-screen flex flex-col">
       <Notification
         message={notificationMessage}
         onClear={() => setNotificationMessage("")}
       />
-      {renderPage()}
+
+      <Header onNavigate={handleNavigate} />
+
+      <main className="flex-1">
+        {/* Panggil fungsi untuk merender konten di sini */}
+        {renderPageContent()}
+      </main>
+
+      <Footer />
     </div>
   );
 }

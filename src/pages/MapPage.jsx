@@ -1,8 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 const MapPage = ({ onNavigate }) => {
   const [selectedLayers, setSelectedLayers] = useState({
@@ -619,7 +617,6 @@ const MapPage = ({ onNavigate }) => {
 
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col">
-      <Header onNavigate={onNavigate} />
       <main className="flex-1">
         {/* Map Container */}
         <div className="relative h-screen overflow-hidden">
@@ -805,7 +802,6 @@ const MapPage = ({ onNavigate }) => {
           {isInfoPanelOpen && <InfoPanel />}
         </div>
       </main>
-      <Footer />
     </div>
   );
 };

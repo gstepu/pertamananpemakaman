@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 // New Component: A stylish, reusable confirmation modal
 // Ganti komponen ConfirmationModal yang ada dengan kode baru ini.
@@ -359,7 +357,6 @@ const CatalogPage = ({ onNavigate }) => {
 
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col">
-      <Header onNavigate={onNavigate} />
       <main className="flex-1">
         {/* Hero Section */}
         <div className="bg-green-700 text-white p-6">
@@ -553,7 +550,6 @@ const CatalogPage = ({ onNavigate }) => {
           </div>
         </div>
       </main>
-      <Footer />
 
       {/* NEW: Render the modal here */}
       <ConfirmationModal

@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 const ParkApplicationPage = ({ onNavigate }) => {
   const [formData, setFormData] = useState({
@@ -571,7 +569,6 @@ const ParkApplicationPage = ({ onNavigate }) => {
 
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col">
-      <Header onNavigate={onNavigate} />
       <main className="flex-1">
         {/* Hero Section */}
         <div className="bg-green-700 text-white p-6">
@@ -1299,7 +1296,6 @@ const ParkApplicationPage = ({ onNavigate }) => {
           </div>
         </div>
       </main>
-      <Footer />
 
       {/* Confirmation Modal */}
       <ConfirmationModal />

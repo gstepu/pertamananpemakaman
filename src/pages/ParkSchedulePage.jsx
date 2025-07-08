@@ -1,7 +1,5 @@
 "use client";
 import { useState } from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 const ParkSchedulePage = ({ onNavigate }) => {
   const [selectedPark, setSelectedPark] = useState("TAMAN WIJAYA KUSUMA");
@@ -651,9 +649,6 @@ const ParkSchedulePage = ({ onNavigate }) => {
 
   return (
     <div className="min-h-screen bg-[#f8f9fa] flex flex-col">
-      {/* Header */}
-      <Header onNavigate={onNavigate} />
-
       {/* Main Calendar Content */}
       <div className="flex flex-1">
         {/* Left Sidebar */}
@@ -1084,9 +1079,6 @@ const ParkSchedulePage = ({ onNavigate }) => {
           )}
         </div>
       </div>
-
-      {/* Footer */}
-      <Footer />
 
       {/* Event Detail Modal */}
       {isModalOpen && <EventDetailModal />}
