@@ -1,235 +1,164 @@
 import { useState } from "react";
 
 const RegulationPage = ({ onNavigate }) => {
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
-  // Data regulasi berdasarkan kategori
-  const regulations = [
+  // Statistics data
+  const statistics = [
     {
-      id: 1,
-      title: "Undang-Undang Republik Indonesia Nomor 23 Tahun 2014",
-      subtitle: "Tentang Pemerintahan Daerah",
-      description:
-        "Undang-undang yang mengatur mengenai pembagian urusan pemerintahan antara pemerintah pusat, pemerintahan daerah provinsi, dan pemerintahan daerah kabupaten/kota, termasuk urusan di bidang pertamanan dan kehutanan.",
-      category: "uu",
-      year: "2014",
-      number: "UU No. 23 Tahun 2014",
-      status: "Berlaku",
-      downloadUrl: "#",
-      summary:
-        "Undang-undang ini menjadi dasar kewenangan pemerintah daerah dalam mengelola urusan pertamanan dan hutan kota sebagai urusan wajib yang berkaitan dengan pelayanan dasar.",
+      title: "Undang-Undang",
+      count: "15+",
+      icon: "⚖️",
+      description: "Peraturan tingkat pusat",
+      bgColor: "bg-red-500",
+      bgGradient: "from-red-500 to-red-600",
     },
     {
-      id: 2,
-      title: "Undang-Undang Republik Indonesia Nomor 41 Tahun 1999",
-      subtitle: "Tentang Kehutanan",
-      description:
-        "Undang-undang yang mengatur penyelenggaraan kehutanan yang bertujuan untuk sebesar-besar kemakmuran rakyat yang berkeadilan dan berkelanjutan, termasuk hutan kota.",
-      category: "uu",
-      year: "1999",
-      number: "UU No. 41 Tahun 1999",
-      status: "Berlaku",
-      downloadUrl: "#",
-      summary:
-        "Memberikan landasan hukum pengelolaan hutan kota sebagai bagian dari kawasan hutan yang berada di wilayah perkotaan.",
+      title: "Peraturan Pemerintah",
+      count: "20+",
+      icon: "📋",
+      description: "Peraturan pelaksanaan UU",
+      bgColor: "bg-blue-500",
+      bgGradient: "from-blue-500 to-blue-600",
     },
     {
-      id: 3,
-      title: "Peraturan Pemerintah Republik Indonesia Nomor 63 Tahun 2002",
-      subtitle: "Tentang Hutan Kota",
-      description:
-        "Peraturan yang mengatur tentang perencanaan, pemanfaatan, penyelenggaraan, dan pengendalian hutan kota untuk meningkatkan kualitas lingkungan hidup.",
-      category: "pp",
-      year: "2002",
-      number: "PP No. 63 Tahun 2002",
-      status: "Berlaku",
-      downloadUrl: "#",
-      summary:
-        "Mengatur secara teknis mengenai kriteria, perencanaan, dan pengelolaan hutan kota termasuk mekanisme perizinan dan pengawasan.",
+      title: "Peraturan Daerah",
+      count: "10+",
+      icon: "🏛️",
+      description: "Peraturan tingkat provinsi",
+      bgColor: "bg-purple-500",
+      bgGradient: "from-purple-500 to-purple-600",
     },
     {
-      id: 4,
-      title: "Peraturan Menteri Dalam Negeri Nomor 1 Tahun 2007",
-      subtitle: "Tentang Penataan Ruang Terbuka Hijau Kawasan Perkotaan",
-      description:
-        "Peraturan yang mengatur penataan ruang terbuka hijau di kawasan perkotaan sebagai bagian dari sistem ruang kota yang berkelanjutan.",
-      category: "permen",
-      year: "2007",
-      number: "Permendagri No. 1 Tahun 2007",
-      status: "Berlaku",
-      downloadUrl: "#",
-      summary:
-        "Menetapkan standar minimal 30% ruang terbuka hijau dari luas wilayah kota dan mengatur mekanisme perencanaan serta pengelolaannya.",
-    },
-    {
-      id: 5,
-      title: "Peraturan Daerah Provinsi DKI Jakarta Nomor 6 Tahun 1999",
-      subtitle: "Tentang Rencana Tata Ruang Wilayah DKI Jakarta 2030",
-      description:
-        "Peraturan daerah yang mengatur rencana tata ruang wilayah DKI Jakarta hingga tahun 2030, termasuk alokasi ruang untuk pertamanan dan hutan kota.",
-      category: "perda",
-      year: "1999",
-      number: "Perda DKI No. 6 Tahun 1999",
-      status: "Berlaku",
-      downloadUrl: "#",
-      summary:
-        "Mengalokasikan ruang terbuka hijau minimal 13,94% dari total luas wilayah DKI Jakarta dan mengatur sebaran serta fungsinya.",
-    },
-    {
-      id: 6,
-      title: "Peraturan Daerah Provinsi DKI Jakarta Nomor 8 Tahun 2007",
-      subtitle: "Tentang Ketertiban Umum",
-      description:
-        "Peraturan yang mengatur ketertiban umum di DKI Jakarta, termasuk larangan merusak fasilitas taman dan ruang terbuka hijau.",
-      category: "perda",
-      year: "2007",
-      number: "Perda DKI No. 8 Tahun 2007",
-      status: "Berlaku",
-      downloadUrl: "#",
-      summary:
-        "Mengatur sanksi terhadap perusakan fasilitas taman, pembuangan sampah sembarangan, dan vandalisme di area ruang terbuka hijau.",
-    },
-    {
-      id: 7,
-      title: "Peraturan Gubernur DKI Jakarta Nomor 38 Tahun 2012",
-      subtitle: "Tentang Bangunan Gedung Hijau",
-      description:
-        "Peraturan yang mengatur kewajiban penyediaan ruang terbuka hijau pada bangunan gedung di DKI Jakarta.",
-      category: "pergub",
-      year: "2012",
-      number: "Pergub DKI No. 38 Tahun 2012",
-      status: "Berlaku",
-      downloadUrl: "#",
-      summary:
-        "Mewajibkan setiap bangunan gedung menyediakan ruang terbuka hijau minimal 10% dari luas lahan dan mengatur kriteria tanaman yang digunakan.",
-    },
-    {
-      id: 8,
-      title: "Peraturan Gubernur DKI Jakarta Nomor 155 Tahun 2019",
-      subtitle: "Tentang Retribusi Izin Pemakaman dan Pengurusan Jenazah",
-      description:
-        "Peraturan yang mengatur tarif retribusi untuk izin pemakaman dan pengurusan jenazah di tempat pemakaman umum yang dikelola Pemerintah Provinsi DKI Jakarta.",
-      category: "pergub",
-      year: "2019",
-      number: "Pergub DKI No. 155 Tahun 2019",
-      status: "Berlaku",
-      downloadUrl: "#",
-      summary:
-        "Menetapkan besaran retribusi pemakaman berdasarkan lokasi, jenis layanan, dan klasifikasi pemakaman serta prosedur pembayarannya.",
-    },
-    {
-      id: 9,
-      title: "Keputusan Gubernur DKI Jakarta Nomor 2090 Tahun 2002",
-      subtitle:
-        "Tentang Organisasi dan Tata Kerja Dinas Pertamanan dan Pemakaman",
-      description:
-        "Keputusan yang mengatur struktur organisasi, tugas, dan fungsi Dinas Pertamanan dan Pemakaman DKI Jakarta.",
-      category: "kepgub",
-      year: "2002",
-      number: "Kepgub DKI No. 2090 Tahun 2002",
-      status: "Berlaku",
-      downloadUrl: "#",
-      summary:
-        "Menetapkan struktur organisasi dinas, pembagian tugas dan fungsi setiap unit kerja, serta mekanisme koordinasi internal.",
-    },
-    {
-      id: 10,
-      title: "Instruksi Gubernur DKI Jakarta Nomor 66 Tahun 2020",
-      subtitle:
-        "Tentang Penerapan Protokol Kesehatan dalam Pengelolaan Taman dan Hutan Kota",
-      description:
-        "Instruksi untuk menerapkan protokol kesehatan dalam pengelolaan dan pemanfaatan taman serta hutan kota selama masa pandemi.",
-      category: "insgub",
-      year: "2020",
-      number: "Insgub DKI No. 66 Tahun 2020",
-      status: "Berlaku",
-      downloadUrl: "#",
-      summary:
-        "Mengatur pembatasan kapasitas pengunjung, kewajiban penggunaan masker, dan penyediaan fasilitas cuci tangan di area taman.",
+      title: "Peraturan Gubernur",
+      count: "5+",
+      icon: "📜",
+      description: "Peraturan kepala daerah",
+      bgColor: "bg-green-500",
+      bgGradient: "from-green-500 to-green-600",
     },
   ];
 
-  const categories = [
-    { id: "all", name: "Semua Regulasi", count: regulations.length },
+  // Regulation categories with detailed data
+  const regulationCategories = [
     {
       id: "uu",
-      name: "Undang-Undang",
-      count: regulations.filter((r) => r.category === "uu").length,
+      title: "Undang-Undang",
+      subtitle: "Laws",
+      icon: "⚖️",
+      bgGradient: "from-red-50 to-red-100",
+      borderColor: "border-red-200",
+      accentColor: "text-red-600",
+      hoverColor: "hover:border-red-300",
+      regulations: [
+        {
+          number: "UU No. 29 Tahun 2007",
+          title: "Jakarta Special Region Government",
+          description:
+            "Mengatur pemerintahan khusus DKI Jakarta sebagai ibu kota negara",
+        },
+        {
+          number: "UU No. 26 Tahun 2007",
+          title: "Spatial Planning",
+          description: "Penataan ruang untuk pembangunan berkelanjutan",
+        },
+        {
+          number: "UU No. 41 Tahun 1999",
+          title: "Forestry",
+          description: "Pengelolaan hutan untuk kemakmuran rakyat",
+        },
+      ],
     },
     {
       id: "pp",
-      name: "Peraturan Pemerintah",
-      count: regulations.filter((r) => r.category === "pp").length,
-    },
-    {
-      id: "permen",
-      name: "Peraturan Menteri",
-      count: regulations.filter((r) => r.category === "permen").length,
+      title: "Peraturan Pemerintah",
+      subtitle: "Government Regulations",
+      icon: "📋",
+      bgGradient: "from-blue-50 to-blue-100",
+      borderColor: "border-blue-200",
+      accentColor: "text-blue-600",
+      hoverColor: "hover:border-blue-300",
+      regulations: [
+        {
+          number: "PP No. 9 Tahun 1987",
+          title: "Cemetery Land Provision",
+          description: "Penyediaan dan penggunaan tanah untuk tempat pemakaman",
+        },
+        {
+          number: "PERPRES No. 65 Tahun 2006",
+          title: "Land Acquisition Amendment",
+          description:
+            "Perubahan atas pengadaan tanah bagi pelaksanaan pembangunan",
+        },
+        {
+          number: "PP No. 63 Tahun 2002",
+          title: "Urban Forest",
+          description:
+            "Hutan kota sebagai bagian infrastruktur hijau perkotaan",
+        },
+      ],
     },
     {
       id: "perda",
-      name: "Peraturan Daerah",
-      count: regulations.filter((r) => r.category === "perda").length,
+      title: "Peraturan Daerah",
+      subtitle: "Local Regulations",
+      icon: "🏛️",
+      bgGradient: "from-purple-50 to-purple-100",
+      borderColor: "border-purple-200",
+      accentColor: "text-purple-600",
+      hoverColor: "hover:border-purple-300",
+      regulations: [
+        {
+          number: "PERDA No. 3 Tahun 2007",
+          title: "Cemetery Management",
+          description: "Pengelolaan tempat pemakaman umum di DKI Jakarta",
+        },
+        {
+          number: "PERDA No. 1 Tahun 2012",
+          title: "Spatial Planning 2030",
+          description: "Rencana Tata Ruang Wilayah DKI Jakarta 2030",
+        },
+        {
+          number: "PERDA No. 1 Tahun 2014",
+          title: "Detailed Spatial Planning",
+          description: "Rencana Detail Tata Ruang dan Peraturan Zonasi",
+        },
+      ],
     },
     {
       id: "pergub",
-      name: "Peraturan Gubernur",
-      count: regulations.filter((r) => r.category === "pergub").length,
-    },
-    {
-      id: "kepgub",
-      name: "Keputusan Gubernur",
-      count: regulations.filter((r) => r.category === "kepgub").length,
-    },
-    {
-      id: "insgub",
-      name: "Instruksi Gubernur",
-      count: regulations.filter((r) => r.category === "insgub").length,
+      title: "Peraturan Gubernur",
+      subtitle: "Governor Regulations",
+      icon: "📜",
+      bgGradient: "from-green-50 to-green-100",
+      borderColor: "border-green-200",
+      accentColor: "text-green-600",
+      hoverColor: "hover:border-green-300",
+      regulations: [
+        {
+          number: "PERGUB No. 17 Tahun 2020",
+          title: "Department Organization",
+          description:
+            "Organisasi dan Tata Kerja Dinas Pertamanan dan Hutan Kota",
+        },
+        {
+          number: "PERGUB No. 23 Tahun 2019",
+          title: "Green Space Management",
+          description: "Pengelolaan Ruang Terbuka Hijau di DKI Jakarta",
+        },
+        {
+          number: "PERGUB No. 38 Tahun 2017",
+          title: "Public Cemetery Management",
+          description: "Pengelolaan Tempat Pemakaman Umum DKI Jakarta",
+        },
+      ],
     },
   ];
 
-  // Filter regulasi berdasarkan kategori dan pencarian
-  const filteredRegulations = regulations.filter((regulation) => {
-    const matchesCategory =
-      selectedCategory === "all" || regulation.category === selectedCategory;
-    const matchesSearch =
-      regulation.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      regulation.subtitle.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      regulation.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      regulation.number.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
-
-  const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
-  };
-
-  const getCategoryIcon = (category) => {
-    const icons = {
-      uu: "⚖️",
-      pp: "📋",
-      permen: "📄",
-      perda: "🏛️",
-      pergub: "📜",
-      kepgub: "✅",
-      insgub: "📢",
-    };
-    return icons[category] || "📄";
-  };
-
-  const getCategoryColor = (category) => {
-    const colors = {
-      uu: "bg-red-100 text-red-800",
-      pp: "bg-blue-100 text-blue-800",
-      permen: "bg-green-100 text-green-800",
-      perda: "bg-purple-100 text-purple-800",
-      pergub: "bg-yellow-100 text-yellow-800",
-      kepgub: "bg-indigo-100 text-indigo-800",
-      insgub: "bg-pink-100 text-pink-800",
-    };
-    return colors[category] || "bg-gray-100 text-gray-800";
-  };
+  const breadcrumbs = [
+    { name: "Beranda", action: "LandingPage" },
+    { name: "Regulasi", action: null },
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -238,257 +167,229 @@ const RegulationPage = ({ onNavigate }) => {
         <div className="container mx-auto px-6">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Regulasi & Dasar Hukum
+              Dasar Hukum & Regulasi
             </h1>
             <p className="text-xl opacity-90 max-w-4xl mx-auto">
-              Kumpulan peraturan perundang-undangan yang menjadi dasar hukum
-              penyelenggaraan urusan pertamanan dan hutan kota di DKI Jakarta
+              Kumpulan lengkap peraturan perundang-undangan yang menjadi
+              landasan hukum penyelenggaraan urusan pertamanan dan hutan kota
+              DKI Jakarta
             </p>
           </div>
         </div>
       </div>
 
       <div className="container mx-auto px-6 py-12">
-        {/* Search and Filter Section */}
-        <div className="mb-12">
-          {/* Search Bar */}
-          <div className="relative mb-8">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <svg
-                className="h-5 w-5 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </div>
-            <input
-              type="text"
-              className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-green-500 focus:border-green-500"
-              placeholder="Cari regulasi berdasarkan judul, nomor, atau deskripsi..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
+        {/* Breadcrumb Navigation */}
+        <nav className="flex mb-8" aria-label="Breadcrumb">
+          <ol className="inline-flex items-center space-x-1 md:space-x-3">
+            {breadcrumbs.map((crumb, index) => (
+              <li key={index} className="inline-flex items-center">
+                {index > 0 && (
+                  <svg
+                    className="w-4 h-4 text-gray-400 mx-1"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                )}
+                {crumb.action ? (
+                  <button
+                    onClick={() => onNavigate(crumb.action)}
+                    className="text-gray-500 hover:text-green-600 transition-colors"
+                  >
+                    {crumb.name}
+                  </button>
+                ) : (
+                  <span className="text-gray-800 font-medium">
+                    {crumb.name}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ol>
+        </nav>
 
-          {/* Category Filters */}
-          <div className="flex flex-wrap gap-3">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => handleCategoryChange(category.id)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                  selectedCategory === category.id
-                    ? "bg-green-600 text-white shadow-lg"
-                    : "bg-white text-gray-600 hover:bg-green-50 hover:text-green-600 border border-gray-200"
-                }`}
+        {/* Statistics Section */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            Statistik Regulasi
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {statistics.map((stat, index) => (
+              <div
+                key={index}
+                className="relative overflow-hidden rounded-xl shadow-lg transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl"
               >
-                {category.name}
-                <span
-                  className={`ml-2 px-2 py-1 rounded-full text-xs ${
-                    selectedCategory === category.id
-                      ? "bg-green-500 text-white"
-                      : "bg-gray-100 text-gray-500"
-                  }`}
+                <div
+                  className={`bg-gradient-to-br ${stat.bgGradient} p-6 text-white`}
                 >
-                  {category.count}
-                </span>
-              </button>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="text-3xl">{stat.icon}</div>
+                    <div className="text-right">
+                      <div className="text-3xl font-bold">{stat.count}</div>
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-semibold mb-1">{stat.title}</h3>
+                  <p className="text-sm opacity-90">{stat.description}</p>
+                </div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+              </div>
             ))}
           </div>
         </div>
 
         {/* Introduction Section */}
-        <div className="bg-white rounded-xl shadow-sm p-8 mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Dasar Hukum Dinas Pertamanan dan Hutan Kota DKI Jakarta
-          </h2>
-          <div className="prose max-w-none text-gray-600">
-            <p className="mb-4">
-              Dinas Pertamanan dan Hutan Kota DKI Jakarta dalam menjalankan
-              tugas dan fungsinya berpedoman pada berbagai peraturan
-              perundang-undangan dari tingkat pusat hingga daerah.
-              Regulasi-regulasi ini memberikan landasan hukum yang kuat untuk:
+        <div className="bg-white rounded-xl shadow-sm p-8 mb-12 border border-gray-200">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Kategori Regulasi
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Regulasi-regulasi ini dikelompokkan berdasarkan hierarki peraturan
+              perundang-undangan untuk memudahkan pemahaman dan implementasi
             </p>
-            <div className="grid md:grid-cols-2 gap-6 my-6">
-              <div className="space-y-3">
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-green-600 rounded-full mt-2 mr-3"></div>
-                  <span>Pengelolaan ruang terbuka hijau dan hutan kota</span>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-green-600 rounded-full mt-2 mr-3"></div>
-                  <span>Penyelenggaraan pemakaman dan pengurusan jenazah</span>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-green-600 rounded-full mt-2 mr-3"></div>
-                  <span>Pemeliharaan dan pengembangan taman kota</span>
-                </div>
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-green-600 rounded-full mt-2 mr-3"></div>
-                  <span>Penataan lansekap dan estetika kota</span>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-green-600 rounded-full mt-2 mr-3"></div>
-                  <span>Penegakan ketertiban di area pertamanan</span>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-green-600 rounded-full mt-2 mr-3"></div>
-                  <span>Pelayanan publik bidang pertamanan</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
-        {/* Regulations List */}
-        {filteredRegulations.length > 0 ? (
-          <div className="space-y-6">
-            {filteredRegulations.map((regulation) => (
-              <article
-                key={regulation.id}
-                className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-300"
-              >
-                <div className="p-6">
-                  <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-3">
-                        <span className="text-2xl">
-                          {getCategoryIcon(regulation.category)}
-                        </span>
-                        <span
-                          className={`px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(regulation.category)}`}
-                        >
-                          {
-                            categories.find(
-                              (cat) => cat.id === regulation.category,
-                            )?.name
-                          }
-                        </span>
-                        <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">
-                          {regulation.year}
-                        </span>
-                        <span
-                          className={`px-3 py-1 rounded-full text-xs font-medium ${
-                            regulation.status === "Berlaku"
-                              ? "bg-green-100 text-green-800"
-                              : "bg-red-100 text-red-800"
-                          }`}
-                        >
-                          {regulation.status}
-                        </span>
-                      </div>
-
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
-                        {regulation.title}
-                      </h3>
-
-                      <p className="text-lg text-green-700 font-medium mb-3">
-                        {regulation.subtitle}
-                      </p>
-
-                      <p className="text-gray-600 mb-4 line-height-relaxed">
-                        {regulation.description}
-                      </p>
-
-                      <div className="bg-green-50 border-l-4 border-green-400 p-4 rounded-r-lg">
-                        <p className="text-sm text-green-800">
-                          <strong>Ringkasan:</strong> {regulation.summary}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col items-end gap-3 lg:min-w-[200px]">
-                      <div className="text-right">
-                        <p className="text-sm font-medium text-gray-900">
-                          {regulation.number}
-                        </p>
-                        <p className="text-xs text-gray-500">
-                          Tahun {regulation.year}
-                        </p>
-                      </div>
-
-                      <div className="flex flex-col gap-2 w-full lg:w-auto">
-                        <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center">
-                          <svg
-                            className="w-4 h-4 mr-2"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                            />
-                          </svg>
-                          Download
-                        </button>
-                        <button className="border border-gray-300 hover:border-green-500 hover:text-green-600 text-gray-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                          Lihat Detail
-                        </button>
-                      </div>
-                    </div>
+        {/* Regulation Categories */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {regulationCategories.map((category) => (
+            <div
+              key={category.id}
+              className={`bg-gradient-to-br ${category.bgGradient} rounded-xl border-2 ${category.borderColor} ${category.hoverColor} shadow-lg transform transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-xl overflow-hidden`}
+            >
+              <div className="p-8">
+                {/* Category Header */}
+                <div className="flex items-center mb-6">
+                  <div className="text-4xl mr-4">{category.icon}</div>
+                  <div>
+                    <h3
+                      className={`text-2xl font-bold ${category.accentColor}`}
+                    >
+                      {category.title}
+                    </h3>
+                    <p className="text-gray-600 font-medium">
+                      {category.subtitle}
+                    </p>
                   </div>
                 </div>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12">
-            <div className="max-w-md mx-auto">
-              <svg
-                className="mx-auto h-12 w-12 text-gray-400 mb-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29.82-5.877 2.172M3 12a9 9 0 1118 0 9 9 0 01-18 0z"
-                />
-              </svg>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
-                Tidak ada regulasi ditemukan
-              </h3>
-              <p className="text-gray-500">
-                Coba ubah kata kunci pencarian atau pilih kategori yang berbeda.
-              </p>
-            </div>
-          </div>
-        )}
 
-        {/* Contact Section */}
+                {/* Regulations List */}
+                <div className="space-y-4">
+                  {category.regulations.map((regulation, index) => (
+                    <div
+                      key={index}
+                      className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 transform transition-all duration-200 hover:shadow-md hover:scale-101"
+                    >
+                      <div className="flex flex-col">
+                        <div className="flex items-start justify-between mb-2">
+                          <span
+                            className={`text-sm font-bold ${category.accentColor} bg-white px-2 py-1 rounded border`}
+                          >
+                            {regulation.number}
+                          </span>
+                          <button className="text-gray-400 hover:text-gray-600 transition-colors">
+                            <svg
+                              className="w-5 h-5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                        <h4 className="font-semibold text-gray-900 mb-1">
+                          {regulation.title}
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          {regulation.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* View All Button */}
+                <div className="mt-6 text-center">
+                  <button
+                    className={`${category.accentColor} bg-white border-2 ${category.borderColor} px-6 py-3 rounded-lg font-medium hover:bg-gray-50 transition-all duration-200 flex items-center mx-auto`}
+                    onClick={() => setSelectedCategory(category.id)}
+                  >
+                    Lihat Semua {category.title}
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Additional Resources */}
         <div className="mt-16 bg-gradient-to-r from-green-600 to-green-800 rounded-2xl p-8 text-white">
           <div className="text-center">
-            <h3 className="text-2xl font-bold mb-4">
-              Butuh Bantuan Terkait Regulasi?
-            </h3>
-            <p className="text-green-100 mb-6 max-w-2xl mx-auto">
-              Tim legal kami siap membantu Anda memahami dan menerapkan regulasi
-              yang berkaitan dengan urusan pertamanan dan hutan kota
+            <h3 className="text-2xl font-bold mb-4">Sumber Daya Tambahan</h3>
+            <p className="text-green-100 mb-8 max-w-3xl mx-auto">
+              Akses dokumen lengkap, analisis hukum, dan panduan implementasi
+              untuk semua regulasi yang berkaitan dengan pertamanan dan hutan
+              kota
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => onNavigate("contact")}
-                className="bg-white text-green-600 px-6 py-3 rounded-lg font-medium hover:bg-green-50 transition-colors"
-              >
-                Hubungi Kami
-              </button>
-              <button className="border-2 border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-green-600 transition-colors">
-                Download Kompilasi Regulasi
-              </button>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center">
+                <div className="text-3xl mb-3">📚</div>
+                <h4 className="font-semibold mb-2">Kompilasi Lengkap</h4>
+                <p className="text-sm text-green-100 mb-4">
+                  Download semua regulasi dalam satu file
+                </p>
+                <button className="bg-white text-green-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-50 transition-colors">
+                  Download PDF
+                </button>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center">
+                <div className="text-3xl mb-3">💬</div>
+                <h4 className="font-semibold mb-2">Konsultasi Hukum</h4>
+                <p className="text-sm text-green-100 mb-4">
+                  Tanya jawab dengan tim legal kami
+                </p>
+                <button
+                  onClick={() => onNavigate("contact")}
+                  className="bg-white text-green-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-50 transition-colors"
+                >
+                  Hubungi Kami
+                </button>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center">
+                <div className="text-3xl mb-3">📖</div>
+                <h4 className="font-semibold mb-2">Panduan Implementasi</h4>
+                <p className="text-sm text-green-100 mb-4">
+                  Petunjuk teknis penerapan regulasi
+                </p>
+                <button className="bg-white text-green-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-50 transition-colors">
+                  Lihat Panduan
+                </button>
+              </div>
             </div>
           </div>
         </div>
