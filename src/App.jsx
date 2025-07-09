@@ -18,6 +18,7 @@ import MapPage from "./pages/MapPage";
 import CatalogPage from "./pages/CatalogPage";
 import KTHProfilePage from "./pages/Kthprofile";
 import NewsPage from "./pages/NewsPage";
+import RegulationPage from "./pages/RegulationPage";
 
 const Notification = ({ message, onClear }) => {
   useEffect(() => {
@@ -74,6 +75,8 @@ export default function App() {
         return <KTHProfilePage onNavigate={handleNavigate} />;
       case "news":
         return <NewsPage onNavigate={handleNavigate} />;
+      case "regulation":
+        return <RegulationPage onNavigate={handleNavigate} />;
       default:
         // Halaman default jika state tidak cocok
         return <LandingPage onNavigate={handleNavigate} />;
