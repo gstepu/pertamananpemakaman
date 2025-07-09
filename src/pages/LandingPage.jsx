@@ -257,7 +257,7 @@ const NewsSection = () => {
           ))}
         </div>
         <div className="text-center mt-12">
-                    <button
+          <button
             onClick={() => onNavigate("news")}
             className="bg-green-700 text-white font-semibold py-3 px-8 rounded-lg hover:bg-green-800 transition-all duration-200 inline-flex items-center"
           >
@@ -275,7 +275,7 @@ const NewsSection = () => {
                 d="M9 5l7 7-7 7"
               />
             </svg>
-          </a>
+          </button>
         </div>
       </div>
     </section>
