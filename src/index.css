@@ -122,3 +122,19 @@ img:not([src]) {
 .animate-fade-in-down {
   animation: fade-in-down 0.3s ease-out;
 }
+
+/* Hover scale utilities */
+.hover\:scale-102:hover {
+  transform: scale(1.02);
+}
+
+.hover\:scale-101:hover {
+  transform: scale(1.01);
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition-property: transform, box-shadow, background-color, border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
