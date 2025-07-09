@@ -23,7 +23,7 @@ const Header = ({ onNavigate }) => {
         { name: "Jadwal Acara Taman", href: "#", action: "park-schedule" },
       ],
     },
-    { name: "Berita", href: "#" /* Belum ada action */ },
+    { name: "Berita", href: "#", action: "news" },
     { name: "Regulasi", href: "#" /* Belum ada action */ },
     { name: "Kontak", href: "#" /* Belum ada action */ },
   ];
