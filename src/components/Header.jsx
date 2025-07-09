@@ -24,7 +24,7 @@ const Header = ({ onNavigate }) => {
       ],
     },
     { name: "Berita", href: "#", action: "news" },
-    { name: "Regulasi", href: "#" /* Belum ada action */ },
+    { name: "Regulasi", href: "#", action: "regulation" },
     { name: "Kontak", href: "#" /* Belum ada action */ },
   ];
 
