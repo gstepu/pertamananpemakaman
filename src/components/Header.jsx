@@ -17,6 +17,12 @@ const Header = ({ onNavigate }) => {
         { name: "Cek Data Makam", href: "#" /* Belum ada action */ },
         { name: "Informasi Retribusi", href: "#" /* Belum ada action */ },
         { name: "Izin Pemakaman", href: "#" /* Belum ada action */ },
+        // --- PERUBAHAN DI SINI ---
+        {
+          name: "E-Book Panduan Teknis Pekerjaan Lanskap (E-PATELA)",
+          href: "/files/ebook.pdf", // Arahkan langsung ke file PDF di folder public
+          target: "_blank", // Agar terbuka di tab baru
+        },
         { name: "Profil KTH", href: "#", action: "Kthprofile" },
         { name: "Katalog Produk", href: "#", action: "catalog" },
         { name: "Peta TPU & RTH", href: "#", action: "map" },
@@ -38,13 +44,17 @@ const Header = ({ onNavigate }) => {
     { name: "Kontak", href: "#" /* Belum ada action */ },
   ];
 
-  // Fungsi umum untuk menangani semua klik navigasi
+  // --- FUNGSI DIMODIFIKASI ---
+  // Fungsi ini sekarang hanya mencegah aksi default jika ada 'action' untuk navigasi SPA.
+  // Jika tidak, link akan berfungsi seperti biasa.
   const handleLinkClick = (e, action) => {
-    e.preventDefault(); // Mencegah browser berpindah ke '#'
     if (action) {
+      e.preventDefault(); // Mencegah navigasi default HANYA jika ini adalah aksi SPA
       onNavigate(action);
     }
-    // Tutup semua menu setelah navigasi
+    // Jika tidak ada 'action', biarkan browser menangani href secara alami.
+
+    // Tutup semua menu setelah navigasi atau klik
     setServicesDropdownOpen(false);
     setMobileMenuOpen(false);
   };
@@ -87,16 +97,21 @@ const Header = ({ onNavigate }) => {
                     </svg>
                   </button>
                   {isServicesDropdownOpen && (
-                    <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
+                    <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
                       <div className="py-2">
                         {link.dropdownItems.map((item) => (
                           <a
                             key={item.name}
                             href={item.href}
                             className="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors"
-                            // --- PERBAIKAN DI SINI ---
-                            // Gunakan handleLinkClick yang sudah ada
                             onClick={(e) => handleLinkClick(e, item.action)}
+                            // --- TAMBAHAN ATRIBUT ---
+                            target={item.target}
+                            rel={
+                              item.target === "_blank"
+                                ? "noopener noreferrer"
+                                : undefined
+                            }
                           >
                             {item.name}
                           </a>
@@ -109,8 +124,6 @@ const Header = ({ onNavigate }) => {
                 <a
                   href={link.href}
                   className="text-gray-600 hover:text-green-800 transition"
-                  // --- PERBAIKAN DI SINI ---
-                  // Tambahkan onClick ke semua link navigasi
                   onClick={(e) => handleLinkClick(e, link.action)}
                 >
                   {link.name}
@@ -122,8 +135,6 @@ const Header = ({ onNavigate }) => {
           <a
             href="#login"
             className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg transition duration-200 font-medium"
-            // --- PERBAIKAN DI SINI ---
-            // Gunakan juga handleLinkClick agar konsisten
             onClick={(e) => handleLinkClick(e, "login")}
           >
             Login
@@ -176,9 +187,14 @@ const Header = ({ onNavigate }) => {
                         key={item.name}
                         href={item.href}
                         className="block py-1 text-sm text-gray-500 hover:text-green-800"
-                        // --- PERBAIKAN DI SINI ---
-                        // Gunakan handleLinkClick di menu mobile juga
                         onClick={(e) => handleLinkClick(e, item.action)}
+                        // --- TAMBAHAN ATRIBUT ---
+                        target={item.target}
+                        rel={
+                          item.target === "_blank"
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
                       >
                         {item.name}
                       </a>
@@ -190,8 +206,6 @@ const Header = ({ onNavigate }) => {
               <a
                 href={link.href}
                 className="block py-2 text-gray-600 hover:text-green-800"
-                // --- PERBAIKAN DI SINI ---
-                // Tambahkan onClick di menu mobile juga
                 onClick={(e) => handleLinkClick(e, link.action)}
               >
                 {link.name}
@@ -203,8 +217,6 @@ const Header = ({ onNavigate }) => {
         <a
           href="#login"
           className="block mt-3 bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg transition duration-200 font-medium text-center"
-          // --- PERBAIKAN DI SINI ---
-          // Gunakan handleLinkClick agar konsisten
           onClick={(e) => handleLinkClick(e, "login")}
         >
           Login
