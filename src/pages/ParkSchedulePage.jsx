@@ -456,15 +456,6 @@ const ParkSchedulePage = ({ onNavigate }) => {
               </p>
             </div>
           </div>
-          {/* Modal Footer */}
-          <div className="p-4 border-t">
-            <button
-              onClick={closeModal}
-              className="w-full px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors text-sm"
-            >
-              Tutup
-            </button>
-          </div>
         </div>
       </div>
     );
@@ -654,7 +645,9 @@ const ParkSchedulePage = ({ onNavigate }) => {
         {/* Left Sidebar */}
         <div className="w-72 bg-[#2e7d32] text-white p-3 overflow-y-auto">
           <div className="mb-4">
-            <h1 className="text-lg font-bold mb-2">{selectedPark}</h1>
+            <h1 className="text-xl font-bold mb-4 text-center text-yellow-400">
+              {selectedPark}
+            </h1>
             <div className="flex items-center justify-between mb-3">
               <h2 className="text-xl font-bold">Februari 2025</h2>
               <div className="flex gap-1">
@@ -739,16 +732,18 @@ const ParkSchedulePage = ({ onNavigate }) => {
           </div>
 
           {/* Events List */}
-          <div className="space-y-3">
+          <div className="space-y-4">
+            {/* HARI INI */}
             <div>
-              <div className="flex items-center justify-between mb-1">
-                <div className="text-xs font-medium text-[#66bb6a]">
+              <div className="flex items-center justify-between mb-2">
+                {/* 2. Teks hari/tanggal diubah menjadi putih */}
+                <div className="text-sm font-medium text-white">
                   HARI INI 2/22/2025
                 </div>
-                <div className="flex items-center gap-1 text-xs">
+                <div className="flex items-center gap-1 text-xs text-white">
                   55°/40°
                   <svg
-                    className="w-4 h-4"
+                    className="w-4 h-4 text-yellow-400"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -761,36 +756,40 @@ const ParkSchedulePage = ({ onNavigate }) => {
                 </div>
               </div>
               <div className="space-y-2">
-                <div className="flex items-start gap-2">
-                  <div className="w-2 h-2 rounded-full bg-[#22c55e] mt-2 flex-shrink-0"></div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2.5 h-2.5 rounded-full bg-blue-400 mt-1.5 flex-shrink-0"></div>
                   <div className="text-sm">
-                    <div className="text-[#66bb6a] font-medium">
+                    {/* 1. Teks jam diubah menjadi kuning */}
+                    <div className="font-medium text-yellow-400">
                       08:00 - 10:00
                     </div>
-                    <div>Senam Terapi (Ling Tien Kung)</div>
+                    <div className="text-white">
+                      Senam Terapi (Ling Tien Kung)
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-start gap-2">
-                  <div className="w-2 h-2 rounded-full bg-[#22c55e] mt-2 flex-shrink-0"></div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2.5 h-2.5 rounded-full bg-blue-400 mt-1.5 flex-shrink-0"></div>
                   <div className="text-sm">
-                    <div className="text-[#66bb6a] font-medium">
+                    <div className="font-medium text-yellow-400">
                       10:00 - 11:00
                     </div>
-                    <div>Latihan Tari</div>
+                    <div className="text-white">Latihan Tari</div>
                   </div>
                 </div>
               </div>
             </div>
 
+            {/* BESOK */}
             <div>
-              <div className="flex items-center justify-between mb-1">
-                <div className="text-xs font-medium text-[#66bb6a]">
+              <div className="flex items-center justify-between mb-2">
+                <div className="text-sm font-medium text-white">
                   BESOK 2/23/2025
                 </div>
-                <div className="flex items-center gap-1 text-xs">
+                <div className="flex items-center gap-1 text-xs text-white">
                   55°/40°
                   <svg
-                    className="w-4 h-4"
+                    className="w-4 h-4 text-yellow-400"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -803,36 +802,37 @@ const ParkSchedulePage = ({ onNavigate }) => {
                 </div>
               </div>
               <div className="space-y-2">
-                <div className="flex items-start gap-2">
-                  <div className="w-2 h-2 rounded-full bg-[#22c55e] mt-2 flex-shrink-0"></div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-400 mt-1.5 flex-shrink-0"></div>
                   <div className="text-sm">
-                    <div className="text-[#66bb6a] font-medium">
+                    <div className="font-medium text-yellow-400">
                       09:00 - 10:00
                     </div>
-                    <div>Senam Landsdance</div>
+                    <div className="text-white">Senam Landsdance</div>
                   </div>
                 </div>
-                <div className="flex items-start gap-2">
-                  <div className="w-2 h-2 rounded-full bg-[#22c55e] mt-2 flex-shrink-0"></div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-400 mt-1.5 flex-shrink-0"></div>
                   <div className="text-sm">
-                    <div className="text-[#66bb6a] font-medium">
+                    <div className="font-medium text-yellow-400">
                       12:00 - 14:00
                     </div>
-                    <div>Paskibraka</div>
+                    <div className="text-white">Paskibraka</div>
                   </div>
                 </div>
               </div>
             </div>
 
+            {/* RABU */}
             <div>
-              <div className="flex items-center justify-between mb-1">
-                <div className="text-xs font-medium text-[#66bb6a]">
-                  RABU 2/24/2021
+              <div className="flex items-center justify-between mb-2">
+                <div className="text-sm font-medium text-white">
+                  RABU 2/24/2025
                 </div>
-                <div className="flex items-center gap-1 text-xs">
+                <div className="flex items-center gap-1 text-xs text-white">
                   55°/40°
                   <svg
-                    className="w-4 h-4"
+                    className="w-4 h-4 text-yellow-400"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -845,13 +845,13 @@ const ParkSchedulePage = ({ onNavigate }) => {
                 </div>
               </div>
               <div className="space-y-2">
-                <div className="flex items-start gap-2">
-                  <div className="w-2 h-2 rounded-full bg-[#22c55e] mt-2 flex-shrink-0"></div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-400 mt-1.5 flex-shrink-0"></div>
                   <div className="text-sm">
-                    <div className="text-[#66bb6a] font-medium">
+                    <div className="font-medium text-yellow-400">
                       14:00 - 17:00
                     </div>
-                    <div>FOTO WISUDA</div>
+                    <div className="text-white">FOTO WISUDA</div>
                   </div>
                 </div>
               </div>
