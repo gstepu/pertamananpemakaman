@@ -359,37 +359,33 @@ const CatalogPage = ({ onNavigate }) => {
     <div className="bg-gray-50 min-h-screen flex flex-col">
       <main className="flex-1">
         {/* Hero Section */}
-        <div className="bg-green-700 text-white p-6">
-          <div className="container mx-auto">
-            <div className="text-center">
-              <h1 className="text-3xl font-bold mb-2">
-                Katalog Produk KTH Jakarta 2024
-              </h1>
-              <p className="text-green-100 mb-4">
-                Produk berkualitas dari Kelompok Tani Hutan DKI Jakarta
-              </p>
-
-              {/* MODIFIED: This button now opens the modal */}
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center mx-auto"
+        <div className="container mx-auto px-6 py-8">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-gray-800 mb-4">
+              Katalog Produk KTH Jakarta 2024
+            </h1>
+            <p className="text-gray-600 max-w-3xl mx-auto mb-6">
+              Produk berkualitas dari Kelompok Tani Hutan DKI Jakarta
+            </p>
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center mx-auto shadow-md hover:shadow-lg"
+            >
+              <svg
+                className="w-5 h-5 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                <svg
-                  className="w-5 h-5 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 10v6m0 0l-4-4m4 4l4-4m-6 8h8a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v11a2 2 0 002 2z"
-                  />
-                </svg>
-                Download Katalog PDF
-              </button>
-            </div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 10v6m0 0l-4-4m4 4l4-4m-6 8h8a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v11a2 2 0 002 2z"
+                />
+              </svg>
+              Download Katalog PDF
+            </button>
           </div>
         </div>
 
