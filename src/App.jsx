@@ -17,6 +17,8 @@ import ParkApplicationPage from "./pages/ParkApplicationPage";
 import MapPage from "./pages/MapPage";
 import CatalogPage from "./pages/CatalogPage";
 import KTHProfilePage from "./pages/Kthprofile";
+import TreePruningApplicationPage from "./pages/TreePruningApplicationPage";
+import SeedlingApplicationPage from "./pages/SeedlingApplication";
 
 const Notification = ({ message, onClear }) => {
   useEffect(() => {
@@ -71,6 +73,10 @@ export default function App() {
         return <CatalogPage onNavigate={handleNavigate} />;
       case "Kthprofile":
         return <KTHProfilePage onNavigate={handleNavigate} />;
+      case "tree-application":
+        return <TreePruningApplicationPage onNavigate={handleNavigate} />;
+      case "seedling-application":
+        return <SeedlingApplicationPage onNavigate={handleNavigate} />;
       default:
         // Halaman default jika state tidak cocok
         return <LandingPage onNavigate={handleNavigate} />;

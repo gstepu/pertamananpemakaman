@@ -21,6 +21,16 @@ const Header = ({ onNavigate }) => {
         { name: "Katalog Produk", href: "#", action: "catalog" },
         { name: "Peta TPU & RTH", href: "#", action: "map" },
         { name: "Jadwal Acara Taman", href: "#", action: "park-schedule" },
+        {
+          name: "Permohonan Pemangkasan Pohon",
+          href: "#",
+          action: "tree-application",
+        },
+        {
+          name: "Permohonan Bibit Tanaman",
+          href: "#",
+          action: "seedling-application",
+        },
       ],
     },
     { name: "Berita", href: "#" /* Belum ada action */ },

@@ -1,152 +1,213 @@
 "use client";
-
 import { useState } from "react";
 
-const ParkApplicationPage = ({ onNavigate }) => {
+const SeedlingApplicationPage = ({ onNavigate }) => {
   const [formData, setFormData] = useState({
-    selectedPark: "",
-    eventName: "",
-    organizerName: "",
-    organizerType: "",
+    selectedLocation: "",
+    applicantName: "",
+    applicantType: "",
     contactPerson: "",
     email: "",
     phone: "",
-    eventDate: "",
-    startTime: "",
-    endTime: "",
-    participants: "",
-    eventType: "",
+    address: "",
+    plantingLocation: "",
+    seedlingTypes: [],
+    totalQuantity: "",
+    plantingPurpose: "",
+    plantingDate: "",
+    landArea: "",
+    soilType: "",
+    waterSource: "",
+    careCommitment: "",
     description: "",
-    equipment: "",
     specialRequirements: "",
     agreeTerms: false,
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
-  const [parkSearchTerm, setParkSearchTerm] = useState("");
-  const [isParkDropdownOpen, setIsParkDropdownOpen] = useState(false);
+  const [locationSearchTerm, setLocationSearchTerm] = useState("");
+  const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  // List of parks in DKI Jakarta
-  const availableParks = [
+  // List of areas in DKI Jakarta for seedling distribution
+  const availableLocations = [
     {
       id: 1,
-      name: "Taman Wijaya Kusuma",
-      location: "Jakarta Timur",
-      area: "Pulogadung",
-      facilities: ["Lapangan", "Gazebo", "Toilet", "Parkir"],
+      name: "Jakarta Pusat",
+      areas: [
+        "Menteng",
+        "Gambir",
+        "Tanah Abang",
+        "Senen",
+        "Cempaka Putih",
+        "Johar Baru",
+        "Kemayoran",
+        "Sawah Besar",
+      ],
+      contact: "021-3441054",
+      distribution: "Balai Kota DKI Jakarta",
     },
     {
       id: 2,
-      name: "Taman Suropati",
-      location: "Jakarta Pusat",
-      area: "Menteng",
-      facilities: ["Amphitheater", "Jogging Track", "Toilet", "Parkir"],
+      name: "Jakarta Utara",
+      areas: [
+        "Penjaringan",
+        "Pademangan",
+        "Tanjung Priok",
+        "Koja",
+        "Kelapa Gading",
+        "Cilincing",
+      ],
+      contact: "021-4372093",
+      distribution: "Kantor Walikota Jakarta Utara",
     },
     {
       id: 3,
-      name: "Taman Menteng",
-      location: "Jakarta Pusat",
-      area: "Menteng",
-      facilities: ["Playground", "Lapangan", "Gazebo", "Toilet"],
+      name: "Jakarta Barat",
+      areas: [
+        "Grogol Petamburan",
+        "Taman Sari",
+        "Tambora",
+        "Kebon Jeruk",
+        "Kalideres",
+        "Palmerah",
+        "Cengkareng",
+        "Kembangan",
+      ],
+      contact: "021-5694128",
+      distribution: "Kantor Walikota Jakarta Barat",
     },
     {
       id: 4,
-      name: "Taman Langsat",
-      location: "Jakarta Selatan",
-      area: "Kebayoran Baru",
-      facilities: ["Lapangan", "Gazebo", "Toilet", "Parkir"],
+      name: "Jakarta Selatan",
+      areas: [
+        "Kebayoran Baru",
+        "Kebayoran Lama",
+        "Pesanggrahan",
+        "Cilandak",
+        "Pasar Minggu",
+        "Jagakarsa",
+        "Mampang Prapatan",
+        "Pancoran",
+        "Tebet",
+        "Setia Budi",
+      ],
+      contact: "021-7221570",
+      distribution: "Kantor Walikota Jakarta Selatan",
     },
     {
       id: 5,
-      name: "Taman Cattleya",
-      location: "Jakarta Selatan",
-      area: "Tomang",
-      facilities: ["Lapangan", "Gazebo", "Toilet"],
-    },
-    {
-      id: 6,
-      name: "Taman Tebet",
-      location: "Jakarta Selatan",
-      area: "Tebet",
-      facilities: ["Jogging Track", "Lapangan", "Toilet", "Parkir"],
-    },
-    {
-      id: 7,
-      name: "Taman Ayodya",
-      location: "Jakarta Selatan",
-      area: "Kebayoran Baru",
-      facilities: ["Lapangan", "Gazebo", "Toilet", "Parkir"],
-    },
-    {
-      id: 8,
-      name: "Taman Waduk Pluit",
-      location: "Jakarta Utara",
-      area: "Pluit",
-      facilities: ["Lapangan", "Gazebo", "Toilet", "Parkir", "Area Danau"],
-    },
-    {
-      id: 9,
-      name: "Taman Kota Intan",
-      location: "Jakarta Utara",
-      area: "Penjaringan",
-      facilities: ["Lapangan", "Toilet", "Parkir"],
-    },
-    {
-      id: 10,
-      name: "Taman Anggrek",
-      location: "Jakarta Barat",
-      area: "Grogol Petamburan",
-      facilities: ["Lapangan", "Gazebo", "Toilet", "Parkir"],
-    },
-    {
-      id: 11,
-      name: "Taman Tomang",
-      location: "Jakarta Barat",
-      area: "Tomang",
-      facilities: ["Lapangan", "Jogging Track", "Toilet"],
-    },
-    {
-      id: 12,
-      name: "Taman Puring",
-      location: "Jakarta Selatan",
-      area: "Kebayoran Baru",
-      facilities: ["Lapangan", "Gazebo", "Toilet", "Parkir"],
+      name: "Jakarta Timur",
+      areas: [
+        "Matraman",
+        "Pulogadung",
+        "Jatinegara",
+        "Cakung",
+        "Duren Sawit",
+        "Kramat Jati",
+        "Makasar",
+        "Pasar Rebo",
+        "Ciracas",
+        "Cipayung",
+      ],
+      contact: "021-8191264",
+      distribution: "Kantor Walikota Jakarta Timur",
     },
   ];
 
-  const eventTypes = [
-    "Senam/Olahraga",
-    "Seni dan Budaya",
-    "Pendidikan",
-    "Sosial/Komunitas",
-    "Fotografi",
-    "Pelatihan",
-    "Gathering",
+  const seedlingCategories = [
+    {
+      category: "Pohon Pelindung",
+      types: [
+        { name: "Trembesi", maxQty: 5 },
+        { name: "Mahoni", maxQty: 10 },
+        { name: "Flamboyan", maxQty: 5 },
+        { name: "Angsana", maxQty: 8 },
+        { name: "Tanjung", maxQty: 10 },
+      ],
+    },
+    {
+      category: "Pohon Buah",
+      types: [
+        { name: "Mangga", maxQty: 3 },
+        { name: "Jambu Air", maxQty: 5 },
+        { name: "Rambutan", maxQty: 3 },
+        { name: "Alpukat", maxQty: 3 },
+        { name: "Belimbing", maxQty: 5 },
+      ],
+    },
+    {
+      category: "Tanaman Hias",
+      types: [
+        { name: "Bougenville", maxQty: 15 },
+        { name: "Kembang Sepatu", maxQty: 20 },
+        { name: "Melati", maxQty: 15 },
+        { name: "Mawar", maxQty: 10 },
+        { name: "Alamanda", maxQty: 15 },
+      ],
+    },
+    {
+      category: "Tanaman Obat",
+      types: [
+        { name: "Jahe", maxQty: 25 },
+        { name: "Kunyit", maxQty: 25 },
+        { name: "Temulawak", maxQty: 20 },
+        { name: "Lidah Buaya", maxQty: 15 },
+        { name: "Sirih", maxQty: 20 },
+      ],
+    },
+  ];
+
+  const plantingPurposes = [
+    "Penghijauan Lingkungan",
+    "Taman Rumah/Pribadi",
+    "Taman Komunitas/RT/RW",
+    "Sekolah/Pendidikan",
+    "Kantor/Instansi",
+    "Konservasi Lingkungan",
+    "Program CSR",
     "Lainnya",
   ];
 
-  const organizerTypes = [
-    "Individu",
+  const applicantTypes = [
+    "Warga/Individu",
+    "RT/RW",
     "Komunitas",
-    "Organisasi",
     "Sekolah/Universitas",
     "Perusahaan",
     "Instansi Pemerintah",
+    "Organisasi Non-Profit",
   ];
 
-  // Filter parks based on search term
-  const filteredParks = availableParks.filter(
-    (park) =>
-      park.name.toLowerCase().includes(parkSearchTerm.toLowerCase()) ||
-      park.location.toLowerCase().includes(parkSearchTerm.toLowerCase()) ||
-      park.area.toLowerCase().includes(parkSearchTerm.toLowerCase())
+  const soilTypes = [
+    "Tanah Liat",
+    "Tanah Berpasir",
+    "Tanah Humus",
+    "Tanah Campuran",
+    "Tidak Tahu",
+  ];
+
+  const waterSources = [
+    "Air Sumur",
+    "Air PAM",
+    "Air Hujan",
+    "Irigasi",
+    "Manual/Siram",
+  ];
+
+  // Filter locations based on search term
+  const filteredLocations = availableLocations.filter(
+    (location) =>
+      location.name.toLowerCase().includes(locationSearchTerm.toLowerCase()) ||
+      location.areas.some((area) =>
+        area.toLowerCase().includes(locationSearchTerm.toLowerCase())
+      )
   );
 
-  const selectedParkData = availableParks.find(
-    (park) => park.id.toString() === formData.selectedPark
+  const selectedLocationData = availableLocations.find(
+    (location) => location.id.toString() === formData.selectedLocation
   );
 
   const handleInputChange = (e) => {
@@ -155,7 +216,6 @@ const ParkApplicationPage = ({ onNavigate }) => {
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
-
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({
@@ -165,45 +225,92 @@ const ParkApplicationPage = ({ onNavigate }) => {
     }
   };
 
-  const handleParkSelect = (park) => {
+  const handleLocationSelect = (location) => {
     setFormData((prev) => ({
       ...prev,
-      selectedPark: park.id.toString(),
+      selectedLocation: location.id.toString(),
     }));
-    setParkSearchTerm("");
-    setIsParkDropdownOpen(false);
-
+    setLocationSearchTerm("");
+    setIsLocationDropdownOpen(false);
     // Clear error if exists
-    if (errors.selectedPark) {
+    if (errors.selectedLocation) {
       setErrors((prev) => ({
         ...prev,
-        selectedPark: "",
+        selectedLocation: "",
       }));
     }
   };
 
+  const handleSeedlingTypeChange = (category, type, quantity) => {
+    const newSeedlingTypes = [...formData.seedlingTypes];
+    const existingIndex = newSeedlingTypes.findIndex(
+      (item) => item.category === category && item.type === type.name
+    );
+
+    if (quantity > 0) {
+      const seedlingItem = {
+        category,
+        type: type.name,
+        quantity: Math.min(quantity, type.maxQty),
+        maxQty: type.maxQty,
+      };
+
+      if (existingIndex >= 0) {
+        newSeedlingTypes[existingIndex] = seedlingItem;
+      } else {
+        newSeedlingTypes.push(seedlingItem);
+      }
+    } else {
+      if (existingIndex >= 0) {
+        newSeedlingTypes.splice(existingIndex, 1);
+      }
+    }
+
+    const total = newSeedlingTypes.reduce(
+      (sum, item) => sum + item.quantity,
+      0
+    );
+
+    setFormData((prev) => ({
+      ...prev,
+      seedlingTypes: newSeedlingTypes,
+      totalQuantity: total.toString(),
+    }));
+  };
+
+  const getSeedlingQuantity = (category, typeName) => {
+    const item = formData.seedlingTypes.find(
+      (item) => item.category === category && item.type === typeName
+    );
+    return item ? item.quantity : 0;
+  };
+
   const validateForm = () => {
     const newErrors = {};
-
-    if (!formData.selectedPark) newErrors.selectedPark = "Taman wajib dipilih";
-    if (!formData.eventName.trim())
-      newErrors.eventName = "Nama acara wajib diisi";
-    if (!formData.organizerName.trim())
-      newErrors.organizerName = "Nama pengaju wajib diisi";
-    if (!formData.organizerType)
-      newErrors.organizerType = "Jenis pengaju wajib dipilih";
+    if (!formData.selectedLocation)
+      newErrors.selectedLocation = "Wilayah wajib dipilih";
+    if (!formData.applicantName.trim())
+      newErrors.applicantName = "Nama pemohon wajib diisi";
+    if (!formData.applicantType)
+      newErrors.applicantType = "Jenis pemohon wajib dipilih";
     if (!formData.contactPerson.trim())
       newErrors.contactPerson = "Nama penanggung jawab wajib diisi";
     if (!formData.email.trim()) newErrors.email = "Email wajib diisi";
     if (!formData.phone.trim()) newErrors.phone = "Nomor telepon wajib diisi";
-    if (!formData.eventDate) newErrors.eventDate = "Tanggal acara wajib diisi";
-    if (!formData.startTime) newErrors.startTime = "Waktu mulai wajib diisi";
-    if (!formData.endTime) newErrors.endTime = "Waktu selesai wajib diisi";
-    if (!formData.participants)
-      newErrors.participants = "Jumlah peserta wajib diisi";
-    if (!formData.eventType) newErrors.eventType = "Jenis acara wajib dipilih";
+    if (!formData.address.trim())
+      newErrors.address = "Alamat lengkap wajib diisi";
+    if (!formData.plantingLocation.trim())
+      newErrors.plantingLocation = "Lokasi penanaman wajib diisi";
+    if (formData.seedlingTypes.length === 0)
+      newErrors.seedlingTypes = "Minimal pilih satu jenis bibit";
+    if (!formData.plantingPurpose)
+      newErrors.plantingPurpose = "Tujuan penanaman wajib dipilih";
+    if (!formData.plantingDate)
+      newErrors.plantingDate = "Tanggal penanaman wajib diisi";
+    if (!formData.careCommitment)
+      newErrors.careCommitment = "Komitmen perawatan wajib dipilih";
     if (!formData.description.trim())
-      newErrors.description = "Deskripsi acara wajib diisi";
+      newErrors.description = "Deskripsi rencana penanaman wajib diisi";
     if (!formData.agreeTerms)
       newErrors.agreeTerms = "Anda harus menyetujui syarat dan ketentuan";
 
@@ -218,19 +325,12 @@ const ParkApplicationPage = ({ onNavigate }) => {
     }
 
     // Date validation (must be future date)
-    if (formData.eventDate) {
-      const selectedDate = new Date(formData.eventDate);
+    if (formData.plantingDate) {
+      const selectedDate = new Date(formData.plantingDate);
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       if (selectedDate < today) {
-        newErrors.eventDate = "Tanggal acara harus di masa depan";
-      }
-    }
-
-    // Time validation
-    if (formData.startTime && formData.endTime) {
-      if (formData.startTime >= formData.endTime) {
-        newErrors.endTime = "Waktu selesai harus setelah waktu mulai";
+        newErrors.plantingDate = "Tanggal penanaman harus di masa depan";
       }
     }
 
@@ -240,22 +340,18 @@ const ParkApplicationPage = ({ onNavigate }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!validateForm()) {
       return;
     }
-
-    // Show confirmation modal instead of directly submitting
     setShowConfirmation(true);
   };
 
   const handleConfirmSubmit = async () => {
     setShowConfirmation(false);
     setIsSubmitting(true);
-
     // Simulate API call
     setTimeout(() => {
-      console.log("Form submitted:", formData);
+      console.log("Seedling application submitted:", formData);
       setIsSubmitting(false);
       setShowSuccess(true);
     }, 2000);
@@ -267,7 +363,7 @@ const ParkApplicationPage = ({ onNavigate }) => {
 
   const handleSuccessClose = () => {
     setShowSuccess(false);
-    onNavigate("park-schedule");
+    onNavigate("landing");
   };
 
   // Format date for display
@@ -283,14 +379,13 @@ const ParkApplicationPage = ({ onNavigate }) => {
   };
 
   // Confirmation Modal Component
-  // Confirmation Modal Component
   const ConfirmationModal = () => {
     if (!showConfirmation) return null;
 
     return (
       <div className="fixed inset-0 backdrop-blur-sm bg-white/10 flex items-center justify-center z-50 p-4">
         <div className="bg-white rounded-lg shadow-xl max-w-sm w-full">
-          {/* Modal Header (Warna diubah menjadi hijau) */}
+          {/* Modal Header */}
           <div className="bg-green-600 text-white p-3 rounded-t-lg">
             <div className="flex items-center">
               <svg
@@ -306,58 +401,48 @@ const ParkApplicationPage = ({ onNavigate }) => {
                   d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"
                 />
               </svg>
-              {/* Teks diubah menjadi "Permohonan" */}
               <h2 className="text-base font-semibold">Konfirmasi Permohonan</h2>
             </div>
           </div>
-
           {/* Modal Content */}
           <div className="p-4">
             <p className="text-gray-700 text-sm mb-3">
-              {/* Teks diubah menjadi "Permohonan" */}
-              Apakah Anda yakin ingin mengirim permohonan pemakaian taman dengan
+              Apakah Anda yakin ingin mengirim permohonan bibit tanaman dengan
               detail berikut?
             </p>
-
-            {/* Summary Information (Warna diubah menjadi hijau) */}
+            {/* Summary Information */}
             <div className="bg-green-50 rounded-lg p-3 space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="font-medium text-gray-600">Taman:</span>
-                <span className="text-gray-800">{selectedParkData?.name}</span>
+                <span className="font-medium text-gray-600">Wilayah:</span>
+                <span className="text-gray-800">
+                  {selectedLocationData?.name}
+                </span>
               </div>
               <div className="flex justify-between">
-                <span className="font-medium text-gray-600">Acara:</span>
-                <span className="text-gray-800">{formData.eventName}</span>
-              </div>
-              <div className="flex justify-between">
-                {/* Teks diubah menjadi "Pemohon" */}
                 <span className="font-medium text-gray-600">Pemohon:</span>
-                <span className="text-gray-800">{formData.organizerName}</span>
+                <span className="text-gray-800">{formData.applicantName}</span>
               </div>
               <div className="flex justify-between">
-                <span className="font-medium text-gray-600">Tanggal:</span>
+                <span className="font-medium text-gray-600">Total Bibit:</span>
                 <span className="text-gray-800">
-                  {formatDate(formData.eventDate)}
+                  {formData.totalQuantity} bibit
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="font-medium text-gray-600">Waktu:</span>
+                <span className="font-medium text-gray-600">Tujuan:</span>
                 <span className="text-gray-800">
-                  {formData.startTime} - {formData.endTime} WIB
+                  {formData.plantingPurpose}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="font-medium text-gray-600">Peserta:</span>
-                <span className="text-gray-800">
-                  {formData.participants} orang
+                <span className="font-medium text-gray-600">
+                  Tanggal Tanam:
                 </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="font-medium text-gray-600">Jenis Acara:</span>
-                <span className="text-gray-800">{formData.eventType}</span>
+                <span className="text-gray-800">
+                  {formatDate(formData.plantingDate)}
+                </span>
               </div>
             </div>
-
             <div className="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
               <div className="flex items-start space-x-2">
                 <svg
@@ -376,16 +461,14 @@ const ParkApplicationPage = ({ onNavigate }) => {
                 <div className="text-xs text-blue-800">
                   <p className="font-medium">Informasi Penting:</p>
                   <p>
-                    {/* Teks diubah menjadi "Permohonan" */}
-                    Setelah permohonan dikirim, Anda akan menerima konfirmasi
-                    melalui email dalam 1-2 hari kerja. Pastikan semua informasi
+                    Setelah permohonan disetujui, bibit akan tersedia untuk
+                    diambil dalam 7-14 hari kerja. Pastikan semua informasi
                     sudah benar sebelum mengirim.
                   </p>
                 </div>
               </div>
             </div>
           </div>
-
           {/* Modal Footer */}
           <div className="bg-gray-50 px-4 py-3 rounded-b-lg flex justify-end space-x-2">
             <button
@@ -411,7 +494,6 @@ const ParkApplicationPage = ({ onNavigate }) => {
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              {/* Teks diubah menjadi "Permohonan" */}
               Ya, Kirim Permohonan
             </button>
           </div>
@@ -427,6 +509,7 @@ const ParkApplicationPage = ({ onNavigate }) => {
     return (
       <div className="fixed inset-0 backdrop-blur-sm bg-white/10 flex items-center justify-center z-50 p-4">
         <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
+          {/* Modal Header */}
           <div className="bg-green-600 text-white p-4 rounded-t-lg">
             <div className="flex items-center justify-center">
               <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mr-3">
@@ -445,24 +528,21 @@ const ParkApplicationPage = ({ onNavigate }) => {
                 </svg>
               </div>
               <h2 className="text-lg font-semibold">
-                {/* Teks diubah menjadi "Permohonan" */}
                 Permohonan Berhasil Dikirim!
               </h2>
             </div>
           </div>
+          {/* Modal Content */}
           <div className="p-6 text-center">
             <div className="mb-4">
               <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                {/* Teks diubah menjadi "Permohonan" */}
                 Terima kasih atas permohonan Anda
               </h3>
               <p className="text-gray-600 text-sm">
-                {/* Teks diubah menjadi "Permohonan" */}
-                Permohonan pemakaian <strong>
-                  {selectedParkData?.name}
-                </strong>{" "}
-                untuk acara <strong>"{formData.eventName}"</strong> telah
-                berhasil dikirim.
+                Permohonan bibit tanaman sebanyak{" "}
+                <strong>{formData.totalQuantity} bibit</strong> untuk wilayah{" "}
+                <strong>{selectedLocationData?.name}</strong> telah berhasil
+                dikirim.
               </p>
             </div>
             <div className="bg-blue-50 rounded-lg p-4 mb-4 border border-blue-200">
@@ -485,15 +565,24 @@ const ParkApplicationPage = ({ onNavigate }) => {
                     Langkah Selanjutnya:
                   </h4>
                   <ul className="text-xs text-blue-700 space-y-1">
-                    {/* Teks diubah menjadi "Permohonan" */}
-                    <li>• Tim kami akan meninjau permohonan Anda</li>
+                    <li>
+                      • Tim akan meninjau permohonan Anda dalam 3-5 hari kerja
+                    </li>
                     <li>
                       • Konfirmasi akan dikirim ke email:{" "}
                       <strong>{formData.email}</strong>
                     </li>
-                    <li>• Proses persetujuan memakan waktu 1-2 hari kerja</li>
                     <li>
-                      • Anda akan dihubungi jika diperlukan informasi tambahan
+                      • Bibit akan tersedia untuk diambil dalam 7-14 hari kerja
+                    </li>
+                    <li>
+                      • Lokasi pengambilan:{" "}
+                      <strong>{selectedLocationData?.distribution}</strong>
+                    </li>
+                    <li>
+                      • Hubungi:{" "}
+                      <strong>{selectedLocationData?.contact}</strong> untuk
+                      informasi lebih lanjut
                     </li>
                   </ul>
                 </div>
@@ -515,7 +604,7 @@ const ParkApplicationPage = ({ onNavigate }) => {
                   />
                 </svg>
                 <span className="text-sm font-medium text-green-800">
-                  Nomor Referensi: #
+                  Nomor Referensi: #SBT
                   {Math.random().toString(36).substr(2, 9).toUpperCase()}
                 </span>
               </div>
@@ -524,6 +613,7 @@ const ParkApplicationPage = ({ onNavigate }) => {
               Simpan nomor referensi di atas untuk keperluan follow-up
             </p>
           </div>
+          {/* Modal Footer */}
           <div className="bg-gray-50 px-6 py-4 rounded-b-lg">
             <div className="flex justify-center space-x-3">
               <button
@@ -540,10 +630,10 @@ const ParkApplicationPage = ({ onNavigate }) => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m0 0h3m0 0h3m0 0a1 1 0 001-1V10M9 21v-6a1 1 0 011-1h2a1 1 0 011 1v6"
                   />
                 </svg>
-                Kembali ke Jadwal
+                Kembali ke Beranda
               </button>
               <button
                 onClick={() => setShowSuccess(false)}
@@ -581,17 +671,17 @@ const ParkApplicationPage = ({ onNavigate }) => {
               {/* Form Header */}
               <div className="bg-gradient-to-r from-green-600 to-green-700 text-white p-6">
                 <h2 className="text-xl font-semibold mb-2">
-                  Form Permohonan Acara
+                  Form Permohonan Bibit Tanaman
                 </h2>
                 <p className="text-green-100">
-                  Lengkapi formulir di bawah ini untuk mengajukan Permohonan
-                  pemakaian taman
+                  Lengkapi formulir di bawah ini untuk mengajukan permohonan
+                  bibit tanaman gratis
                 </p>
               </div>
 
               {/* Form Body */}
               <form onSubmit={handleSubmit} className="p-6 space-y-6">
-                {/* Park Selection Section */}
+                {/* Location Selection Section */}
                 <div className="border-b border-gray-200 pb-6">
                   <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
                     <svg
@@ -613,35 +703,35 @@ const ParkApplicationPage = ({ onNavigate }) => {
                         d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                       />
                     </svg>
-                    Pilih Lokasi Taman
+                    Pilih Wilayah
                   </h3>
-
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="md:col-span-2">
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Taman yang Ingin Dipinjam{" "}
-                        <span className="text-red-500">*</span>
+                        Wilayah Jakarta <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
                         <div
                           className={`w-full px-3 py-2 border rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                            errors.selectedPark
+                            errors.selectedLocation
                               ? "border-red-500"
                               : "border-gray-300"
-                          } ${selectedParkData ? "bg-white" : "bg-gray-50"}`}
+                          } ${
+                            selectedLocationData ? "bg-white" : "bg-gray-50"
+                          }`}
                           onClick={() =>
-                            setIsParkDropdownOpen(!isParkDropdownOpen)
+                            setIsLocationDropdownOpen(!isLocationDropdownOpen)
                           }
                         >
-                          {selectedParkData ? (
+                          {selectedLocationData ? (
                             <div className="flex items-center justify-between">
                               <div>
                                 <div className="font-medium text-gray-900">
-                                  {selectedParkData.name}
+                                  {selectedLocationData.name}
                                 </div>
                                 <div className="text-sm text-gray-500">
-                                  {selectedParkData.area},{" "}
-                                  {selectedParkData.location}
+                                  Pengambilan:{" "}
+                                  {selectedLocationData.distribution}
                                 </div>
                               </div>
                               <svg
@@ -661,7 +751,7 @@ const ParkApplicationPage = ({ onNavigate }) => {
                           ) : (
                             <div className="flex items-center justify-between">
                               <span className="text-gray-500">
-                                Pilih taman yang ingin dipinjam
+                                Pilih wilayah Jakarta
                               </span>
                               <svg
                                 className="w-5 h-5 text-gray-400"
@@ -679,19 +769,18 @@ const ParkApplicationPage = ({ onNavigate }) => {
                             </div>
                           )}
                         </div>
-
                         {/* Dropdown */}
-                        {isParkDropdownOpen && (
+                        {isLocationDropdownOpen && (
                           <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-80 overflow-hidden">
                             {/* Search Input */}
                             <div className="p-3 border-b border-gray-200">
                               <div className="relative">
                                 <input
                                   type="text"
-                                  placeholder="Cari taman..."
-                                  value={parkSearchTerm}
+                                  placeholder="Cari wilayah..."
+                                  value={locationSearchTerm}
                                   onChange={(e) =>
-                                    setParkSearchTerm(e.target.value)
+                                    setLocationSearchTerm(e.target.value)
                                   }
                                   className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                                 />
@@ -710,34 +799,41 @@ const ParkApplicationPage = ({ onNavigate }) => {
                                 </svg>
                               </div>
                             </div>
-
-                            {/* Park List */}
+                            {/* Location List */}
                             <div className="max-h-60 overflow-y-auto">
-                              {filteredParks.length > 0 ? (
-                                filteredParks.map((park) => (
+                              {filteredLocations.length > 0 ? (
+                                filteredLocations.map((location) => (
                                   <div
-                                    key={park.id}
+                                    key={location.id}
                                     className="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
-                                    onClick={() => handleParkSelect(park)}
+                                    onClick={() =>
+                                      handleLocationSelect(location)
+                                    }
                                   >
                                     <div className="flex items-start justify-between">
                                       <div className="flex-1">
                                         <div className="font-medium text-gray-900">
-                                          {park.name}
+                                          {location.name}
                                         </div>
                                         <div className="text-sm text-gray-500 mb-1">
-                                          {park.area}, {park.location}
+                                          Pengambilan: {location.distribution}
                                         </div>
                                         <div className="flex flex-wrap gap-1">
-                                          {park.facilities.map(
-                                            (facility, index) => (
+                                          {location.areas
+                                            .slice(0, 4)
+                                            .map((area, index) => (
                                               <span
                                                 key={index}
                                                 className="inline-block px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full"
                                               >
-                                                {facility}
+                                                {area}
                                               </span>
-                                            )
+                                            ))}
+                                          {location.areas.length > 4 && (
+                                            <span className="inline-block px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded-full">
+                                              +{location.areas.length - 4}{" "}
+                                              lainnya
+                                            </span>
                                           )}
                                         </div>
                                       </div>
@@ -759,21 +855,20 @@ const ParkApplicationPage = ({ onNavigate }) => {
                                       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                                     />
                                   </svg>
-                                  Taman tidak ditemukan
+                                  Wilayah tidak ditemukan
                                 </div>
                               )}
                             </div>
                           </div>
                         )}
                       </div>
-                      {errors.selectedPark && (
+                      {errors.selectedLocation && (
                         <p className="text-red-500 text-xs mt-1">
-                          {errors.selectedPark}
+                          {errors.selectedLocation}
                         </p>
                       )}
-
-                      {/* Selected Park Info */}
-                      {selectedParkData && (
+                      {/* Selected Location Info */}
+                      {selectedLocationData && (
                         <div className="mt-3 p-3 bg-green-50 rounded-lg border border-green-200">
                           <div className="flex items-start space-x-3">
                             <svg
@@ -791,20 +886,14 @@ const ParkApplicationPage = ({ onNavigate }) => {
                             </svg>
                             <div>
                               <h4 className="font-medium text-green-800">
-                                Fasilitas Tersedia:
+                                Informasi Pengambilan:
                               </h4>
-                              <div className="flex flex-wrap gap-1 mt-1">
-                                {selectedParkData.facilities.map(
-                                  (facility, index) => (
-                                    <span
-                                      key={index}
-                                      className="inline-block px-2 py-1 text-xs bg-green-200 text-green-800 rounded-full"
-                                    >
-                                      {facility}
-                                    </span>
-                                  )
-                                )}
-                              </div>
+                              <p className="text-sm text-green-700 mt-1">
+                                Lokasi: {selectedLocationData.distribution}
+                              </p>
+                              <p className="text-sm text-green-700">
+                                Kontak: {selectedLocationData.contact}
+                              </p>
                             </div>
                           </div>
                         </div>
@@ -813,103 +902,7 @@ const ParkApplicationPage = ({ onNavigate }) => {
                   </div>
                 </div>
 
-                {/* Event Information Section */}
-                <div className="border-b border-gray-200 pb-6">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                    <svg
-                      className="w-5 h-5 mr-2 text-green-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 0V6a2 2 0 012-2h4a2 2 0 012 2v1m-6 0h8m-8 0H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V9a2 2 0 00-2-2h-2"
-                      />
-                    </svg>
-                    Informasi Acara
-                  </h3>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Nama Acara <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        name="eventName"
-                        value={formData.eventName}
-                        onChange={handleInputChange}
-                        className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                          errors.eventName
-                            ? "border-red-500"
-                            : "border-gray-300"
-                        }`}
-                        placeholder="Contoh: Senam Pagi Bersama"
-                      />
-                      {errors.eventName && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {errors.eventName}
-                        </p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Jenis Acara <span className="text-red-500">*</span>
-                      </label>
-                      <select
-                        name="eventType"
-                        value={formData.eventType}
-                        onChange={handleInputChange}
-                        className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                          errors.eventType
-                            ? "border-red-500"
-                            : "border-gray-300"
-                        }`}
-                      >
-                        <option value="">Pilih jenis acara</option>
-                        {eventTypes.map((type) => (
-                          <option key={type} value={type}>
-                            {type}
-                          </option>
-                        ))}
-                      </select>
-                      {errors.eventType && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {errors.eventType}
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="md:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Deskripsi Acara <span className="text-red-500">*</span>
-                      </label>
-                      <textarea
-                        name="description"
-                        value={formData.description}
-                        onChange={handleInputChange}
-                        rows={3}
-                        className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                          errors.description
-                            ? "border-red-500"
-                            : "border-gray-300"
-                        }`}
-                        placeholder="Jelaskan detail acara yang akan dilaksanakan..."
-                      />
-                      {errors.description && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {errors.description}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Organizer Information Section */}
+                {/* Applicant Information Section */}
                 <div className="border-b border-gray-200 pb-6">
                   <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
                     <svg
@@ -927,60 +920,56 @@ const ParkApplicationPage = ({ onNavigate }) => {
                     </svg>
                     Informasi Pemohon
                   </h3>
-
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Nama Pemohon/Organisasi{" "}
-                        <span className="text-red-500">*</span>
+                        Nama Pemohon <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
-                        name="organizerName"
-                        value={formData.organizerName}
+                        name="applicantName"
+                        value={formData.applicantName}
                         onChange={handleInputChange}
                         className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                          errors.organizerName
+                          errors.applicantName
                             ? "border-red-500"
                             : "border-gray-300"
                         }`}
                         placeholder="Nama lengkap atau nama organisasi"
                       />
-                      {errors.organizerName && (
+                      {errors.applicantName && (
                         <p className="text-red-500 text-xs mt-1">
-                          {errors.organizerName}
+                          {errors.applicantName}
                         </p>
                       )}
                     </div>
-
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Jenis Pemohon <span className="text-red-500">*</span>
                       </label>
                       <select
-                        name="organizerType"
-                        value={formData.organizerType}
+                        name="applicantType"
+                        value={formData.applicantType}
                         onChange={handleInputChange}
                         className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                          errors.organizerType
+                          errors.applicantType
                             ? "border-red-500"
                             : "border-gray-300"
                         }`}
                       >
-                        <option value="">Pilih jenis Pemohon</option>
-                        {organizerTypes.map((type) => (
+                        <option value="">Pilih jenis pemohon</option>
+                        {applicantTypes.map((type) => (
                           <option key={type} value={type}>
                             {type}
                           </option>
                         ))}
                       </select>
-                      {errors.organizerType && (
+                      {errors.applicantType && (
                         <p className="text-red-500 text-xs mt-1">
-                          {errors.organizerType}
+                          {errors.applicantType}
                         </p>
                       )}
                     </div>
-
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Penanggung Jawab <span className="text-red-500">*</span>
@@ -995,7 +984,7 @@ const ParkApplicationPage = ({ onNavigate }) => {
                             ? "border-red-500"
                             : "border-gray-300"
                         }`}
-                        placeholder="Nama penanggung jawab acara"
+                        placeholder="Nama penanggung jawab"
                       />
                       {errors.contactPerson && (
                         <p className="text-red-500 text-xs mt-1">
@@ -1003,7 +992,6 @@ const ParkApplicationPage = ({ onNavigate }) => {
                         </p>
                       )}
                     </div>
-
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Email <span className="text-red-500">*</span>
@@ -1024,8 +1012,7 @@ const ParkApplicationPage = ({ onNavigate }) => {
                         </p>
                       )}
                     </div>
-
-                    <div className="md:col-span-2">
+                    <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Nomor Telepon <span className="text-red-500">*</span>
                       </label>
@@ -1045,10 +1032,193 @@ const ParkApplicationPage = ({ onNavigate }) => {
                         </p>
                       )}
                     </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Alamat Lengkap <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="address"
+                        value={formData.address}
+                        onChange={handleInputChange}
+                        className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
+                          errors.address ? "border-red-500" : "border-gray-300"
+                        }`}
+                        placeholder="Alamat lengkap pemohon"
+                      />
+                      {errors.address && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {errors.address}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
 
-                {/* Schedule Information Section */}
+                {/* Seedling Selection Section */}
+                <div className="border-b border-gray-200 pb-6">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                    <svg
+                      className="w-5 h-5 mr-2 text-green-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                      />
+                    </svg>
+                    Pilih Jenis Bibit
+                  </h3>
+                  <div className="space-y-6">
+                    {seedlingCategories.map((category) => (
+                      <div
+                        key={category.category}
+                        className="bg-gray-50 rounded-lg p-4"
+                      >
+                        <h4 className="font-semibold text-gray-800 mb-3">
+                          {category.category}
+                        </h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {category.types.map((type) => (
+                            <div
+                              key={type.name}
+                              className="bg-white rounded-lg p-3 border border-gray-200"
+                            >
+                              <div className="flex items-center justify-between mb-2">
+                                <span className="font-medium text-gray-700">
+                                  {type.name}
+                                </span>
+                                <span className="text-xs text-gray-500">
+                                  Max: {type.maxQty}
+                                </span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    handleSeedlingTypeChange(
+                                      category.category,
+                                      type,
+                                      Math.max(
+                                        0,
+                                        getSeedlingQuantity(
+                                          category.category,
+                                          type.name
+                                        ) - 1
+                                      )
+                                    )
+                                  }
+                                  className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center"
+                                >
+                                  <svg
+                                    className="w-4 h-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M20 12H4"
+                                    />
+                                  </svg>
+                                </button>
+                                <input
+                                  type="number"
+                                  min="0"
+                                  max={type.maxQty}
+                                  value={getSeedlingQuantity(
+                                    category.category,
+                                    type.name
+                                  )}
+                                  onChange={(e) =>
+                                    handleSeedlingTypeChange(
+                                      category.category,
+                                      type,
+                                      Number.parseInt(e.target.value) || 0
+                                    )
+                                  }
+                                  className="w-16 text-center border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                />
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    handleSeedlingTypeChange(
+                                      category.category,
+                                      type,
+                                      Math.min(
+                                        type.maxQty,
+                                        getSeedlingQuantity(
+                                          category.category,
+                                          type.name
+                                        ) + 1
+                                      )
+                                    )
+                                  }
+                                  className="w-8 h-8 rounded-full bg-green-200 hover:bg-green-300 flex items-center justify-center"
+                                >
+                                  <svg
+                                    className="w-4 h-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M12 4v16m8-8H4"
+                                    />
+                                  </svg>
+                                </button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                    {errors.seedlingTypes && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.seedlingTypes}
+                      </p>
+                    )}
+                    {/* Total Summary */}
+                    {formData.seedlingTypes.length > 0 && (
+                      <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                        <h4 className="font-semibold text-green-800 mb-2">
+                          Ringkasan Permohonan:
+                        </h4>
+                        <div className="space-y-1 text-sm">
+                          {formData.seedlingTypes.map((item, index) => (
+                            <div key={index} className="flex justify-between">
+                              <span className="text-green-700">
+                                {item.type} ({item.category})
+                              </span>
+                              <span className="font-medium text-green-800">
+                                {item.quantity} bibit
+                              </span>
+                            </div>
+                          ))}
+                          <div className="border-t border-green-200 pt-2 mt-2">
+                            <div className="flex justify-between font-semibold">
+                              <span className="text-green-800">Total:</span>
+                              <span className="text-green-800">
+                                {formData.totalQuantity} bibit
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Planting Information Section */}
                 <div className="border-b border-gray-200 pb-6">
                   <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
                     <svg
@@ -1064,94 +1234,184 @@ const ParkApplicationPage = ({ onNavigate }) => {
                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    Jadwal Acara
+                    Informasi Penanaman
                   </h3>
-
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="md:col-span-2">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Lokasi Penanaman <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="plantingLocation"
+                        value={formData.plantingLocation}
+                        onChange={handleInputChange}
+                        className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
+                          errors.plantingLocation
+                            ? "border-red-500"
+                            : "border-gray-300"
+                        }`}
+                        placeholder="Contoh: Taman RT 05/RW 02, Jl. Mawar No. 123"
+                      />
+                      {errors.plantingLocation && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {errors.plantingLocation}
+                        </p>
+                      )}
+                    </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Tanggal Acara <span className="text-red-500">*</span>
+                        Tujuan Penanaman <span className="text-red-500">*</span>
+                      </label>
+                      <select
+                        name="plantingPurpose"
+                        value={formData.plantingPurpose}
+                        onChange={handleInputChange}
+                        className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
+                          errors.plantingPurpose
+                            ? "border-red-500"
+                            : "border-gray-300"
+                        }`}
+                      >
+                        <option value="">Pilih tujuan penanaman</option>
+                        {plantingPurposes.map((purpose) => (
+                          <option key={purpose} value={purpose}>
+                            {purpose}
+                          </option>
+                        ))}
+                      </select>
+                      {errors.plantingPurpose && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {errors.plantingPurpose}
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Tanggal Penanaman{" "}
+                        <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="date"
-                        name="eventDate"
-                        value={formData.eventDate}
+                        name="plantingDate"
+                        value={formData.plantingDate}
                         onChange={handleInputChange}
                         className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                          errors.eventDate
+                          errors.plantingDate
                             ? "border-red-500"
                             : "border-gray-300"
                         }`}
                       />
-                      {errors.eventDate && (
+                      {errors.plantingDate && (
                         <p className="text-red-500 text-xs mt-1">
-                          {errors.eventDate}
+                          {errors.plantingDate}
                         </p>
                       )}
                     </div>
-
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Waktu Mulai <span className="text-red-500">*</span>
+                        Luas Lahan
                       </label>
                       <input
-                        type="time"
-                        name="startTime"
-                        value={formData.startTime}
+                        type="text"
+                        name="landArea"
+                        value={formData.landArea}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                        placeholder="Contoh: 100 m² (opsional)"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Jenis Tanah
+                      </label>
+                      <select
+                        name="soilType"
+                        value={formData.soilType}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                      >
+                        <option value="">Pilih jenis tanah (opsional)</option>
+                        {soilTypes.map((type) => (
+                          <option key={type} value={type}>
+                            {type}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Sumber Air
+                      </label>
+                      <select
+                        name="waterSource"
+                        value={formData.waterSource}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                      >
+                        <option value="">Pilih sumber air (opsional)</option>
+                        {waterSources.map((source) => (
+                          <option key={source} value={source}>
+                            {source}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Komitmen Perawatan{" "}
+                        <span className="text-red-500">*</span>
+                      </label>
+                      <select
+                        name="careCommitment"
+                        value={formData.careCommitment}
                         onChange={handleInputChange}
                         className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                          errors.startTime
+                          errors.careCommitment
                             ? "border-red-500"
                             : "border-gray-300"
                         }`}
-                      />
-                      {errors.startTime && (
+                      >
+                        <option value="">Pilih komitmen perawatan</option>
+                        <option value="Siap merawat sendiri">
+                          Siap merawat sendiri
+                        </option>
+                        <option value="Perawatan bersama komunitas">
+                          Perawatan bersama komunitas
+                        </option>
+                        <option value="Koordinasi dengan RT/RW">
+                          Koordinasi dengan RT/RW
+                        </option>
+                        <option value="Bantuan perawatan dari dinas">
+                          Bantuan perawatan dari dinas
+                        </option>
+                      </select>
+                      {errors.careCommitment && (
                         <p className="text-red-500 text-xs mt-1">
-                          {errors.startTime}
+                          {errors.careCommitment}
                         </p>
                       )}
                     </div>
-
-                    <div>
+                    <div className="md:col-span-2">
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Waktu Selesai <span className="text-red-500">*</span>
+                        Deskripsi Rencana Penanaman{" "}
+                        <span className="text-red-500">*</span>
                       </label>
-                      <input
-                        type="time"
-                        name="endTime"
-                        value={formData.endTime}
+                      <textarea
+                        name="description"
+                        value={formData.description}
                         onChange={handleInputChange}
+                        rows={3}
                         className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                          errors.endTime ? "border-red-500" : "border-gray-300"
-                        }`}
-                      />
-                      {errors.endTime && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {errors.endTime}
-                        </p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Jumlah Peserta <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="number"
-                        name="participants"
-                        value={formData.participants}
-                        onChange={handleInputChange}
-                        min="1"
-                        className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                          errors.participants
+                          errors.description
                             ? "border-red-500"
                             : "border-gray-300"
                         }`}
-                        placeholder="Jumlah peserta"
+                        placeholder="Jelaskan rencana penanaman, tata letak, dan tujuan jangka panjang..."
                       />
-                      {errors.participants && (
+                      {errors.description && (
                         <p className="text-red-500 text-xs mt-1">
-                          {errors.participants}
+                          {errors.description}
                         </p>
                       )}
                     </div>
@@ -1176,22 +1436,7 @@ const ParkApplicationPage = ({ onNavigate }) => {
                     </svg>
                     Informasi Tambahan
                   </h3>
-
                   <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Peralatan yang Dibutuhkan
-                      </label>
-                      <textarea
-                        name="equipment"
-                        value={formData.equipment}
-                        onChange={handleInputChange}
-                        rows={2}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                        placeholder="Contoh: Sound system, kursi, tenda, dll. (Kosongkan jika tidak ada)"
-                      />
-                    </div>
-
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Kebutuhan Khusus
@@ -1202,7 +1447,7 @@ const ParkApplicationPage = ({ onNavigate }) => {
                         onChange={handleInputChange}
                         rows={2}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                        placeholder="Contoh: Akses listrik, area parkir khusus, dll. (Kosongkan jika tidak ada)"
+                        placeholder="Contoh: Bantuan transportasi, pelatihan perawatan, dll. (Kosongkan jika tidak ada)"
                       />
                     </div>
                   </div>
@@ -1225,9 +1470,11 @@ const ParkApplicationPage = ({ onNavigate }) => {
                       </label>
                       <p className="text-gray-600 mt-1">
                         Dengan mencentang kotak ini, saya menyatakan bahwa
-                        informasi yang diberikan adalah benar dan saya bersedia
-                        mengikuti semua aturan dan ketentuan yang berlaku untuk
-                        pemakaian taman.
+                        informasi yang diberikan adalah benar dan saya
+                        berkomitmen untuk merawat bibit tanaman yang diberikan
+                        dengan baik. Saya memahami bahwa bibit ini diberikan
+                        gratis untuk tujuan penghijauan dan konservasi
+                        lingkungan.
                       </p>
                       {errors.agreeTerms && (
                         <p className="text-red-500 text-xs mt-1">
@@ -1242,7 +1489,7 @@ const ParkApplicationPage = ({ onNavigate }) => {
                 <div className="flex justify-end space-x-4 pt-6">
                   <button
                     type="button"
-                    onClick={() => onNavigate("home")}
+                    onClick={() => onNavigate("landing")}
                     className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
                   >
                     Batal
@@ -1295,4 +1542,4 @@ const ParkApplicationPage = ({ onNavigate }) => {
   );
 };
 
-export default ParkApplicationPage;
+export default SeedlingApplicationPage;
