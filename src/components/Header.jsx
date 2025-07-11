@@ -17,7 +17,6 @@ const Header = ({ onNavigate }) => {
         { name: "Cek Data Makam", href: "#" /* Belum ada action */ },
         { name: "Informasi Retribusi", href: "#" /* Belum ada action */ },
         { name: "Izin Pemakaman", href: "#" /* Belum ada action */ },
-        // --- PERUBAHAN DI SINI ---
         {
           name: "E-Book Panduan Teknis Pekerjaan Lanskap (E-PATELA)",
           href: "/files/ebook.pdf", // Arahkan langsung ke file PDF di folder public
@@ -36,6 +35,11 @@ const Header = ({ onNavigate }) => {
           name: "Permohonan Bibit Tanaman",
           href: "#",
           action: "seedling-application",
+        },
+        {
+          name: "Santunan Pohon Tumbang",
+          href: "#",
+          action: "tree-fall-claim",
         },
       ],
     },
