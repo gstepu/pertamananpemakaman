@@ -208,13 +208,15 @@ const CatalogPage = ({ onNavigate }) => {
 
   const startDownload = () => {
     const link = document.createElement("a");
-    link.href = "/images/catalog-cover.png";
-    link.download = "Katalog-Produk-KTH-Jakarta-2024.pdf";
+    // 1. Path diubah ke file catalog.pdf
+    link.href = "/files/catalog.pdf";
+    // 2. Nama file unduhan diubah menjadi catalog.pdf
+    link.download = "catalog.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+
     setIsModalOpen(false);
-    alert("Katalog Anda sedang diunduh...");
   };
 
   const formatPrice = (price) => {
@@ -225,7 +227,6 @@ const CatalogPage = ({ onNavigate }) => {
     }).format(price);
   };
 
-  // --- MODIFIKASI PADA ProductCard DIMULAI DI SINI ---
   const ProductCard = ({ product }) => (
     // 1. Tambahkan `flex flex-col` untuk membuat kartu menjadi flex container vertikal
     <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col">
@@ -347,7 +348,6 @@ const CatalogPage = ({ onNavigate }) => {
       </div>
     </div>
   );
-  // --- AKHIR MODIFIKASI ProductCard ---
 
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col">
