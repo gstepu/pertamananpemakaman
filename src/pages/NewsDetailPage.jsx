@@ -429,16 +429,13 @@ const NewsDetailPage = ({ onNavigate, newsId }) => {
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
             {/* Share Buttons */}
-            <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">
+            <div className="bg-white rounded-xl shadow-lg p-6 mt-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">
                 Bagikan Artikel
               </h3>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-4 gap-3">
                 <button
                   onClick={() => handleShare("facebook")}
                   className="flex items-center justify-center p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
