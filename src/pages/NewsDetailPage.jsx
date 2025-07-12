@@ -491,10 +491,7 @@ const NewsDetailPage = ({ onNavigate, newsId }) => {
                 </button>
               </div>
             </div>
-          </div>
-
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
+                    </div>
             {/* Related News */}
             {relatedNews.length > 0 && (
               <div className="bg-white rounded-xl shadow-lg p-6">
