@@ -267,7 +267,7 @@ const NewsCard = ({ imageUrl, date, title, excerpt, category }) => (
   </article>
 );
 
-const NewsSection = () => {
+const NewsSection = ({ onNavigate }) => {
   const newsItems = [
     {
       imageUrl: "/images/tpu-taman-kusir.jpg",
