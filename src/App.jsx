@@ -76,19 +76,16 @@ export default function App() {
         return <CatalogPage onNavigate={handleNavigate} />;
       case "Kthprofile":
         return <KTHProfilePage onNavigate={handleNavigate} />;
-<<<<<<< HEAD
       case "news":
         return <NewsPage onNavigate={handleNavigate} />;
       case "regulation":
         return <RegulationPage onNavigate={handleNavigate} />;
-=======
       case "tree-application":
         return <TreePruningApplicationPage onNavigate={handleNavigate} />;
       case "seedling-application":
         return <SeedlingApplicationPage onNavigate={handleNavigate} />;
       case "tree-fall-claim":
         return <TreeFallClaimPage onNavigate={handleNavigate} />;
->>>>>>> origin/main
       default:
         // Halaman default jika state tidak cocok
         return <LandingPage onNavigate={handleNavigate} />;
