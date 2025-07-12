@@ -455,7 +455,7 @@ const RTHInfoPage = ({ onNavigate }) => {
                 onClick={() =>
                   setSelectedTypology(selectedTypology === key ? null : key)
                 }
-                className={`p-6 rounded-xl border-2 transition-all duration-300 text-left ${
+                className={`p-6 rounded-xl border-2 transition-all duration-300 text-left ${typologyCount > 3 ? "min-w-80 flex-shrink-0" : ""} ${
                   selectedTypology === key
                     ? "border-green-500 bg-green-50 shadow-lg"
                     : "border-gray-200 hover:border-green-300 hover:bg-green-25"
