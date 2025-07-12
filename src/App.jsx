@@ -26,6 +26,7 @@ import RTHTypologyDetailPage from "./pages/RTHTypologyDetailPage";
 import RTHAtapPage from "./pages/RTHAtapPage";
 import RTHPekaranganPage from "./pages/RTHPekaranganPage";
 import RTHLingkunganPage from "./pages/RTHLingkunganPage";
+import RegulationDetailPage from "./pages/RegulationDetailPage";
 import TreePruningApplicationPage from "./pages/TreePruningApplicationPage";
 import SeedlingApplicationPage from "./pages/SeedlingApplication";
 import TreeFallClaimPage from "./pages/TreeFallClaimPage";
