@@ -12,6 +12,7 @@ const RegulationPage = ({ onNavigate }) => {
       description: "Peraturan tingkat pusat",
       bgColor: "bg-red-500",
       bgGradient: "from-red-500 to-red-600",
+      navigationTarget: "regulasi-undang-undang",
     },
     {
       title: "Peraturan Pemerintah",
@@ -20,6 +21,7 @@ const RegulationPage = ({ onNavigate }) => {
       description: "Peraturan pelaksanaan UU",
       bgColor: "bg-blue-500",
       bgGradient: "from-blue-500 to-blue-600",
+      navigationTarget: "regulasi-peraturan-pemerintah",
     },
     {
       title: "Peraturan Daerah",
@@ -28,6 +30,7 @@ const RegulationPage = ({ onNavigate }) => {
       description: "Peraturan tingkat provinsi",
       bgColor: "bg-purple-500",
       bgGradient: "from-purple-500 to-purple-600",
+      navigationTarget: "regulasi-peraturan-daerah",
     },
     {
       title: "Peraturan Gubernur",
@@ -36,6 +39,7 @@ const RegulationPage = ({ onNavigate }) => {
       description: "Peraturan kepala daerah",
       bgColor: "bg-green-500",
       bgGradient: "from-green-500 to-green-600",
+      navigationTarget: "regulasi-keputusan-gubernur",
     },
   ];
 
