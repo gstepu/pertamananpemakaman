@@ -374,7 +374,13 @@ const RegulationPage = ({ onNavigate }) => {
               <div className="p-8">
                 {/* Category Header */}
                 <div className="flex items-center mb-6">
-                  <div className="text-4xl mr-4">{category.icon}</div>
+                  <button
+                    className="text-4xl mr-4 hover:scale-110 transition-transform cursor-pointer"
+                    onClick={() => setSelectedCategory(category.id)}
+                    title={`Lihat semua ${category.title}`}
+                  >
+                    {category.icon}
+                  </button>
                   <div>
                     <h3
                       className={`text-2xl font-bold ${category.accentColor}`}
