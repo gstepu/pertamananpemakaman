@@ -123,7 +123,8 @@ const Header = ({ onNavigate }) => {
                       />
                     </svg>
                   </button>
-                  {isServicesDropdownOpen && (
+                  {((link.name === "Layanan" && isServicesDropdownOpen) ||
+                    (link.name === "Berita" && isNewsDropdownOpen)) && (
                     <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
                       <div className="py-2">
                         {link.dropdownItems.map((item) => (
