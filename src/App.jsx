@@ -85,6 +85,24 @@ export default function App() {
         return <RegulationPage onNavigate={handleNavigate} />;
       case "rth-info":
         return <RTHInfoPage onNavigate={handleNavigate} />;
+      case "rth-atap":
+        return (
+          <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+            <h1 className="text-2xl">Halaman RTH Atap (Coming Soon)</h1>
+          </div>
+        );
+      case "rth-pekarangan":
+        return (
+          <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+            <h1 className="text-2xl">Halaman RTH Pekarangan (Coming Soon)</h1>
+          </div>
+        );
+      case "rth-lingkungan":
+        return (
+          <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+            <h1 className="text-2xl">Halaman RTH Lingkungan (Coming Soon)</h1>
+          </div>
+        );
       case "tree-application":
         return <TreePruningApplicationPage onNavigate={handleNavigate} />;
       case "seedling-application":
