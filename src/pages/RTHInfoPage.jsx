@@ -446,7 +446,9 @@ const RTHInfoPage = ({ onNavigate }) => {
             Tipologi Ruang Terbuka Hijau
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div
+            className={`${typologyCount > 3 ? "flex gap-6 mb-8 overflow-x-auto pb-4" : "grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"}`}
+          >
             {Object.entries(rthTypologies).map(([key, typology]) => (
               <button
                 key={key}
