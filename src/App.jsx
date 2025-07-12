@@ -20,6 +20,7 @@ import KTHProfilePage from "./pages/Kthprofile";
 import TreePruningApplicationPage from "./pages/TreePruningApplicationPage";
 import SeedlingApplicationPage from "./pages/SeedlingApplication";
 import TreeFallClaimPage from "./pages/TreeFallClaimPage";
+import AccountProfilePage from "./pages/AccountProfilePage";
 
 const Notification = ({ message, onClear }) => {
   useEffect(() => {
@@ -41,9 +42,9 @@ const Notification = ({ message, onClear }) => {
 };
 
 export default function App() {
-  // Atur halaman default ke "LandingPage" agar konsisten
   const [currentPage, setCurrentPage] = useState("LandingPage");
   const [notificationMessage, setNotificationMessage] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleNavigate = (page, message = "") => {
     setCurrentPage(page);
@@ -52,14 +53,29 @@ export default function App() {
     }
   };
 
-  // --- PERUBAHAN DI SINI ---
-  // Fungsi ini sekarang hanya bertanggung jawab untuk merender *konten* halaman
+  const handleLoginSuccess = (message) => {
+    setIsLoggedIn(true);
+    setNotificationMessage(message);
+    setCurrentPage("LandingPage");
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setNotificationMessage("Anda telah berhasil log out.");
+    setCurrentPage("LandingPage");
+  };
+
   const renderPageContent = () => {
     switch (currentPage) {
       case "LandingPage":
         return <LandingPage onNavigate={handleNavigate} />;
       case "login":
-        return <LoginPage onNavigate={handleNavigate} />;
+        return (
+          <LoginPage
+            onNavigate={handleNavigate}
+            onLoginSuccess={handleLoginSuccess}
+          />
+        );
       case "register":
         return <RegisterPage onNavigate={handleNavigate} />;
       case "forgot-password":
@@ -78,16 +94,15 @@ export default function App() {
         return <TreePruningApplicationPage onNavigate={handleNavigate} />;
       case "seedling-application":
         return <SeedlingApplicationPage onNavigate={handleNavigate} />;
+      case "account-profile":
+        return <AccountProfilePage onNavigate={handleNavigate} />;
       case "tree-fall-claim":
         return <TreeFallClaimPage onNavigate={handleNavigate} />;
       default:
-        // Halaman default jika state tidak cocok
         return <LandingPage onNavigate={handleNavigate} />;
     }
   };
 
-  // --- DAN PERUBAHAN DI SINI ---
-  // Header dan Footer sekarang menjadi layout tetap
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col">
       <Notification
@@ -95,12 +110,13 @@ export default function App() {
         onClear={() => setNotificationMessage("")}
       />
 
-      <Header onNavigate={handleNavigate} />
+      <Header
+        onNavigate={handleNavigate}
+        isLoggedIn={isLoggedIn}
+        onLogout={handleLogout}
+      />
 
-      <main className="flex-1">
-        {/* Panggil fungsi untuk merender konten di sini */}
-        {renderPageContent()}
-      </main>
+      <main className="flex-1">{renderPageContent()}</main>
 
       <Footer />
     </div>
