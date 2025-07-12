@@ -208,7 +208,8 @@ const Header = ({ onNavigate }) => {
                 >
                   {link.name}
                 </button>
-                {isServicesDropdownOpen && (
+                {((link.name === "Layanan" && isServicesDropdownOpen) ||
+                  (link.name === "Berita" && isNewsDropdownOpen)) && (
                   <div className="pl-4 space-y-1">
                     {link.dropdownItems.map((item) => (
                       <a
