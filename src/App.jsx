@@ -97,6 +97,13 @@ export default function App() {
           const newsId = currentPage.split("-")[2];
           return <NewsDetailPage onNavigate={handleNavigate} newsId={newsId} />;
         }
+        // Handle RTH detail routes
+        if (currentPage.startsWith("rth-detail-")) {
+          const articleId = currentPage.split("-")[2];
+          return (
+            <RTHDetailPage onNavigate={handleNavigate} articleId={articleId} />
+          );
+        }
         // Halaman default jika state tidak cocok
         return <LandingPage onNavigate={handleNavigate} />;
     }
