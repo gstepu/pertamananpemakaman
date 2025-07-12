@@ -491,39 +491,8 @@ const NewsDetailPage = ({ onNavigate, newsId }) => {
                 </button>
               </div>
             </div>
-                    </div>
-            {/* Related News */}
-            {relatedNews.length > 0 && (
-              <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">
-                  Berita Terkait
-                </h3>
-                <div className="space-y-4">
-                  {relatedNews.map((item) => (
-                    <div
-                      key={item.id}
-                      className="flex cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors"
-                    >
-                      <img
-                        src={item.fullImage}
-                        alt={item.title}
-                        className="w-20 h-20 object-cover rounded-lg mr-3 flex-shrink-0"
-                      />
-                      <div className="flex-1 min-w-0">
-                        <h4 className="text-sm font-semibold text-gray-900 line-clamp-2 mb-1">
-                          {item.title}
-                        </h4>
-                        <p className="text-xs text-gray-500 mb-1">
-                          {formatDate(item.date)}
-                        </p>
-                        <p className="text-xs text-gray-600">{item.readTime}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
+          {/* Related News */}
         </div>
       </div>
     </div>
