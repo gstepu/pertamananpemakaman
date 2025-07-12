@@ -203,7 +203,9 @@ const Header = ({ onNavigate }) => {
                 <button
                   className="block w-full text-left py-2 text-gray-600 hover:text-green-800"
                   onClick={() =>
-                    setServicesDropdownOpen(!isServicesDropdownOpen)
+                    toggleDropdown(
+                      link.name === "Layanan" ? "services" : "news",
+                    )
                   }
                 >
                   {link.name}
