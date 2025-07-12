@@ -90,11 +90,7 @@ export default function App() {
       case "rth-info":
         return <RTHInfoPage onNavigate={handleNavigate} />;
       case "rth-atap":
-        return (
-          <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-            <h1 className="text-2xl">Halaman RTH Atap (Coming Soon)</h1>
-          </div>
-        );
+        return <RTHAtapPage onNavigate={handleNavigate} />;
       case "rth-pekarangan":
         return (
           <div className="min-h-screen bg-gray-50 flex items-center justify-center">
