@@ -79,6 +79,13 @@ export default function App() {
         return <KTHProfilePage onNavigate={handleNavigate} />;
       case "news":
         return <NewsPage onNavigate={handleNavigate} />;
+      case "news-detail":
+        return (
+          <NewsDetailPage
+            onNavigate={handleNavigate}
+            newsId={currentPage.split("-")[2]}
+          />
+        );
       case "regulation":
         return <RegulationPage onNavigate={handleNavigate} />;
       case "tree-application":
