@@ -283,14 +283,15 @@ const ParkApplicationPage = ({ onNavigate }) => {
   };
 
   // Confirmation Modal Component
+  // Confirmation Modal Component
   const ConfirmationModal = () => {
     if (!showConfirmation) return null;
 
     return (
       <div className="fixed inset-0 backdrop-blur-sm bg-white/10 flex items-center justify-center z-50 p-4">
         <div className="bg-white rounded-lg shadow-xl max-w-sm w-full">
-          {/* Modal Header */}
-          <div className="bg-yellow-500 text-white p-3 rounded-t-lg">
+          {/* Modal Header (Warna diubah menjadi hijau) */}
+          <div className="bg-green-600 text-white p-3 rounded-t-lg">
             <div className="flex items-center">
               <svg
                 className="w-5 h-5 mr-2"
@@ -305,19 +306,21 @@ const ParkApplicationPage = ({ onNavigate }) => {
                   d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"
                 />
               </svg>
-              <h2 className="text-base font-semibold">Konfirmasi Pengajuan</h2>
+              {/* Teks diubah menjadi "Permohonan" */}
+              <h2 className="text-base font-semibold">Konfirmasi Permohonan</h2>
             </div>
           </div>
 
           {/* Modal Content */}
           <div className="p-4">
             <p className="text-gray-700 text-sm mb-3">
-              Apakah Anda yakin ingin mengirim pengajuan pemakaian taman dengan
+              {/* Teks diubah menjadi "Permohonan" */}
+              Apakah Anda yakin ingin mengirim permohonan pemakaian taman dengan
               detail berikut?
             </p>
 
-            {/* Summary Information */}
-            <div className="bg-gray-50 rounded-lg p-3 space-y-2 text-sm">
+            {/* Summary Information (Warna diubah menjadi hijau) */}
+            <div className="bg-green-50 rounded-lg p-3 space-y-2 text-sm">
               <div className="flex justify-between">
                 <span className="font-medium text-gray-600">Taman:</span>
                 <span className="text-gray-800">{selectedParkData?.name}</span>
@@ -327,7 +330,8 @@ const ParkApplicationPage = ({ onNavigate }) => {
                 <span className="text-gray-800">{formData.eventName}</span>
               </div>
               <div className="flex justify-between">
-                <span className="font-medium text-gray-600">Pengaju:</span>
+                {/* Teks diubah menjadi "Pemohon" */}
+                <span className="font-medium text-gray-600">Pemohon:</span>
                 <span className="text-gray-800">{formData.organizerName}</span>
               </div>
               <div className="flex justify-between">
@@ -372,7 +376,8 @@ const ParkApplicationPage = ({ onNavigate }) => {
                 <div className="text-xs text-blue-800">
                   <p className="font-medium">Informasi Penting:</p>
                   <p>
-                    Setelah pengajuan dikirim, Anda akan menerima konfirmasi
+                    {/* Teks diubah menjadi "Permohonan" */}
+                    Setelah permohonan dikirim, Anda akan menerima konfirmasi
                     melalui email dalam 1-2 hari kerja. Pastikan semua informasi
                     sudah benar sebelum mengirim.
                   </p>
@@ -406,7 +411,8 @@ const ParkApplicationPage = ({ onNavigate }) => {
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              Ya, Kirim Pengajuan
+              {/* Teks diubah menjadi "Permohonan" */}
+              Ya, Kirim Permohonan
             </button>
           </div>
         </div>
@@ -421,7 +427,6 @@ const ParkApplicationPage = ({ onNavigate }) => {
     return (
       <div className="fixed inset-0 backdrop-blur-sm bg-white/10 flex items-center justify-center z-50 p-4">
         <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-          {/* Modal Header */}
           <div className="bg-green-600 text-white p-4 rounded-t-lg">
             <div className="flex items-center justify-center">
               <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mr-3">
@@ -440,24 +445,26 @@ const ParkApplicationPage = ({ onNavigate }) => {
                 </svg>
               </div>
               <h2 className="text-lg font-semibold">
-                Pengajuan Berhasil Dikirim!
+                {/* Teks diubah menjadi "Permohonan" */}
+                Permohonan Berhasil Dikirim!
               </h2>
             </div>
           </div>
-
-          {/* Modal Content */}
           <div className="p-6 text-center">
             <div className="mb-4">
               <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                Terima kasih atas pengajuan Anda
+                {/* Teks diubah menjadi "Permohonan" */}
+                Terima kasih atas permohonan Anda
               </h3>
               <p className="text-gray-600 text-sm">
-                Pengajuan pemakaian <strong>{selectedParkData?.name}</strong>{" "}
+                {/* Teks diubah menjadi "Permohonan" */}
+                Permohonan pemakaian <strong>
+                  {selectedParkData?.name}
+                </strong>{" "}
                 untuk acara <strong>"{formData.eventName}"</strong> telah
                 berhasil dikirim.
               </p>
             </div>
-
             <div className="bg-blue-50 rounded-lg p-4 mb-4 border border-blue-200">
               <div className="flex items-start space-x-3">
                 <svg
@@ -478,7 +485,8 @@ const ParkApplicationPage = ({ onNavigate }) => {
                     Langkah Selanjutnya:
                   </h4>
                   <ul className="text-xs text-blue-700 space-y-1">
-                    <li>• Tim kami akan meninjau pengajuan Anda</li>
+                    {/* Teks diubah menjadi "Permohonan" */}
+                    <li>• Tim kami akan meninjau permohonan Anda</li>
                     <li>
                       • Konfirmasi akan dikirim ke email:{" "}
                       <strong>{formData.email}</strong>
@@ -491,7 +499,6 @@ const ParkApplicationPage = ({ onNavigate }) => {
                 </div>
               </div>
             </div>
-
             <div className="bg-green-50 rounded-lg p-3 mb-4 border border-green-200">
               <div className="flex items-center justify-center space-x-2">
                 <svg
@@ -513,13 +520,10 @@ const ParkApplicationPage = ({ onNavigate }) => {
                 </span>
               </div>
             </div>
-
             <p className="text-xs text-gray-500 mb-4">
               Simpan nomor referensi di atas untuk keperluan follow-up
             </p>
           </div>
-
-          {/* Modal Footer */}
           <div className="bg-gray-50 px-6 py-4 rounded-b-lg">
             <div className="flex justify-center space-x-3">
               <button
@@ -543,7 +547,7 @@ const ParkApplicationPage = ({ onNavigate }) => {
               </button>
               <button
                 onClick={() => setShowSuccess(false)}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center"
+                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center"
               >
                 <svg
                   className="w-4 h-4 mr-2"
@@ -570,21 +574,6 @@ const ParkApplicationPage = ({ onNavigate }) => {
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col">
       <main className="flex-1">
-        {/* Hero Section */}
-        <div className="bg-green-700 text-white p-6">
-          <div className="container mx-auto">
-            <div className="text-center">
-              <h1 className="text-3xl font-bold mb-2">
-                Pengajuan Pemakaian Taman
-              </h1>
-              <p className="text-green-100">
-                Ajukan pemakaian taman untuk kegiatan Anda dengan mudah dan
-                cepat
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Form Content */}
         <div className="container mx-auto p-6">
           <div className="max-w-4xl mx-auto">
@@ -592,11 +581,11 @@ const ParkApplicationPage = ({ onNavigate }) => {
               {/* Form Header */}
               <div className="bg-gradient-to-r from-green-600 to-green-700 text-white p-6">
                 <h2 className="text-xl font-semibold mb-2">
-                  Form Pengajuan Acara
+                  Form Permohonan Acara
                 </h2>
                 <p className="text-green-100">
-                  Lengkapi formulir di bawah ini untuk mengajukan pemakaian
-                  taman
+                  Lengkapi formulir di bawah ini untuk mengajukan Permohonan
+                  pemakaian taman
                 </p>
               </div>
 
@@ -936,13 +925,13 @@ const ParkApplicationPage = ({ onNavigate }) => {
                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                       />
                     </svg>
-                    Informasi Pengaju
+                    Informasi Pemohon
                   </h3>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Nama Pengaju/Organisasi{" "}
+                        Nama Pemohon/Organisasi{" "}
                         <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -966,7 +955,7 @@ const ParkApplicationPage = ({ onNavigate }) => {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Jenis Pengaju <span className="text-red-500">*</span>
+                        Jenis Pemohon <span className="text-red-500">*</span>
                       </label>
                       <select
                         name="organizerType"
@@ -978,7 +967,7 @@ const ParkApplicationPage = ({ onNavigate }) => {
                             : "border-gray-300"
                         }`}
                       >
-                        <option value="">Pilih jenis pengaju</option>
+                        <option value="">Pilih jenis Pemohon</option>
                         {organizerTypes.map((type) => (
                           <option key={type} value={type}>
                             {type}
@@ -1287,7 +1276,7 @@ const ParkApplicationPage = ({ onNavigate }) => {
                         Mengirim...
                       </>
                     ) : (
-                      "Kirim Pengajuan"
+                      "Kirim Permohonan"
                     )}
                   </button>
                 </div>
