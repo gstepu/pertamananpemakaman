@@ -94,11 +94,7 @@ export default function App() {
       case "rth-pekarangan":
         return <RTHPekaranganPage onNavigate={handleNavigate} />;
       case "rth-lingkungan":
-        return (
-          <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-            <h1 className="text-2xl">Halaman RTH Lingkungan (Coming Soon)</h1>
-          </div>
-        );
+        return <RTHLingkunganPage onNavigate={handleNavigate} />;
       case "tree-application":
         return <TreePruningApplicationPage onNavigate={handleNavigate} />;
       case "seedling-application":
