@@ -102,9 +102,7 @@ const Header = ({ onNavigate }) => {
                 <div className="relative">
                   <button
                     className="text-gray-600 hover:text-green-800 transition flex items-center"
-                    onClick={() =>
-                      setServicesDropdownOpen(!isServicesDropdownOpen)
-                    }
+                    onClick={() => toggleDropdown("services")}
                   >
                     {link.name}
                     <svg
