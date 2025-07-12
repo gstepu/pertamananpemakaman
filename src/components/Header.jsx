@@ -5,6 +5,7 @@ import { useState } from "react";
 const Header = ({ onNavigate }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [isNewsDropdownOpen, setNewsDropdownOpen] = useState(false);
 
   const navLinks = [
     { name: "Beranda", href: "#", action: "LandingPage" },
