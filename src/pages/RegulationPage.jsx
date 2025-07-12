@@ -389,7 +389,8 @@ const RegulationPage = ({ onNavigate }) => {
                   <div>
                     <button
                       onClick={() => setSelectedCategory(category.id)}
-                      className={`text-2xl font-bold ${category.accentColor} hover:underline cursor-pointer transition-all duration-200 hover:scale-105`}
+                      className={`text-2xl font-bold ${category.accentColor} hover:underline cursor-pointer transition-all duration-200 hover:scale-105 bg-transparent border-none p-0 text-left`}
+                      title={`Lihat semua ${category.title}`}
                     >
                       {category.title}
                     </button>
