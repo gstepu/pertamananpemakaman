@@ -205,17 +205,139 @@ const NewsPage = ({ onNavigate }) => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-green-600 to-green-800 text-white py-16">
-        <div className="container mx-auto px-6">
+      <div className="relative bg-gradient-to-r from-green-600 to-green-800 text-white py-20 overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <svg
+            className="w-full h-full"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 100 100"
+          >
+            <defs>
+              <pattern
+                id="newsGrid"
+                width="20"
+                height="20"
+                patternUnits="userSpaceOnUse"
+              >
+                <circle cx="2" cy="2" r="1" fill="currentColor" opacity="0.3" />
+                <circle
+                  cx="18"
+                  cy="18"
+                  r="1"
+                  fill="currentColor"
+                  opacity="0.2"
+                />
+                <rect
+                  x="8"
+                  y="8"
+                  width="4"
+                  height="4"
+                  fill="currentColor"
+                  opacity="0.1"
+                />
+                <path
+                  d="M0,10 Q10,5 20,10 Q10,15 0,10"
+                  stroke="currentColor"
+                  strokeWidth="0.5"
+                  fill="none"
+                  opacity="0.2"
+                />
+              </pattern>
+            </defs>
+            <rect width="100" height="100" fill="url(#newsGrid)" />
+          </svg>
+        </div>
+
+        {/* Decorative Elements */}
+        <div className="absolute top-10 left-10 opacity-20">
+          <svg className="w-32 h-32" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+          </svg>
+        </div>
+
+        <div className="absolute bottom-10 right-10 opacity-15">
+          <svg className="w-40 h-40" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+          </svg>
+        </div>
+
+        <div className="absolute top-1/2 left-1/4 transform -translate-y-1/2 opacity-10">
+          <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" />
+          </svg>
+        </div>
+
+        {/* Animated floating elements */}
+        <div className="absolute top-20 right-1/4 opacity-20 animate-pulse">
+          <div className="w-3 h-3 bg-white rounded-full"></div>
+        </div>
+        <div
+          className="absolute bottom-20 left-1/3 opacity-25 animate-pulse"
+          style={{ animationDelay: "1s" }}
+        >
+          <div className="w-2 h-2 bg-white rounded-full"></div>
+        </div>
+        <div
+          className="absolute top-1/3 right-1/5 opacity-15 animate-pulse"
+          style={{ animationDelay: "2s" }}
+        >
+          <div className="w-4 h-4 bg-white rounded-full"></div>
+        </div>
+
+        {/* Content */}
+        <div className="container mx-auto px-6 relative z-10">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <div className="mb-6">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full backdrop-blur-sm mb-4">
+                <svg
+                  className="w-10 h-10 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M4,6H20V16H4M20,18A2,2 0 0,0 22,16V6C22,4.89 21.1,4 20,4H4A2,2 0 0,0 2,6V16A2,2 0 0,0 4,18H0V20H24V18H20Z" />
+                </svg>
+              </div>
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
               Berita & Informasi
             </h1>
-            <p className="text-xl opacity-90 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl opacity-90 max-w-4xl mx-auto leading-relaxed">
               Tetap terkini dengan berita terbaru, program, dan perkembangan
               dari Dinas Pertamanan dan Hutan Kota DKI Jakarta
             </p>
+
+            {/* Stats or highlights */}
+            <div className="mt-8 flex flex-wrap justify-center gap-8 text-center">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
+                <div className="text-2xl font-bold">150+</div>
+                <div className="text-sm opacity-90">Berita Bulan Ini</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
+                <div className="text-2xl font-bold">24/7</div>
+                <div className="text-sm opacity-90">Update Terkini</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
+                <div className="text-2xl font-bold">8</div>
+                <div className="text-sm opacity-90">Kategori Berita</div>
+              </div>
+            </div>
           </div>
+        </div>
+
+        {/* Bottom wave decoration */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden">
+          <svg
+            className="relative block w-full h-12"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+              fill="rgb(249,250,251)"
+              opacity="0.8"
+            ></path>
+          </svg>
         </div>
       </div>
 
