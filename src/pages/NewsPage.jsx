@@ -15,7 +15,7 @@ const NewsPage = ({ onNavigate }) => {
         "Dinas Pertamanan dan Hutan Kota DKI Jakarta memulai program massal penanaman pohon untuk meningkatkan kualitas udara di ibu kota.",
       content:
         "Jakarta - Dinas Pertamanan dan Hutan Kota DKI Jakarta resmi memulai program penanaman 10.000 pohon di wilayah Jakarta Selatan. Program ini merupakan bagian dari upaya pemerintah provinsi untuk meningkatkan tutupan hijau dan kualitas udara di ibu kota. Pohon yang ditanam meliputi berbagai jenis seperti mahoni, trembesi, dan angsana yang telah terbukti efektif dalam menyerap polutan udara.",
-      image: "/images/tamanpohon.jpeg",
+      image: "/images/tanampohon.jpeg",
       author: "Tim Redaksi",
       date: "2024-12-20",
       category: "program",
