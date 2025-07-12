@@ -54,7 +54,7 @@ const Header = ({ onNavigate }) => {
       ],
     },
     { name: "Regulasi", href: "#", action: "regulation" },
-    { name: "Kontak", href: "#" /* Belum ada action */ },
+    { name: "Tentang Kami", href: "#" /* Belum ada action */ },
   ];
 
   // --- FUNGSI DIMODIFIKASI ---
