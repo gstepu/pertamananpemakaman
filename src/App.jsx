@@ -17,14 +17,11 @@ import ParkApplicationPage from "./pages/ParkApplicationPage";
 import MapPage from "./pages/MapPage";
 import CatalogPage from "./pages/CatalogPage";
 import KTHProfilePage from "./pages/Kthprofile";
-<<<<<<< HEAD
 import NewsPage from "./pages/NewsPage";
 import RegulationPage from "./pages/RegulationPage";
-=======
 import TreePruningApplicationPage from "./pages/TreePruningApplicationPage";
 import SeedlingApplicationPage from "./pages/SeedlingApplication";
 import TreeFallClaimPage from "./pages/TreeFallClaimPage";
->>>>>>> origin/main
 
 const Notification = ({ message, onClear }) => {
   useEffect(() => {
