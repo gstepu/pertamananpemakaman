@@ -21,6 +21,7 @@ import NewsPage from "./pages/NewsPage";
 import NewsDetailPage from "./pages/NewsDetailPage";
 import RegulationPage from "./pages/RegulationPage";
 import RTHInfoPage from "./pages/RTHInfoPage";
+import RTHDetailPage from "./pages/RTHDetailPage";
 import TreePruningApplicationPage from "./pages/TreePruningApplicationPage";
 import SeedlingApplicationPage from "./pages/SeedlingApplication";
 import TreeFallClaimPage from "./pages/TreeFallClaimPage";
