@@ -448,7 +448,10 @@ const NewsPage = ({ onNavigate }) => {
                       ))}
                     </div>
 
-                    <button className="text-green-600 hover:text-green-800 font-medium flex items-center transition-colors">
+                    <button
+                      onClick={() => onNavigate(`news-detail-${news.id}`)}
+                      className="text-green-600 hover:text-green-800 font-medium flex items-center transition-colors"
+                    >
                       Baca Selengkapnya
                       <svg
                         className="w-4 h-4 ml-1"
