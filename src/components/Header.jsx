@@ -43,7 +43,15 @@ const Header = ({ onNavigate }) => {
         },
       ],
     },
-    { name: "Berita", href: "#", action: "news" },
+    {
+      name: "Berita",
+      href: "#",
+      hasDropdown: true,
+      dropdownItems: [
+        { name: "Berita dan Informasi", href: "#", action: "news" },
+        { name: "Informasi RTH", href: "#", action: "rth-info" },
+      ],
+    },
     { name: "Regulasi", href: "#", action: "regulation" },
     { name: "Kontak", href: "#" /* Belum ada action */ },
   ];
