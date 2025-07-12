@@ -93,10 +93,10 @@ const NewsDetailPage = ({ onNavigate, newsId }) => {
         </ul>
         
         <p>Kedepannya, konsep Taman Menteng akan dijadikan model untuk pengembangan taman-taman lain di DKI Jakarta, dengan adaptasi sesuai karakteristik masing-masing wilayah.</p>
-      `,
-      fullImage: "/api/placeholder/1200/600",
+            `,
+      fullImage: "/images/menteng.jpeg",
       author: "Sarah Wijaya",
-      authorImage: "/api/placeholder/100/100",
+      authorImage: "/images/logo.png",
       authorBio:
         "Landscape architect dan sustainability expert dengan pengalaman 15 tahun dalam pengembangan ruang terbuka hijau urban.",
       date: "2024-12-18",
