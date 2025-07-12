@@ -5,6 +5,7 @@ import { useState } from "react";
 const Header = ({ onNavigate }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [isNewsDropdownOpen, setNewsDropdownOpen] = useState(false);
 
   const navLinks = [
     { name: "Beranda", href: "#", action: "LandingPage" },
@@ -43,8 +44,16 @@ const Header = ({ onNavigate }) => {
         },
       ],
     },
-    { name: "Berita", href: "#" /* Belum ada action */ },
-    { name: "Regulasi", href: "#" /* Belum ada action */ },
+    {
+      name: "Berita",
+      href: "#",
+      hasDropdown: true,
+      dropdownItems: [
+        { name: "Berita dan Informasi", href: "#", action: "news" },
+        { name: "Informasi RTH", href: "#", action: "rth-info" },
+      ],
+    },
+    { name: "Regulasi", href: "#", action: "regulation" },
     { name: "Kontak", href: "#" /* Belum ada action */ },
   ];
 
@@ -60,7 +69,19 @@ const Header = ({ onNavigate }) => {
 
     // Tutup semua menu setelah navigasi atau klik
     setServicesDropdownOpen(false);
+    setNewsDropdownOpen(false);
     setMobileMenuOpen(false);
+  };
+
+  // Fungsi untuk toggle dropdown dengan menutup yang lain
+  const toggleDropdown = (dropdownType) => {
+    if (dropdownType === "services") {
+      setServicesDropdownOpen(!isServicesDropdownOpen);
+      setNewsDropdownOpen(false); // Tutup dropdown berita
+    } else if (dropdownType === "news") {
+      setNewsDropdownOpen(!isNewsDropdownOpen);
+      setServicesDropdownOpen(false); // Tutup dropdown layanan
+    }
   };
 
   return (
@@ -82,7 +103,9 @@ const Header = ({ onNavigate }) => {
                   <button
                     className="text-gray-600 hover:text-green-800 transition flex items-center"
                     onClick={() =>
-                      setServicesDropdownOpen(!isServicesDropdownOpen)
+                      toggleDropdown(
+                        link.name === "Layanan" ? "services" : "news",
+                      )
                     }
                   >
                     {link.name}
@@ -100,7 +123,8 @@ const Header = ({ onNavigate }) => {
                       />
                     </svg>
                   </button>
-                  {isServicesDropdownOpen && (
+                  {((link.name === "Layanan" && isServicesDropdownOpen) ||
+                    (link.name === "Berita" && isNewsDropdownOpen)) && (
                     <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
                       <div className="py-2">
                         {link.dropdownItems.map((item) => (
@@ -179,12 +203,15 @@ const Header = ({ onNavigate }) => {
                 <button
                   className="block w-full text-left py-2 text-gray-600 hover:text-green-800"
                   onClick={() =>
-                    setServicesDropdownOpen(!isServicesDropdownOpen)
+                    toggleDropdown(
+                      link.name === "Layanan" ? "services" : "news",
+                    )
                   }
                 >
                   {link.name}
                 </button>
-                {isServicesDropdownOpen && (
+                {((link.name === "Layanan" && isServicesDropdownOpen) ||
+                  (link.name === "Berita" && isNewsDropdownOpen)) && (
                   <div className="pl-4 space-y-1">
                     {link.dropdownItems.map((item) => (
                       <a

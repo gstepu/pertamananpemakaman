@@ -17,6 +17,16 @@ import ParkApplicationPage from "./pages/ParkApplicationPage";
 import MapPage from "./pages/MapPage";
 import CatalogPage from "./pages/CatalogPage";
 import KTHProfilePage from "./pages/Kthprofile";
+import NewsPage from "./pages/NewsPage";
+import NewsDetailPage from "./pages/NewsDetailPage";
+import RegulationPage from "./pages/RegulationPage";
+import RTHInfoPage from "./pages/RTHInfoPage";
+import RTHDetailPage from "./pages/RTHDetailPage";
+import RTHTypologyDetailPage from "./pages/RTHTypologyDetailPage";
+import RTHAtapPage from "./pages/RTHAtapPage";
+import RTHPekaranganPage from "./pages/RTHPekaranganPage";
+import RTHLingkunganPage from "./pages/RTHLingkunganPage";
+import RegulationDetailPage from "./pages/RegulationDetailPage";
 import TreePruningApplicationPage from "./pages/TreePruningApplicationPage";
 import SeedlingApplicationPage from "./pages/SeedlingApplication";
 import TreeFallClaimPage from "./pages/TreeFallClaimPage";
@@ -74,6 +84,18 @@ export default function App() {
         return <CatalogPage onNavigate={handleNavigate} />;
       case "Kthprofile":
         return <KTHProfilePage onNavigate={handleNavigate} />;
+      case "news":
+        return <NewsPage onNavigate={handleNavigate} />;
+      case "regulation":
+        return <RegulationPage onNavigate={handleNavigate} />;
+      case "rth-info":
+        return <RTHInfoPage onNavigate={handleNavigate} />;
+      case "rth-atap":
+        return <RTHAtapPage onNavigate={handleNavigate} />;
+      case "rth-pekarangan":
+        return <RTHPekaranganPage onNavigate={handleNavigate} />;
+      case "rth-lingkungan":
+        return <RTHLingkunganPage onNavigate={handleNavigate} />;
       case "tree-application":
         return <TreePruningApplicationPage onNavigate={handleNavigate} />;
       case "seedling-application":
@@ -81,6 +103,35 @@ export default function App() {
       case "tree-fall-claim":
         return <TreeFallClaimPage onNavigate={handleNavigate} />;
       default:
+        // Handle dynamic routes like news-detail-1, news-detail-2, etc.
+        if (currentPage.startsWith("news-detail-")) {
+          const newsId = currentPage.split("-")[2];
+          return <NewsDetailPage onNavigate={handleNavigate} newsId={newsId} />;
+        }
+        // Handle RTH detail routes
+        if (currentPage.startsWith("rth-detail-")) {
+          const articleId = currentPage.split("-")[2];
+          return (
+            <RTHDetailPage onNavigate={handleNavigate} articleId={articleId} />
+          );
+        }
+        // Handle RTH typology detail routes
+        if (currentPage.startsWith("rth-typology-")) {
+          const typology = currentPage.split("-")[2];
+          return (
+            <RTHTypologyDetailPage
+              onNavigate={handleNavigate}
+              typology={typology}
+            />
+          );
+        }
+        // Handle regulation detail routes
+        if (currentPage.startsWith("regulasi-")) {
+          const type = currentPage.replace("regulasi-", "");
+          return (
+            <RegulationDetailPage onNavigate={handleNavigate} type={type} />
+          );
+        }
         // Halaman default jika state tidak cocok
         return <LandingPage onNavigate={handleNavigate} />;
     }

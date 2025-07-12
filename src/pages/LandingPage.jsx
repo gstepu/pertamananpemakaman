@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import {
   ChevronLeft,
   ChevronRight,
@@ -12,12 +12,12 @@ import {
   Users,
   Clock,
   Search,
-} from "lucide-react"
+} from "lucide-react";
 
 // Carousel Gambar Tampilan Awal
 const HeroCarousel = () => {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [isAutoPlay, setIsAutoPlay] = useState(true)
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlay, setIsAutoPlay] = useState(true);
 
   const slides = [
     {
@@ -38,24 +38,24 @@ const HeroCarousel = () => {
       description:
         "Komitmen kami memberikan pelayanan terbaik dengan sistem digital yang memudahkan masyarakat dalam mengakses berbagai informasi dan layanan.",
     },
-  ]
+  ];
 
   useEffect(() => {
     if (isAutoPlay) {
       const interval = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length)
-      }, 5000)
-      return () => clearInterval(interval)
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+      }, 5000);
+      return () => clearInterval(interval);
     }
-  }, [isAutoPlay, slides.length])
+  }, [isAutoPlay, slides.length]);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length)
-  }
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
-  }
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
 
   return (
     <section className="relative h-[70vh] md:h-[80vh] overflow-hidden">
@@ -67,15 +67,24 @@ const HeroCarousel = () => {
           }`}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-green-900/75 to-green-700/45 z-10"></div>
-          <img src={slide.image || "/placeholder.svg"} alt={slide.title} className="w-full h-full object-cover" />
+          <img
+            src={slide.image || "/placeholder.svg"}
+            alt={slide.title}
+            className="w-full h-full object-cover"
+          />
           <div className="absolute inset-0 z-20 flex items-center">
             <div className="container mx-auto px-6">
               <div className="max-w-3xl text-white">
-                <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">{slide.title}</h1>
-                <h2 className="text-xl md:text-2xl font-medium mb-6 text-green-100">{slide.subtitle}</h2>
-                <p className="text-lg md:text-xl mb-8 text-green-50 leading-relaxed">{slide.description}</p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                </div>
+                <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+                  {slide.title}
+                </h1>
+                <h2 className="text-xl md:text-2xl font-medium mb-6 text-green-100">
+                  {slide.subtitle}
+                </h2>
+                <p className="text-lg md:text-xl mb-8 text-green-50 leading-relaxed">
+                  {slide.description}
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4"></div>
               </div>
             </div>
           </div>
@@ -127,25 +136,34 @@ const HeroCarousel = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 //==================================================================
 // KOMPONEN SERVICES SECTION
 // Layanan utama yang disesuaikan dengan tema pemakaman
 //==================================================================
-const ServiceCard = ({ icon, title, description, href, action, onNavigate }) => (
+const ServiceCard = ({
+  icon,
+  title,
+  description,
+  href,
+  action,
+  onNavigate,
+}) => (
   <div
     onClick={() => {
       if (action && onNavigate) {
-        onNavigate(action)
+        onNavigate(action);
       }
     }}
     className={`group bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 ${
       action ? "cursor-pointer" : ""
     }`}
   >
-    <div className="text-green-700 mb-6 group-hover:scale-110 transition-transform duration-300">{icon}</div>
+    <div className="text-green-700 mb-6 group-hover:scale-110 transition-transform duration-300">
+      {icon}
+    </div>
     <h3 className="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-700 transition-colors duration-300">
       {title}
     </h3>
@@ -155,55 +173,65 @@ const ServiceCard = ({ icon, title, description, href, action, onNavigate }) => 
       <ChevronRight className="w-4 h-4 ml-1" />
     </div>
   </div>
-)
+);
 
 const ServicesSection = ({ onNavigate }) => {
   const services = [
     {
       icon: <Calendar className="w-12 h-12" />,
       title: "Pendaftaran Pemakaman",
-      description: "Layanan pendaftaran dan penjadwalan pemakaman dengan sistem online yang mudah dan cepat.",
+      description:
+        "Layanan pendaftaran dan penjadwalan pemakaman dengan sistem online yang mudah dan cepat.",
       action: "burial-registration",
     },
     {
       icon: <MapPin className="w-12 h-12" />,
       title: "Informasi Lokasi Makam",
-      description: "Pencarian dan informasi detail lokasi makam di seluruh area pemakaman DKI Jakarta.",
+      description:
+        "Pencarian dan informasi detail lokasi makam di seluruh area pemakaman DKI Jakarta.",
       action: "grave-location",
     },
     {
       icon: <FileText className="w-12 h-12" />,
       title: "Administrasi & Perizinan",
-      description: "Pengurusan dokumen, surat-menyurat, dan berbagai perizinan terkait pemakaman.",
+      description:
+        "Pengurusan dokumen, surat-menyurat, dan berbagai perizinan terkait pemakaman.",
       action: "administration",
     },
     {
       icon: <Users className="w-12 h-12" />,
       title: "Layanan Keluarga",
-      description: "Bantuan dan konsultasi untuk keluarga dalam proses pemakaman dan perawatan makam.",
+      description:
+        "Bantuan dan konsultasi untuk keluarga dalam proses pemakaman dan perawatan makam.",
       action: "family-services",
     },
-  ]
+  ];
 
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">Layanan Utama</h2>
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            Layanan Utama
+          </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Kami menyediakan berbagai layanan digital yang memudahkan masyarakat dalam mengakses informasi dan layanan
-            pemakaman di DKI Jakarta.
+            Kami menyediakan berbagai layanan digital yang memudahkan masyarakat
+            dalam mengakses informasi dan layanan pemakaman di DKI Jakarta.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service) => (
-            <ServiceCard key={service.title} {...service} onNavigate={onNavigate} />
+            <ServiceCard
+              key={service.title}
+              {...service}
+              onNavigate={onNavigate}
+            />
           ))}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 // Berita dan Informasi
 const NewsCard = ({ imageUrl, date, title, excerpt, category }) => (
@@ -215,7 +243,9 @@ const NewsCard = ({ imageUrl, date, title, excerpt, category }) => (
         className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
       />
       <div className="absolute top-4 left-4">
-        <span className="bg-green-700 text-white px-3 py-1 rounded-full text-sm font-medium">{category}</span>
+        <span className="bg-green-700 text-white px-3 py-1 rounded-full text-sm font-medium">
+          {category}
+        </span>
       </div>
     </div>
     <div className="p-6">
@@ -226,16 +256,18 @@ const NewsCard = ({ imageUrl, date, title, excerpt, category }) => (
       <h3 className="font-bold text-xl mb-3 text-gray-800 group-hover:text-green-700 transition-colors duration-300 line-clamp-2">
         {title}
       </h3>
-      <p className="text-gray-600 leading-relaxed mb-4 line-clamp-3">{excerpt}</p>
+      <p className="text-gray-600 leading-relaxed mb-4 line-clamp-3">
+        {excerpt}
+      </p>
       <button className="text-green-700 hover:text-green-800 font-semibold transition-colors duration-200 flex items-center group">
         Baca Selengkapnya
         <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" />
       </button>
     </div>
   </article>
-)
+);
 
-const NewsSection = () => {
+const NewsSection = ({ onNavigate }) => {
   const newsItems = [
     {
       imageUrl: "/images/tpu-taman-kusir.jpg",
@@ -261,15 +293,18 @@ const NewsSection = () => {
         "Inisiatif baru untuk perawatan makam berkelanjutan dengan melibatkan partisipasi masyarakat dalam menjaga kebersihan dan keindahan area pemakaman.",
       category: "Program",
     },
-  ]
+  ];
 
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">Berita & Informasi Terkini</h2>
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            Berita & Informasi Terkini
+          </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Ikuti perkembangan terbaru dari program dan kegiatan Dinas Pertamanan dan Pemakaman DKI Jakarta.
+            Ikuti perkembangan terbaru dari program dan kegiatan Dinas
+            Pertamanan dan Pemakaman DKI Jakarta.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
@@ -277,33 +312,48 @@ const NewsSection = () => {
             <NewsCard key={index} {...item} />
           ))}
         </div>
-        <div className="text-center">
-          <button className="bg-green-700 text-white font-semibold py-4 px-8 rounded-lg hover:bg-green-800 transition-all duration-200 inline-flex items-center transform hover:scale-105">
+        <div className="text-center mt-12">
+          <button
+            onClick={() => onNavigate("news")}
+            className="bg-green-700 text-white font-semibold py-3 px-8 rounded-lg hover:bg-green-800 transition-all duration-200 inline-flex items-center"
+          >
             Lihat Semua Berita
-            <ChevronRight className="w-5 h-5 ml-2" />
+            <svg
+              className="w-4 h-4 ml-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
           </button>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 //==================================================================
 // KOMPONEN STATISTICS SECTION
 // Grafik pelayanan pemakaman dengan filter periode
 //==================================================================
 const StatisticsSection = () => {
-  const [selectedPeriod, setSelectedPeriod] = useState("month")
-  const [selectedYear, setSelectedYear] = useState("2025")
+  const [selectedPeriod, setSelectedPeriod] = useState("month");
+  const [selectedYear, setSelectedYear] = useState("2025");
 
   const periods = [
     { value: "week", label: "Mingguan" },
     { value: "month", label: "Bulanan" },
     { value: "quarter", label: "Triwulan" },
     { value: "year", label: "Tahunan" },
-  ]
+  ];
 
-  const years = ["2023", "2024", "2025"]
+  const years = ["2023", "2024", "2025"];
 
   const stats = [
     {
@@ -334,15 +384,18 @@ const StatisticsSection = () => {
       change: "-15%",
       trend: "up",
     },
-  ]
+  ];
 
   return (
     <section className="py-20 bg-gradient-to-br from-green-50 to-gray-50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">Statistik Pelayanan Pemakaman</h2>
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            Statistik Pelayanan Pemakaman
+          </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Data dan statistik pelayanan pemakaman untuk transparansi dan evaluasi kinerja layanan publik.
+            Data dan statistik pelayanan pemakaman untuk transparansi dan
+            evaluasi kinerja layanan publik.
           </p>
         </div>
 
@@ -398,11 +451,15 @@ const StatisticsSection = () => {
                     stat.trend === "up" ? "text-green-600" : "text-red-600"
                   }`}
                 >
-                  <TrendingUp className={`w-4 h-4 mr-1 ${stat.trend === "down" ? "rotate-180" : ""}`} />
+                  <TrendingUp
+                    className={`w-4 h-4 mr-1 ${stat.trend === "down" ? "rotate-180" : ""}`}
+                  />
                   {stat.change}
                 </div>
               </div>
-              <h3 className="text-gray-600 text-sm font-medium mb-2">{stat.title}</h3>
+              <h3 className="text-gray-600 text-sm font-medium mb-2">
+                {stat.title}
+              </h3>
               <p className="text-3xl font-bold text-gray-800">{stat.value}</p>
             </div>
           ))}
@@ -424,7 +481,9 @@ const StatisticsSection = () => {
           <div className="h-80 bg-gray-50 rounded-lg flex items-center justify-center">
             <div className="text-center">
               <BarChart3 className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-500 text-lg">Grafik akan ditampilkan di sini</p>
+              <p className="text-gray-500 text-lg">
+                Grafik akan ditampilkan di sini
+              </p>
               <p className="text-gray-400 text-sm">
                 Data periode {selectedPeriod} tahun {selectedYear}
               </p>
@@ -433,8 +492,8 @@ const StatisticsSection = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 //==================================================================
 // KOMPONEN UTAMA LANDING PAGE
@@ -445,8 +504,8 @@ export default function LandingPage({ onNavigate }) {
     <main className="min-h-screen">
       <HeroCarousel />
       <ServicesSection onNavigate={onNavigate} />
-      <NewsSection />
+      <NewsSection onNavigate={onNavigate} />
       <StatisticsSection />
     </main>
-  )
+  );
 }
