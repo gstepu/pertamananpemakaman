@@ -534,24 +534,6 @@ const NewsPage = ({ onNavigate }) => {
             </div>
           </div>
         )}
-
-        {/* Newsletter Subscription */}
-        <div className="mt-16 bg-gradient-to-r from-green-600 to-green-800 rounded-2xl p-8 text-white text-center">
-          <h3 className="text-2xl font-bold mb-4">Berlangganan Newsletter</h3>
-          <p className="text-green-100 mb-6 max-w-2xl mx-auto">
-            Dapatkan berita terbaru dan informasi penting langsung di email Anda
-          </p>
-          <div className="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
-            <input
-              type="email"
-              placeholder="Masukkan email Anda"
-              className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-300"
-            />
-            <button className="bg-white text-green-600 px-6 py-3 rounded-lg font-medium hover:bg-green-50 transition-colors">
-              Berlangganan
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );
