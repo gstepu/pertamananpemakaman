@@ -125,6 +125,13 @@ export default function App() {
             />
           );
         }
+        // Handle regulation detail routes
+        if (currentPage.startsWith("regulasi-")) {
+          const type = currentPage.replace("regulasi-", "");
+          return (
+            <RegulationDetailPage onNavigate={handleNavigate} type={type} />
+          );
+        }
         // Halaman default jika state tidak cocok
         return <LandingPage onNavigate={handleNavigate} />;
     }
