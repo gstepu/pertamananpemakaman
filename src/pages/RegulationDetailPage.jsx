@@ -3,7 +3,7 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
     switch (type) {
       case "undang-undang":
         return {
-          title: "Undang-Undang Terkait RTH",
+          title: "Undang-Undang",
           subtitle:
             "Regulasi tingkat nasional yang mengatur Ruang Terbuka Hijau",
           color: "blue",
@@ -36,7 +36,7 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
         };
       case "peraturan-pemerintah":
         return {
-          title: "Peraturan Pemerintah Terkait RTH",
+          title: "Peraturan Pemerintah",
           subtitle: "Regulasi tingkat pusat untuk implementasi RTH",
           color: "green",
           regulations: [
@@ -251,7 +251,7 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
             </svg>
             <li className="inline-flex items-center">
               <button
-                onClick={() => onNavigate("rth-info")}
+                onClick={() => onNavigate("Regulation Page")}
                 className="text-gray-500 hover:text-green-600 transition-colors"
               >
                 Informasi RTH
@@ -336,7 +336,7 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
         {/* Back to RTH Info */}
         <div className="mt-12 text-center">
           <button
-            onClick={() => onNavigate("rth-info")}
+            onClick={() => onNavigate("RegulationPage")}
             className="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors font-medium inline-flex items-center"
           >
             <svg
@@ -352,7 +352,7 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-            Kembali ke Informasi RTH
+            Kembali ke Undang-Undang
           </button>
         </div>
       </div>
