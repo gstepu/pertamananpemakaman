@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
+@import "tailwindcss";
+
+/* Custom styles untuk hero section */
+.hero-section {
+  background: linear-gradient(135deg, #047857 0%, #065f46 50%, #064e3b 100%);
+  position: relative;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+}
+
+.hero-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Update search box styling to match other pages */
+.hero-section input[type="text"] {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.hero-section input[type="text"]:focus {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(34, 197, 94, 0.8);
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2), 0 10px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.hero-section input[type="text"]::placeholder {
+  color: rgba(107, 114, 128, 0.8);
+}
+
+/* Search button enhancement */
+.hero-section button {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hero-section button:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Update icon card hover effects */
+.icon-card {
+  transition: all 0.3s ease;
+}
+
+.icon-card:hover {
+  transform: translateY(-4px);
+  background-color: #f0fdf4;
+}
+
+/* Consistent focus styles */
+input:focus,
+select:focus,
+textarea:focus {
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3);
+  border-color: #047857;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom button animations */
+button,
+a {
+  transition: all 0.2s ease;
+}
+
+/* Loading animation untuk gambar */
+img {
+  transition: opacity 0.3s ease;
+}
+
+img:not([src]) {
+  opacity: 0;
+}
