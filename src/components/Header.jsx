@@ -69,7 +69,19 @@ const Header = ({ onNavigate }) => {
 
     // Tutup semua menu setelah navigasi atau klik
     setServicesDropdownOpen(false);
+    setNewsDropdownOpen(false);
     setMobileMenuOpen(false);
+  };
+
+  // Fungsi untuk toggle dropdown dengan menutup yang lain
+  const toggleDropdown = (dropdownType) => {
+    if (dropdownType === "services") {
+      setServicesDropdownOpen(!isServicesDropdownOpen);
+      setNewsDropdownOpen(false); // Tutup dropdown berita
+    } else if (dropdownType === "news") {
+      setNewsDropdownOpen(!isNewsDropdownOpen);
+      setServicesDropdownOpen(false); // Tutup dropdown layanan
+    }
   };
 
   return (
