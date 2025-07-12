@@ -79,13 +79,17 @@ export default function App() {
         return <KTHProfilePage onNavigate={handleNavigate} />;
       case "news":
         return <NewsPage onNavigate={handleNavigate} />;
-      case "news-detail":
-        return (
-          <NewsDetailPage
-            onNavigate={handleNavigate}
-            newsId={currentPage.split("-")[2]}
-          />
-        );
+            default:
+        // Handle dynamic routes like news-detail-1, news-detail-2, etc.
+        if (currentPage.startsWith("news-detail-")) {
+          const newsId = currentPage.split("-")[2];
+          return (
+            <NewsDetailPage
+              onNavigate={handleNavigate}
+              newsId={newsId}
+            />
+          );
+        }
       case "regulation":
         return <RegulationPage onNavigate={handleNavigate} />;
       case "tree-application":
