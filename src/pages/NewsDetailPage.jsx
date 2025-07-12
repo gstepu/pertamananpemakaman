@@ -42,10 +42,10 @@ const NewsDetailPage = ({ onNavigate, newsId }) => {
         <p>Untuk memastikan keberhasilan program, dinas akan menggunakan teknologi monitoring pohon berbasis IoT untuk memantau pertumbuhan dan kesehatan setiap pohon yang ditanam. Sistem ini dapat memberikan data real-time tentang kondisi tanah, kelembaban, dan kesehatan pohon.</p>
         
         <p>"Kami berkomitmen untuk menjadikan Jakarta sebagai kota yang lebih hijau dan nyaman untuk ditinggali. Program ini adalah salah satu langkah konkret dalam mewujudkan visi tersebut," ungkap Dr. Bambang Sutrisno.</p>
-      `,
-      fullImage: "/api/placeholder/1200/600",
+            `,
+      fullImage: "/images/tanampohon.jpeg",
       author: "Tim Redaksi",
-      authorImage: "/api/placeholder/100/100",
+      authorImage: "/images/logo.png",
       authorBio:
         "Tim redaksi Dinas Pertamanan dan Hutan Kota DKI Jakarta yang berdedikasi menyampaikan informasi terkini seputar program-program lingkungan.",
       date: "2024-12-20",
