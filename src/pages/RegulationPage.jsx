@@ -333,9 +333,10 @@ const RegulationPage = ({ onNavigate }) => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {statistics.map((stat, index) => (
-              <div
+              <button
                 key={index}
-                className="relative overflow-hidden rounded-xl shadow-lg transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl"
+                onClick={() => onNavigate(stat.navigationTarget)}
+                className="relative overflow-hidden rounded-xl shadow-lg transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl cursor-pointer text-left"
               >
                 <div
                   className={`bg-gradient-to-br ${stat.bgGradient} p-6 text-white`}
@@ -350,7 +351,7 @@ const RegulationPage = ({ onNavigate }) => {
                   <p className="text-sm opacity-90">{stat.description}</p>
                 </div>
                 <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
