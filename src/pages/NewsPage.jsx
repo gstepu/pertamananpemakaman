@@ -15,7 +15,7 @@ const NewsPage = ({ onNavigate }) => {
         "Dinas Pertamanan dan Hutan Kota DKI Jakarta memulai program massal penanaman pohon untuk meningkatkan kualitas udara di ibu kota.",
       content:
         "Jakarta - Dinas Pertamanan dan Hutan Kota DKI Jakarta resmi memulai program penanaman 10.000 pohon di wilayah Jakarta Selatan. Program ini merupakan bagian dari upaya pemerintah provinsi untuk meningkatkan tutupan hijau dan kualitas udara di ibu kota. Pohon yang ditanam meliputi berbagai jenis seperti mahoni, trembesi, dan angsana yang telah terbukti efektif dalam menyerap polutan udara.",
-      image: "/api/placeholder/600/400",
+      image: "/images/tamanpohon.jpeg",
       author: "Tim Redaksi",
       date: "2024-12-20",
       category: "program",
@@ -29,7 +29,7 @@ const NewsPage = ({ onNavigate }) => {
         "Taman Menteng berhasil meraih penghargaan sebagai taman kota terbaik se-Asia Tenggara berkat inovasi konsep ramah lingkungan.",
       content:
         "Jakarta - Taman Menteng yang dikelola oleh Dinas Pertamanan dan Hutan Kota DKI Jakarta berhasil meraih penghargaan bergengsi sebagai taman kota terbaik se-Asia Tenggara. Penghargaan ini diberikan atas inovasi konsep taman yang menggabungkan teknologi modern dengan kelestarian lingkungan. Taman ini dilengkapi dengan sistem irigasi otomatis, area rekreasi keluarga, dan fasilitas olahraga yang lengkap.",
-      image: "/api/placeholder/600/400",
+      image: "/images/menteng.jpeg",
       author: "Sarah Wijaya",
       date: "2024-12-18",
       category: "prestasi",
@@ -44,7 +44,7 @@ const NewsPage = ({ onNavigate }) => {
         "Sistem perizinan pemakaman digital akan segera diimplementasikan untuk mempermudah masyarakat dalam mengurus administrasi pemakaman.",
       content:
         "Jakarta - Mulai Januari 2025, Dinas Pertamanan dan Hutan Kota DKI Jakarta akan menerapkan sistem perizinan pemakaman digital. Sistem ini memungkinkan masyarakat untuk mengurus izin pemakaman secara online tanpa perlu datang langsung ke kantor dinas. Fitur-fitur yang tersedia meliputi pengajuan izin, pembayaran retribusi, dan tracking status permohonan secara real-time.",
-      image: "/api/placeholder/600/400",
+      image: "/images/pemakamandigita;.jpeg",
       author: "Ahmad Rizki",
       date: "2024-12-15",
       category: "kebijakan",
@@ -73,7 +73,7 @@ const NewsPage = ({ onNavigate }) => {
         "Inovasi terbaru menggunakan kecerdasan buatan untuk memantau kondisi kesehatan pohon-pohon di seluruh Jakarta secara real-time.",
       content:
         "Jakarta - Dinas Pertamanan dan Hutan Kota DKI Jakarta mengimplementasikan teknologi Artificial Intelligence (AI) untuk monitoring kesehatan pohon di seluruh wilayah Jakarta. Sistem ini dapat mendeteksi penyakit pohon, tingkat stress, dan prediksi umur pohon dengan akurasi tinggi. Teknologi ini membantu petugas dalam melakukan perawatan preventif dan mengurangi risiko pohon tumbang.",
-      image: "/api/placeholder/600/400",
+      image: "/images/ai.jpeg",
       author: "Dr. Bambang Sutrisno",
       date: "2024-12-10",
       category: "teknologi",
@@ -87,7 +87,7 @@ const NewsPage = ({ onNavigate }) => {
         "Program kemitraan dengan komunitas lokal untuk pengelolaan dan perawatan taman-taman lingkungan di Jakarta.",
       content:
         "Jakarta - Dinas Pertamanan dan Hutan Kota DKI Jakarta meluncurkan program kolaborasi dengan berbagai komunitas lokal untuk pengelolaan taman lingkungan. Program 'Jakarta Hijau Bersama' ini melibatkan 50 komunitas yang tersebar di lima wilayah Jakarta. Setiap komunitas akan bertanggung jawab dalam perawatan, pemeliharaan, dan pengembangan kreativitas di taman-taman sekitar mereka.",
-      image: "/api/placeholder/600/400",
+      image: "/images/komunitas.jpeg",
       author: "Rina Marlina",
       date: "2024-12-08",
       category: "komunitas",
@@ -101,7 +101,7 @@ const NewsPage = ({ onNavigate }) => {
         "Setelah renovasi selama 6 bulan, Hutan Kota Srengseng kembali dibuka dengan fasilitas yang lebih lengkap dan modern.",
       content:
         "Jakarta - Hutan Kota Srengseng resmi dibuka kembali untuk publik setelah menjalani renovasi besar-besaran selama 6 bulan. Renovasi ini mencakup perbaikan jalur tracking, penambahan gazebo, area playground anak, dan fasilitas toilet yang lebih bersih. Hutan kota seluas 15 hektar ini juga dilengkapi dengan papan informasi digital dan sistem keamanan CCTV untuk kenyamanan pengunjung.",
-      image: "/api/placeholder/600/400",
+      image: "/images/hutansrengseng.jpeg",
       author: "Yudi Hermawan",
       date: "2024-12-05",
       category: "fasilitas",
@@ -115,7 +115,7 @@ const NewsPage = ({ onNavigate }) => {
         "Program edukasi lingkungan untuk meningkatkan kesadaran siswa sekolah dasar tentang pentingnya menjaga kelestarian alam.",
       content:
         "Jakarta - Dinas Pertamanan dan Hutan Kota DKI Jakarta menggelar workshop edukasi lingkungan untuk siswa SD se-Jakarta. Program 'Generasi Hijau Jakarta' ini bertujuan mengenalkan pentingnya kelestarian lingkungan sejak dini. Materi workshop meliputi cara menanam, merawat tanaman, pengelolaan sampah, dan pemahaman ekosistem. Hingga saat ini, lebih dari 10.000 siswa telah mengikuti program ini.",
-      image: "/api/placeholder/600/400",
+      image: "/images/workshopedukasi.jpeg",
       author: "Sari Indrawati",
       date: "2024-12-03",
       category: "edukasi",
