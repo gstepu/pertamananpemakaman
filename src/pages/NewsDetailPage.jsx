@@ -256,9 +256,9 @@ const NewsDetailPage = ({ onNavigate, newsId }) => {
 
       {/* Main Content */}
       <div className="container mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="max-w-4xl mx-auto">
           {/* Article Content */}
-          <div className="lg:col-span-2">
+          <div>
             <article className="bg-white rounded-xl shadow-lg overflow-hidden">
               {/* Featured Image */}
               <div className="relative">
