@@ -454,53 +454,6 @@ const RegulationPage = ({ onNavigate }) => {
             </div>
           ))}
         </div>
-
-        {/* Additional Resources */}
-        <div className="mt-16 bg-gradient-to-r from-green-600 to-green-800 rounded-2xl p-8 text-white">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold mb-4">Sumber Daya Tambahan</h3>
-            <p className="text-green-100 mb-8 max-w-3xl mx-auto">
-              Akses dokumen lengkap, analisis hukum, dan panduan implementasi
-              untuk semua regulasi yang berkaitan dengan pertamanan dan hutan
-              kota
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center">
-                <div className="text-3xl mb-3">📚</div>
-                <h4 className="font-semibold mb-2">Kompilasi Lengkap</h4>
-                <p className="text-sm text-green-100 mb-4">
-                  Download semua regulasi dalam satu file
-                </p>
-                <button className="bg-white text-green-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-50 transition-colors">
-                  Download PDF
-                </button>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center">
-                <div className="text-3xl mb-3">💬</div>
-                <h4 className="font-semibold mb-2">Konsultasi Hukum</h4>
-                <p className="text-sm text-green-100 mb-4">
-                  Tanya jawab dengan tim legal kami
-                </p>
-                <button
-                  onClick={() => onNavigate("contact")}
-                  className="bg-white text-green-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-50 transition-colors"
-                >
-                  Hubungi Kami
-                </button>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center">
-                <div className="text-3xl mb-3">📖</div>
-                <h4 className="font-semibold mb-2">Panduan Implementasi</h4>
-                <p className="text-sm text-green-100 mb-4">
-                  Petunjuk teknis penerapan regulasi
-                </p>
-                <button className="bg-white text-green-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-50 transition-colors">
-                  Lihat Panduan
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
