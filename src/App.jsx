@@ -123,6 +123,16 @@ export default function App() {
             <RTHDetailPage onNavigate={handleNavigate} articleId={articleId} />
           );
         }
+        // Handle RTH typology detail routes
+        if (currentPage.startsWith("rth-typology-")) {
+          const typology = currentPage.split("-")[2];
+          return (
+            <RTHTypologyDetailPage
+              onNavigate={handleNavigate}
+              typology={typology}
+            />
+          );
+        }
         // Halaman default jika state tidak cocok
         return <LandingPage onNavigate={handleNavigate} />;
     }
