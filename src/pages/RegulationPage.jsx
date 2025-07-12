@@ -387,11 +387,12 @@ const RegulationPage = ({ onNavigate }) => {
                     {category.icon}
                   </button>
                   <div>
-                    <h3
-                      className={`text-2xl font-bold ${category.accentColor}`}
+                    <button
+                      onClick={() => setSelectedCategory(category.id)}
+                      className={`text-2xl font-bold ${category.accentColor} hover:underline cursor-pointer transition-all duration-200 hover:scale-105`}
                     >
                       {category.title}
-                    </h3>
+                    </button>
                     <p className="text-gray-600 font-medium">
                       {category.subtitle}
                     </p>
