@@ -82,6 +82,8 @@ export default function App() {
         return <NewsPage onNavigate={handleNavigate} />;
       case "regulation":
         return <RegulationPage onNavigate={handleNavigate} />;
+      case "rth-info":
+        return <RTHInfoPage onNavigate={handleNavigate} />;
       case "tree-application":
         return <TreePruningApplicationPage onNavigate={handleNavigate} />;
       case "seedling-application":
