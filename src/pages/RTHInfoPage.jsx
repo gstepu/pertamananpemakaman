@@ -492,7 +492,7 @@ const RTHInfoPage = ({ onNavigate }) => {
               <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
                 {rthTypologies[selectedTypology].title}
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 {rthTypologies[selectedTypology].images.map((image, index) => (
                   <div key={index} className="relative group">
                     <img
@@ -500,13 +500,29 @@ const RTHInfoPage = ({ onNavigate }) => {
                       alt={`${rthTypologies[selectedTypology].title} ${index + 1}`}
                       className="w-full h-48 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-shadow"
                     />
-                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 rounded-lg flex items-center justify-center">
-                      <span className="text-white font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                        Lihat Detail
-                      </span>
-                    </div>
                   </div>
                 ))}
+              </div>
+              <div className="text-center">
+                <button
+                  onClick={() => onNavigate(`rth-typology-${selectedTypology}`)}
+                  className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-medium inline-flex items-center"
+                >
+                  Lihat Detail Lengkap
+                  <svg
+                    className="w-4 h-4 ml-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
               </div>
             </div>
           )}
