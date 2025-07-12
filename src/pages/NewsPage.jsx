@@ -58,7 +58,7 @@ const NewsPage = ({ onNavigate }) => {
         "Festival bunga tahunan Jakarta akan menampilkan berbagai jenis bunga langka dan eksotis dari seluruh nusantara.",
       content:
         "Jakarta - Festival Bunga Tahunan Jakarta 2024 akan diselenggarakan di area Monas pada 25-31 Desember 2024. Acara ini menampilkan lebih dari 500 jenis bunga langka dan eksotis dari berbagai daerah di Indonesia. Pengunjung dapat menikmati pameran bunga, workshop berkebun, dan kompetisi fotografi dengan tema 'Keindahan Alam Jakarta'.",
-      image: "/public/images/festivalbunga.jpeg",
+      image: "/images/festivalbunga.jpeg",
       author: "Lisa Pratiwi",
       date: "2024-12-12",
       category: "acara",
