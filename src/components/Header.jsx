@@ -5,11 +5,8 @@ import { useState } from "react";
 const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setServicesDropdownOpen] = useState(false);
-<<<<<<< HEAD
   const [isNewsDropdownOpen, setNewsDropdownOpen] = useState(false);
-=======
   const [isProfileDropdownOpen, setProfileDropdownOpen] = useState(false);
->>>>>>> origin/main
 
   const navLinks = [
     { name: "Beranda", href: "#", action: "LandingPage" },
@@ -48,7 +45,6 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
         },
       ],
     },
-<<<<<<< HEAD
     {
       name: "Berita",
       href: "#",
@@ -60,11 +56,6 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
     },
     { name: "Regulasi", href: "#", action: "regulation" },
     { name: "Tentang Kami", href: "#" /* Belum ada action */ },
-=======
-    { name: "Berita", href: "#" },
-    { name: "Regulasi", href: "#" },
-    { name: "Kontak", href: "#" },
->>>>>>> origin/main
   ];
 
   const handleLinkClick = (e, action) => {
@@ -73,9 +64,7 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
       onNavigate(action);
     }
     setServicesDropdownOpen(false);
-<<<<<<< HEAD
     setNewsDropdownOpen(false);
-=======
     setProfileDropdownOpen(false);
     setMobileMenuOpen(false);
   };
@@ -83,7 +72,6 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
   const handleLogoutClick = () => {
     onLogout();
     setProfileDropdownOpen(false);
->>>>>>> origin/main
     setMobileMenuOpen(false);
   };
 
