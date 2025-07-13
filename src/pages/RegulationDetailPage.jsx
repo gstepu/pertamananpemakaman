@@ -180,10 +180,10 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
             </svg>
             <li className="inline-flex items-center">
               <button
-                onClick={() => onNavigate("Regulation Page")}
+                onClick={() => onNavigate("regulation")}
                 className="text-gray-500 hover:text-green-600 transition-colors"
               >
-                Informasi RTH
+                Regulasi
               </button>
             </li>
             <svg
