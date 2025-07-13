@@ -3,9 +3,9 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
     switch (type) {
       case "undang-undang":
         return {
-          title: "Undang-Undang",
+          title: "Undang-Undang Terkait Pertamanan",
           subtitle:
-            "Regulasi tingkat nasional yang mengatur Ruang Terbuka Hijau",
+            "Regulasi tingkat nasional yang mengatur pertamanan dan hutan kota",
           color: "blue",
           regulations: [
             {
@@ -13,7 +13,7 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
               title: "UU No. 26 Tahun 2007",
               subtitle: "Tentang Penataan Ruang",
               description:
-                "Mengatur tata ruang wilayah nasional, provinsi, dan kabupaten/kota termasuk penyediaan RTH minimum 30%",
+                "Mengatur tata ruang wilayah nasional, provinsi, dan kabupaten/kota termasuk kawasan hijau perkotaan",
               link: "#",
             },
             {
@@ -21,7 +21,7 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
               title: "UU No. 11 Tahun 2020",
               subtitle: "Tentang Cipta Kerja",
               description:
-                "Memberikan definisi dan framework baru untuk pengembangan RTH yang lebih fleksibel",
+                "Memberikan framework baru untuk pengembangan infrastruktur hijau perkotaan",
               link: "#",
             },
             {
