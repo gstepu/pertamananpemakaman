@@ -31,6 +31,8 @@ import TreePruningApplicationPage from "./pages/TreePruningApplicationPage";
 import SeedlingApplicationPage from "./pages/SeedlingApplication";
 import TreeFallClaimPage from "./pages/TreeFallClaimPage";
 import AccountProfilePage from "./pages/AccountProfilePage";
+import CemeteryDataSearchPage from "./pages/CemeteryPlotApplication";
+import CemeteryAvailabilityPage from "./pages/CemeteryAvailabilityPage";
 
 const Notification = ({ message, onClear }) => {
   useEffect(() => {
@@ -120,6 +122,10 @@ export default function App() {
         return <AccountProfilePage onNavigate={handleNavigate} />;
       case "tree-fall-claim":
         return <TreeFallClaimPage onNavigate={handleNavigate} />;
+      case "cemetery-search":
+        return <CemeteryDataSearchPage onNavigate={handleNavigate} />;
+      case "cemetery-availability":
+        return <CemeteryAvailabilityPage onNavigate={handleNavigate} />;
       default:
         // Handle dynamic routes like news-detail-1, news-detail-2, etc.
         if (currentPage.startsWith("news-detail-")) {
