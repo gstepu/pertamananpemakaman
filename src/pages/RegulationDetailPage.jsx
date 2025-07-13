@@ -265,7 +265,7 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
         {/* Back to RTH Info */}
         <div className="mt-12 text-center">
           <button
-            onClick={() => onNavigate("RegulationPage")}
+            onClick={() => onNavigate("regulation")}
             className="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors font-medium inline-flex items-center"
           >
             <svg
@@ -281,7 +281,7 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-            Kembali ke Undang-Undang
+            Kembali ke Regulasi
           </button>
         </div>
       </div>
