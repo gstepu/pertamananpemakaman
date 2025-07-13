@@ -294,7 +294,14 @@ const NewsPage = ({ onNavigate }) => {
               </div>
 
               {/* Scroll indicators */}
-              <div className="absolute top-1/2 -left-4 transform -translate-y-1/2 bg-white rounded-full shadow-lg p-2 opacity-50 hover:opacity-100 transition-opacity">
+              <button
+                className="absolute top-1/2 -left-4 transform -translate-y-1/2 bg-white rounded-full shadow-lg p-2 opacity-50 hover:opacity-100 transition-opacity cursor-pointer z-10"
+                onClick={() => {
+                  const container =
+                    document.getElementById("trending-container");
+                  container.scrollLeft -= 320;
+                }}
+              >
                 <svg
                   className="w-4 h-4 text-gray-600"
                   fill="none"
@@ -308,8 +315,15 @@ const NewsPage = ({ onNavigate }) => {
                     d="M15 19l-7-7 7-7"
                   />
                 </svg>
-              </div>
-              <div className="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white rounded-full shadow-lg p-2 opacity-50 hover:opacity-100 transition-opacity">
+              </button>
+              <button
+                className="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white rounded-full shadow-lg p-2 opacity-50 hover:opacity-100 transition-opacity cursor-pointer z-10"
+                onClick={() => {
+                  const container =
+                    document.getElementById("trending-container");
+                  container.scrollLeft += 320;
+                }}
+              >
                 <svg
                   className="w-4 h-4 text-gray-600"
                   fill="none"
@@ -323,7 +337,7 @@ const NewsPage = ({ onNavigate }) => {
                     d="M9 5l7 7-7 7"
                   />
                 </svg>
-              </div>
+              </button>
             </div>
           </div>
 
