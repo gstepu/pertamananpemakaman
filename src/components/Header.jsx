@@ -131,7 +131,7 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
                     </svg>
                   </button>
                   {((link.name === "Layanan" && isServicesDropdownOpen) ||
-                    (link.name === "Berita" && isNewsDropdownOpen)) && (
+                    (link.name === "Berita dan Informasi" && isNewsDropdownOpen)) && (
                     <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
                       <div className="py-2">
                         {link.dropdownItems.map((item) => (
@@ -260,7 +260,7 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
                   {link.name}
                 </button>
                 {((link.name === "Layanan" && isServicesDropdownOpen) ||
-                  (link.name === "Berita" && isNewsDropdownOpen)) && (
+                  (link.name === "Berita dan Informasi" && isNewsDropdownOpen)) && (
                   <div className="pl-4 space-y-1">
                     {link.dropdownItems.map((item) => (
                       <a
