@@ -62,7 +62,7 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
       case "peraturan-daerah":
         return {
           title: "Peraturan Daerah DKI Jakarta",
-          subtitle: "Regulasi khusus untuk RTH di Provinsi DKI Jakarta",
+          subtitle: "Regulasi khusus untuk pertamanan di Provinsi DKI Jakarta",
           color: "purple",
           regulations: [
             {
@@ -70,7 +70,7 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
               title: "Perda DKI No. 1 Tahun 2012",
               subtitle: "Tentang Rencana Tata Ruang Wilayah 2030",
               description:
-                "Penetapan kawasan RTH strategis dan target 30% RTH di Jakarta",
+                "Penetapan kawasan hijau strategis dan target pengembangan taman kota di Jakarta",
               link: "#",
             },
             {
@@ -78,7 +78,8 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
               title: "Perda DKI No. 1 Tahun 2014",
               subtitle:
                 "Tentang Rencana Detail Tata Ruang dan Peraturan Zonasi",
-              description: "Aturan detail zonasi RTH di setiap wilayah Jakarta",
+              description:
+                "Aturan detail zonasi kawasan hijau dan taman di setiap wilayah Jakarta",
               link: "#",
             },
           ],
