@@ -166,131 +166,17 @@ const RegulationPage = ({ onNavigate }) => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-green-600 to-green-800 text-white py-20 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-8">
-          <svg
-            className="w-full h-full"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 100 100"
-          >
-            <defs>
-              <pattern
-                id="legalGrid"
-                width="25"
-                height="25"
-                patternUnits="userSpaceOnUse"
-              >
-                <rect
-                  x="5"
-                  y="5"
-                  width="15"
-                  height="15"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="0.5"
-                  opacity="0.2"
-                />
-                <circle
-                  cx="12.5"
-                  cy="12.5"
-                  r="2"
-                  fill="currentColor"
-                  opacity="0.15"
-                />
-                <path
-                  d="M0,12.5 L25,12.5 M12.5,0 L12.5,25"
-                  stroke="currentColor"
-                  strokeWidth="0.3"
-                  opacity="0.1"
-                />
-              </pattern>
-            </defs>
-            <rect width="100" height="100" fill="url(#legalGrid)" />
-          </svg>
-        </div>
-
-        {/* Decorative Legal Elements */}
-        <div className="absolute top-10 left-10 opacity-15 animate-float">
-          <svg className="w-28 h-28" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12,2A2,2 0 0,1 14,4V7.5L15.5,9L14,10.5V14A2,2 0 0,1 12,16A2,2 0 0,1 10,14V10.5L8.5,9L10,7.5V4A2,2 0 0,1 12,2M12,4V7.5L10.5,9L12,10.5V14L14,10.5L12.5,9L14,7.5V4H12Z" />
-          </svg>
-        </div>
-
-        <div
-          className="absolute bottom-10 right-10 opacity-12 animate-float"
-          style={{ animationDelay: "2s" }}
-        >
-          <svg className="w-36 h-36" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
-          </svg>
-        </div>
-
-        <div className="absolute top-1/2 right-1/4 transform -translate-y-1/2 opacity-10 animate-pulse-glow">
-          <svg className="w-20 h-20" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M9,10H7V12H9V10M13,10H11V12H13V10M17,10H15V12H17V10M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H6V1H8V3H16V1H18V3H19M19,19V8H5V19H19M9,14H7V16H9V14M13,14H11V16H13V14M17,14H15V16H17V14Z" />
-          </svg>
-        </div>
-
-        {/* Content */}
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center">
-            <div className="mb-6">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full backdrop-blur-sm mb-4">
-                <svg
-                  className="w-10 h-10 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12,2A2,2 0 0,1 14,4V7.5L15.5,9L14,10.5V14A2,2 0 0,1 12,16A2,2 0 0,1 10,14V10.5L8.5,9L10,7.5V4A2,2 0 0,1 12,2Z" />
-                </svg>
-              </div>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
-              Dasar Hukum & Regulasi
-            </h1>
-            <p className="text-xl md:text-2xl opacity-90 max-w-4xl mx-auto leading-relaxed">
-              Kumpulan lengkap peraturan perundang-undangan yang menjadi
-              landasan hukum penyelenggaraan urusan pertamanan dan hutan kota
-              DKI Jakarta
-            </p>
-
-            {/* Legal stats */}
-            <div className="mt-8 flex flex-wrap justify-center gap-8 text-center">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
-                <div className="text-2xl font-bold">50+</div>
-                <div className="text-sm opacity-90">Dokumen Hukum</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
-                <div className="text-2xl font-bold">4</div>
-                <div className="text-sm opacity-90">Tingkat Regulasi</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
-                <div className="text-2xl font-bold">2024</div>
-                <div className="text-sm opacity-90">Update Terbaru</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom wave decoration */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden">
-          <svg
-            className="relative block w-full h-12"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-              fill="rgb(249,250,251)"
-              opacity="0.8"
-            ></path>
-          </svg>
-        </div>
-      </div>
-
       <div className="container mx-auto px-6 py-12">
+        {/* Page Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+            Dasar Hukum & Regulasi
+          </h1>
+          <p className="text-lg text-gray-600">
+            Kumpulan lengkap peraturan perundang-undangan yang menjadi landasan
+            hukum penyelenggaraan urusan pertamanan dan hutan kota DKI Jakarta
+          </p>
+        </div>
         {/* Breadcrumb Navigation */}
         <nav className="flex mb-8" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
