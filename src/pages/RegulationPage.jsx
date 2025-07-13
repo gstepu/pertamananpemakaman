@@ -288,10 +288,16 @@ const RegulationPage = ({ onNavigate }) => {
 
                 {/* Regulations List */}
                 <div className="space-y-4">
-                  {category.regulations.map((regulation, index) => (
-                    <div
+                                    {category.regulations.map((regulation, index) => (
+                    <button
                       key={index}
-                      className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 transform transition-all duration-200 hover:shadow-md hover:scale-101"
+                      className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 transform transition-all duration-200 hover:shadow-md hover:scale-101 w-full text-left cursor-pointer"
+                      onClick={() => {
+                        // TODO: Add file preview functionality here
+                        console.log(`Opening preview for: ${regulation.title}`);
+                        // For now, show an alert - you can replace this with actual file preview logic
+                        alert(`Preview untuk ${regulation.title} akan ditampilkan di sini. File preview akan ditambahkan.`);
+                      }}
                     >
                       <div className="flex flex-col">
                         <div className="flex items-start justify-between mb-2">
