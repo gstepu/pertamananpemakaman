@@ -289,9 +289,9 @@ const RegulationPage = ({ onNavigate }) => {
                 {/* Regulations List */}
                 <div className="space-y-4">
                   {category.regulations.map((regulation, index) => (
-                    <button
+                    <div
                       key={index}
-                      className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 transform transition-all duration-200 hover:shadow-md hover:scale-101 w-full text-left cursor-pointer"
+                      className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 transform transition-all duration-200 hover:shadow-md hover:scale-101 cursor-pointer"
                       onClick={() => {
                         // TODO: Add file preview functionality here
                         console.log(`Opening preview for: ${regulation.title}`);
@@ -308,7 +308,17 @@ const RegulationPage = ({ onNavigate }) => {
                           >
                             {regulation.number}
                           </span>
-                          <button className="text-gray-400 hover:text-gray-600 transition-colors">
+                          <button
+                            className="text-gray-400 hover:text-gray-600 transition-colors"
+                            onClick={(e) => {
+                              e.stopPropagation(); // Prevent triggering the parent click
+                              // TODO: Add download functionality here
+                              console.log(`Downloading: ${regulation.title}`);
+                              alert(
+                                `Download ${regulation.title} akan dimulai. File download akan ditambahkan.`,
+                              );
+                            }}
+                          >
                             <svg
                               className="w-5 h-5"
                               fill="none"
@@ -331,7 +341,7 @@ const RegulationPage = ({ onNavigate }) => {
                           {regulation.description}
                         </p>
                       </div>
-                    </button>
+                    </div>
                   ))}
                 </div>
 
