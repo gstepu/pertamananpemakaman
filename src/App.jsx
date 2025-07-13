@@ -121,7 +121,6 @@ export default function App() {
       case "tree-fall-claim":
         return <TreeFallClaimPage onNavigate={handleNavigate} />;
       default:
-<<<<<<< HEAD
         // Handle dynamic routes like news-detail-1, news-detail-2, etc.
         if (currentPage.startsWith("news-detail-")) {
           const newsId = currentPage.split("-")[2];
@@ -152,8 +151,6 @@ export default function App() {
           );
         }
         // Halaman default jika state tidak cocok
-=======
->>>>>>> origin/main
         return <LandingPage onNavigate={handleNavigate} />;
     }
   };
