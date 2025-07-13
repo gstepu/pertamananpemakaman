@@ -243,6 +243,86 @@ const NewsPage = ({ onNavigate }) => {
             />
           </div>
 
+          {/* Trending News Section */}
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              🔥 Berita Terkini
+            </h2>
+            <div className="relative">
+              <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">
+                {newsData.slice(0, 6).map((news) => (
+                  <div
+                    key={news.id}
+                    className="flex-shrink-0 w-80 bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+                    onClick={() => onNavigate(`news-detail-${news.id}`)}
+                  >
+                    <div className="relative">
+                      <img
+                        src={news.image}
+                        alt={news.title}
+                        className="w-full h-48 object-cover"
+                      />
+                      <div className="absolute top-3 left-3">
+                        <span className="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                          TRENDING
+                        </span>
+                      </div>
+                      <div className="absolute bottom-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-xs">
+                        {news.readTime}
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <h3 className="font-bold text-lg text-gray-900 mb-2 line-clamp-2">
+                        {news.title}
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+                        {news.excerpt}
+                      </p>
+                      <div className="flex items-center justify-between text-xs text-gray-500">
+                        <span>{news.author}</span>
+                        <span>
+                          {new Date(news.date).toLocaleDateString("id-ID")}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Scroll indicators */}
+              <div className="absolute top-1/2 -left-4 transform -translate-y-1/2 bg-white rounded-full shadow-lg p-2 opacity-50 hover:opacity-100 transition-opacity">
+                <svg
+                  className="w-4 h-4 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </div>
+              <div className="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white rounded-full shadow-lg p-2 opacity-50 hover:opacity-100 transition-opacity">
+                <svg
+                  className="w-4 h-4 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+
           {/* Category Filters */}
           <div className="flex flex-wrap gap-3">
             {categories.map((category) => (
