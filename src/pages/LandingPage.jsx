@@ -75,7 +75,6 @@ const HeroCarousel = () => {
           <div className="absolute inset-0 z-20 flex items-center">
             <div className="container mx-auto px-6">
               <div className="max-w-3xl text-white">
-<<<<<<< HEAD
                 <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
                   {slide.title}
                 </h1>
@@ -86,12 +85,6 @@ const HeroCarousel = () => {
                   {slide.description}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4"></div>
-=======
-                <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">{slide.title}</h1>
-                <p className="text-sm md:text-base mb-8 text-green-50 leading-relaxed">{slide.description}</p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                </div>
->>>>>>> origin/main
               </div>
             </div>
           </div>
