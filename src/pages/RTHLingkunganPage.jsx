@@ -44,100 +44,16 @@ const RTHLingkunganPage = ({ onNavigate }) => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-purple-600 to-purple-800 text-white py-20 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <svg
-            className="w-full h-full"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 100 100"
-          >
-            <defs>
-              <pattern
-                id="communityGrid"
-                width="25"
-                height="25"
-                patternUnits="userSpaceOnUse"
-              >
-                <circle
-                  cx="12.5"
-                  cy="12.5"
-                  r="8"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  opacity="0.3"
-                />
-                <circle
-                  cx="12.5"
-                  cy="12.5"
-                  r="3"
-                  fill="currentColor"
-                  opacity="0.4"
-                />
-                <circle cx="6" cy="6" r="1" fill="currentColor" opacity="0.6" />
-                <circle
-                  cx="19"
-                  cy="19"
-                  r="1"
-                  fill="currentColor"
-                  opacity="0.6"
-                />
-              </pattern>
-            </defs>
-            <rect width="100" height="100" fill="url(#communityGrid)" />
-          </svg>
-        </div>
-
-        {/* Decorative Elements */}
-        <div className="absolute top-10 left-10 opacity-15 animate-float">
-          <svg className="w-32 h-32" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M21,9V7L15,1H5C3.89,1 3,1.89 3,3V21A2,2 0 0,0 5,23H19A2,2 0 0,0 21,21V9M19,19H5V3H13V9H19V19Z" />
-          </svg>
-        </div>
-
-        {/* Content */}
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center">
-            <div className="mb-6">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full backdrop-blur-sm mb-4">
-                <svg
-                  className="w-10 h-10 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M16,4C18.2,4 20,5.8 20,8C20,10.2 18.2,12 16,12C13.8,12 12,10.2 12,8C12,5.8 13.8,4 16,4M16,14C18.7,14 24,15.3 24,18V20H8V18C8,15.3 13.3,14 16,14M8,4C10.2,4 12,5.8 12,8C12,10.2 10.2,12 8,12C5.8,12 4,10.2 4,8C4,5.8 5.8,4 8,4M8,14C10.7,14 16,15.3 16,18V20H0V18C0,15.3 5.3,14 8,14Z" />
-                </svg>
-              </div>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
-              RTH Lingkungan
-            </h1>
-            <p className="text-xl md:text-2xl opacity-90 max-w-4xl mx-auto leading-relaxed">
-              Membangun Ruang Terbuka Hijau Berbasis Komunitas dan Gotong Royong
-            </p>
-
-            {/* Stats */}
-            <div className="mt-8 flex flex-wrap justify-center gap-8 text-center">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
-                <div className="text-2xl font-bold">1000+</div>
-                <div className="text-sm opacity-90">Komunitas Aktif</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
-                <div className="text-2xl font-bold">85%</div>
-                <div className="text-sm opacity-90">Partisipasi Warga</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
-                <div className="text-2xl font-bold">500m²</div>
-                <div className="text-sm opacity-90">Luas Rata-rata</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="container mx-auto px-6 py-12">
+        {/* Page Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+            RTH Lingkungan
+          </h1>
+          <p className="text-lg text-gray-600">
+            Membangun Ruang Terbuka Hijau Berbasis Komunitas dan Gotong Royong
+          </p>
+        </div>
         {/* Breadcrumb */}
         <nav className="flex mb-8" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
