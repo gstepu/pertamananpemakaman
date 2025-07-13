@@ -339,7 +339,16 @@ const RegulationPage = ({ onNavigate }) => {
                 <div className="mt-6 text-center">
                   <button
                     className={`${category.accentColor} bg-white border-2 ${category.borderColor} px-6 py-3 rounded-lg font-medium hover:bg-gray-50 transition-all duration-200 flex items-center mx-auto`}
-                    onClick={() => setSelectedCategory(category.id)}
+                    onClick={() => {
+                      const routeMap = {
+                        uu: "regulasi-undang-undang",
+                        pp: "regulasi-peraturan-pemerintah",
+                        perda: "regulasi-peraturan-daerah",
+                        kepgub: "regulasi-keputusan-gubernur",
+                      };
+                      const route = routeMap[category.id] || "regulation";
+                      onNavigate(route);
+                    }}
                   >
                     Lihat Semua {category.title}
                     <svg
