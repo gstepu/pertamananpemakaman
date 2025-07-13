@@ -4,8 +4,12 @@ import { useState } from "react";
 
 const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+<<<<<<< HEAD
   const [isServicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [isNewsDropdownOpen, setNewsDropdownOpen] = useState(false);
+=======
+  const [openDropdown, setOpenDropdown] = useState(null);
+>>>>>>> origin/main
   const [isProfileDropdownOpen, setProfileDropdownOpen] = useState(false);
 
   const navLinks = [
@@ -52,6 +56,7 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
     },
     {
       name: "Berita dan Informasi",
+<<<<<<< HEAD
       href: "#",
       hasDropdown: true,
       dropdownItems: [
@@ -61,6 +66,25 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
     },
     { name: "Regulasi", href: "#", action: "regulation" },
     { name: "Tentang Kami", href: "#" /* Belum ada action */ },
+=======
+      hasDropdown: true,
+      dropdownItems: [
+        { name: "Berita", href: "#" },
+        { name: "Informasi", href: "#" },
+      ],
+    },
+    { name: "Dasar Hukum", href: "#" },
+    {
+      name: "Tentang Kami",
+      hasDropdown: true,
+      dropdownItems: [
+        { name: "Struktur Organisasi", href: "#" },
+        { name: "Visi & Misi", href: "#" },
+        { name: "Kontak", href: "#" },
+      ],
+    },
+
+>>>>>>> origin/main
   ];
 
   const handleLinkClick = (e, action) => {
@@ -108,12 +132,22 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
               {link.hasDropdown ? (
                 <div className="relative">
                   <button
+<<<<<<< HEAD
                     className="text-gray-600 hover:text-green-800 transition flex items-center"
                     onClick={() =>
                       toggleDropdown(
                         link.name === "Layanan" ? "services" : "news",
                       )
                     }
+=======
+                    className={`text-sm transition flex items-center ${
+                      activeMenu === link.name ? "text-green-800 font-semibold" : "text-gray-600 hover:text-green-800"
+                    }`}
+                    onClick={() => {
+                      setOpenDropdown((prev) => (prev === link.name ? null : link.name));
+                      setActiveMenu(link.name);
+                    }}
+>>>>>>> origin/main
                   >
                     {link.name}
                     <svg
@@ -130,11 +164,53 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
                       />
                     </svg>
                   </button>
+<<<<<<< HEAD
                   {((link.name === "Layanan" && isServicesDropdownOpen) ||
                     (link.name === "Berita dan Informasi" && isNewsDropdownOpen)) && (
                     <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
                       <div className="py-2">
                         {link.dropdownItems.map((item) => (
+=======
+                  {openDropdown === link.name && (
+                    <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 z-50 py-2 min-w-max">
+                      {link.dropdownItems.map((item) =>
+                        item.children ? (
+                          <div key={item.name} className="px-4">
+                            <button
+                              onClick={() => toggleSubmenu(item.name)}
+                              className="flex justify-between items-center w-full text-left text-sm text-gray-700 hover:text-green-700 py-2"
+                            >
+                              {item.name}
+                              <svg
+                                className={`w-4 h-4 transform transition-transform ${
+                                  expandedSubmenu === item.name ? "rotate-90" : ""
+                                }`}
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </button>
+                            {expandedSubmenu === item.name && (
+                              <div className="pl-4 pb-2">
+                                {item.children.map((sub) => (
+                                  <a
+                                    key={sub.name}
+                                    href={sub.href}
+                                    className="block py-1 text-sm text-gray-600 hover:bg-green-50 hover:text-green-700 rounded px-2"
+                                    onClick={(e) => handleLinkClick(e, sub.action)}
+                                    target={sub.target}
+                                    rel={sub.target === "_blank" ? "noopener noreferrer" : undefined}
+                                  >
+                                    {sub.name}
+                                  </a>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        ) : (
+>>>>>>> origin/main
                           <a
                             key={item.name}
                             href={item.href}
@@ -250,6 +326,7 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
             {link.hasDropdown ? (
               <div>
                 <button
+<<<<<<< HEAD
                   className="block w-full text-left py-2 text-gray-600 hover:text-green-800"
                   onClick={() =>
                     toggleDropdown(
@@ -278,6 +355,57 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
                         {item.name}
                       </a>
                     ))}
+=======
+                  className={`block w-full text-left py-2 ${
+                    activeMenu === link.name ? "text-green-800 font-semibold" : "text-gray-600 hover:text-green-800"
+                  }`}
+                  onClick={() => {
+                    setOpenDropdown((prev) => (prev === link.name ? null : link.name));
+                    setActiveMenu(link.name);
+                  }}
+                >
+                  {link.name}
+                </button>
+                {openDropdown === link.name && (
+                  <div className="pl-4 space-y-2 mt-1">
+                    {link.dropdownItems.map((item) =>
+                      item.children ? (
+                        <div key={item.name}>
+                          <button
+                            onClick={() => toggleSubmenu(item.name)}
+                            className="w-full text-left py-1 text-sm font-medium text-gray-700 hover:text-green-700"
+                          >
+                            {item.name}
+                          </button>
+                          {expandedSubmenu === item.name && (
+                            <div className="pl-4">
+                              {item.children.map((sub) => (
+                                <a
+                                  key={sub.name}
+                                  href={sub.href}
+                                  className="block py-1 text-sm text-gray-600 hover:text-green-700"
+                                  onClick={(e) => handleLinkClick(e, sub.action)}
+                                  target={sub.target}
+                                  rel={sub.target === "_blank" ? "noopener noreferrer" : undefined}
+                                >
+                                  {sub.name}
+                                </a>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          className="block py-1 text-sm text-gray-600 hover:text-green-700"
+                          onClick={(e) => handleLinkClick(e, item.action)}
+                        >
+                          {item.name}
+                        </a>
+                      )
+                    )}
+>>>>>>> origin/main
                   </div>
                 )}
               </div>
