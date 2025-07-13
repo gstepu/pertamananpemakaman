@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isServicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
   const [isProfileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [expandedSubmenu, setExpandedSubmenu] = useState(null);
   const [activeMenu, setActiveMenu] = useState("Beranda");
@@ -53,9 +53,25 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
         { name: "Peta TPU & RTH", href: "#", action: "map" },
       ],
     },
-    { name: "Berita dan Informasi", href: "#" },
+    {
+      name: "Berita dan Informasi",
+      hasDropdown: true,
+      dropdownItems: [
+        { name: "Berita", href: "#" },
+        { name: "Informasi", href: "#" },
+      ],
+    },
     { name: "Dasar Hukum", href: "#" },
-    { name: "Tentang Kami", href: "#" },
+    {
+      name: "Tentang Kami",
+      hasDropdown: true,
+      dropdownItems: [
+        { name: "Struktur Organisasi", href: "#" },
+        { name: "Visi & Misi", href: "#" },
+        { name: "Kontak", href: "#" },
+      ],
+    },
+
   ];
 
   const handleLinkClick = (e, action) => {
@@ -106,7 +122,7 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
                       activeMenu === link.name ? "text-green-800 font-semibold" : "text-gray-600 hover:text-green-800"
                     }`}
                     onClick={() => {
-                      setServicesDropdownOpen(!isServicesDropdownOpen);
+                      setOpenDropdown((prev) => (prev === link.name ? null : link.name));
                       setActiveMenu(link.name);
                     }}
                   >
@@ -115,8 +131,8 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
-                  {isServicesDropdownOpen && (
-                    <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 z-50 w-[280px] py-2">
+                  {openDropdown === link.name && (
+                    <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 z-50 py-2 min-w-max">
                       {link.dropdownItems.map((item) =>
                         item.children ? (
                           <div key={item.name} className="px-4">
@@ -248,13 +264,13 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
                     activeMenu === link.name ? "text-green-800 font-semibold" : "text-gray-600 hover:text-green-800"
                   }`}
                   onClick={() => {
-                    setServicesDropdownOpen(!isServicesDropdownOpen);
+                    setOpenDropdown((prev) => (prev === link.name ? null : link.name));
                     setActiveMenu(link.name);
                   }}
                 >
                   {link.name}
                 </button>
-                {isServicesDropdownOpen && (
+                {openDropdown === link.name && (
                   <div className="pl-4 space-y-2 mt-1">
                     {link.dropdownItems.map((item) =>
                       item.children ? (
