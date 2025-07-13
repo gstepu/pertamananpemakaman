@@ -53,8 +53,7 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
         },
         { name: "Peta TPU & RTH", href: "#", action: "map" },
       ],
-    },
-<<<<<<< HEAD
+        },
     {
       name: "Berita",
       href: "#",
@@ -66,11 +65,6 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
     },
     { name: "Regulasi", href: "#", action: "regulation" },
     { name: "Tentang Kami", href: "#" /* Belum ada action */ },
-=======
-    { name: "Berita dan Informasi", href: "#" },
-    { name: "Dasar Hukum", href: "#" },
-    { name: "Tentang Kami", href: "#" },
->>>>>>> origin/main
   ];
 
   const handleLinkClick = (e, action) => {
