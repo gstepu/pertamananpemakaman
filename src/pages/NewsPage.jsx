@@ -350,6 +350,13 @@ const NewsPage = ({ onNavigate }) => {
           </div>
         </div>
 
+        {/* All News Section */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            📰 Semua Berita
+          </h2>
+        </div>
+
         {/* News Grid */}
         {currentNews.length > 0 ? (
           <>
