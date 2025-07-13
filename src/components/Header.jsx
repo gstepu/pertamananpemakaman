@@ -2,26 +2,30 @@
 
 import { useState } from "react";
 
-const Header = ({ onNavigate }) => {
+const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+<<<<<<< HEAD
   const [isNewsDropdownOpen, setNewsDropdownOpen] = useState(false);
+=======
+  const [isProfileDropdownOpen, setProfileDropdownOpen] = useState(false);
+>>>>>>> origin/main
 
   const navLinks = [
     { name: "Beranda", href: "#", action: "LandingPage" },
-    { name: "Profil", href: "#" /* Belum ada action */ },
+    { name: "Profil", href: "#" },
     {
       name: "Layanan",
       href: "#",
       hasDropdown: true,
       dropdownItems: [
-        { name: "Cek Data Makam", href: "#" /* Belum ada action */ },
-        { name: "Informasi Retribusi", href: "#" /* Belum ada action */ },
-        { name: "Izin Pemakaman", href: "#" /* Belum ada action */ },
+        { name: "Cek Data Makam", href: "#" },
+        { name: "Informasi Retribusi", href: "#" },
+        { name: "Izin Pemakaman", href: "#" },
         {
           name: "E-Book Panduan Teknis Pekerjaan Lanskap (E-PATELA)",
-          href: "/files/ebook.pdf", // Arahkan langsung ke file PDF di folder public
-          target: "_blank", // Agar terbuka di tab baru
+          href: "/files/ebook.pdf",
+          target: "_blank",
         },
         { name: "Profil KTH", href: "#", action: "Kthprofile" },
         { name: "Katalog Produk", href: "#", action: "catalog" },
@@ -44,6 +48,7 @@ const Header = ({ onNavigate }) => {
         },
       ],
     },
+<<<<<<< HEAD
     {
       name: "Berita",
       href: "#",
@@ -55,21 +60,30 @@ const Header = ({ onNavigate }) => {
     },
     { name: "Regulasi", href: "#", action: "regulation" },
     { name: "Tentang Kami", href: "#" /* Belum ada action */ },
+=======
+    { name: "Berita", href: "#" },
+    { name: "Regulasi", href: "#" },
+    { name: "Kontak", href: "#" },
+>>>>>>> origin/main
   ];
 
-  // --- FUNGSI DIMODIFIKASI ---
-  // Fungsi ini sekarang hanya mencegah aksi default jika ada 'action' untuk navigasi SPA.
-  // Jika tidak, link akan berfungsi seperti biasa.
   const handleLinkClick = (e, action) => {
     if (action) {
-      e.preventDefault(); // Mencegah navigasi default HANYA jika ini adalah aksi SPA
+      e.preventDefault();
       onNavigate(action);
     }
-    // Jika tidak ada 'action', biarkan browser menangani href secara alami.
-
-    // Tutup semua menu setelah navigasi atau klik
     setServicesDropdownOpen(false);
+<<<<<<< HEAD
     setNewsDropdownOpen(false);
+=======
+    setProfileDropdownOpen(false);
+    setMobileMenuOpen(false);
+  };
+
+  const handleLogoutClick = () => {
+    onLogout();
+    setProfileDropdownOpen(false);
+>>>>>>> origin/main
     setMobileMenuOpen(false);
   };
 
@@ -133,7 +147,6 @@ const Header = ({ onNavigate }) => {
                             href={item.href}
                             className="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors"
                             onClick={(e) => handleLinkClick(e, item.action)}
-                            // --- TAMBAHAN ATRIBUT ---
                             target={item.target}
                             rel={
                               item.target === "_blank"
@@ -159,14 +172,57 @@ const Header = ({ onNavigate }) => {
               )}
             </div>
           ))}
-          {/* Login Button for Desktop */}
-          <a
-            href="#login"
-            className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg transition duration-200 font-medium"
-            onClick={(e) => handleLinkClick(e, "login")}
-          >
-            Login
-          </a>
+
+          {!isLoggedIn ? (
+            <a
+              href="#login"
+              className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg transition duration-200 font-medium"
+              onClick={(e) => handleLinkClick(e, "login")}
+            >
+              Login
+            </a>
+          ) : (
+            <div className="relative">
+              <button
+                onClick={() => setProfileDropdownOpen(!isProfileDropdownOpen)}
+                className="flex items-center justify-center h-10 w-10 rounded-full bg-green-700 text-white hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
+                </svg>
+              </button>
+
+              {isProfileDropdownOpen && (
+                <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
+                  <div className="py-2">
+                    <a
+                      href="#"
+                      className="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors"
+                      onClick={(e) => handleLinkClick(e, "account-profile")}
+                    >
+                      Profil
+                    </a>
+                    <button
+                      onClick={handleLogoutClick}
+                      className="w-full text-left block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors"
+                    >
+                      Log out
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -219,7 +275,6 @@ const Header = ({ onNavigate }) => {
                         href={item.href}
                         className="block py-1 text-sm text-gray-500 hover:text-green-800"
                         onClick={(e) => handleLinkClick(e, item.action)}
-                        // --- TAMBAHAN ATRIBUT ---
                         target={item.target}
                         rel={
                           item.target === "_blank"
@@ -244,14 +299,31 @@ const Header = ({ onNavigate }) => {
             )}
           </div>
         ))}
-        {/* Login Button for Mobile */}
-        <a
-          href="#login"
-          className="block mt-3 bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg transition duration-200 font-medium text-center"
-          onClick={(e) => handleLinkClick(e, "login")}
-        >
-          Login
-        </a>
+        {!isLoggedIn ? (
+          <a
+            href="#login"
+            className="block mt-3 bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg transition duration-200 font-medium text-center"
+            onClick={(e) => handleLinkClick(e, "login")}
+          >
+            Login
+          </a>
+        ) : (
+          <div className="pt-2 mt-2 border-t border-gray-200">
+            <a
+              href="#"
+              className="block py-2 text-gray-600 hover:text-green-800"
+              onClick={(e) => handleLinkClick(e, "account-profile")}
+            >
+              Profil
+            </a>
+            <button
+              onClick={handleLogoutClick}
+              className="block w-full text-left py-2 text-gray-600 hover:text-green-800"
+            >
+              Log out
+            </button>
+          </div>
+        )}
       </div>
     </header>
   );

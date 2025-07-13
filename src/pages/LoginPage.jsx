@@ -2,14 +2,12 @@
 
 import { useState } from "react";
 
-const LoginPage = ({ onNavigate }) => {
+const LoginPage = ({ onNavigate, onLoginSuccess }) => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     rememberMe: false,
   });
-
-  // 1. State baru untuk menampung pesan kesalahan
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +18,6 @@ const LoginPage = ({ onNavigate }) => {
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
-    // Hapus pesan error saat pengguna mulai mengetik
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: null }));
     }
@@ -30,7 +27,6 @@ const LoginPage = ({ onNavigate }) => {
     e.preventDefault();
     const newErrors = {};
 
-    // 2. Logika validasi untuk setiap field
     if (!formData.username) {
       newErrors.username = "Username atau email wajib diisi.";
     }
@@ -38,22 +34,20 @@ const LoginPage = ({ onNavigate }) => {
       newErrors.password = "Password wajib diisi.";
     }
 
-    // Jika ada error, tampilkan dan hentikan proses
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
 
-    setErrors({}); // Kosongkan error jika validasi berhasil
+    setErrors({});
     setIsLoading(true);
 
     setTimeout(() => {
       console.log("Login data:", formData);
-      onNavigate("home", "Login berhasil!");
+      onLoginSuccess("Login berhasil!");
     }, 2000);
   };
 
-  // Helper untuk menambahkan kelas error secara dinamis
   const errorClass = (field) =>
     errors[field]
       ? "border-red-500 focus:ring-red-500"
@@ -81,7 +75,6 @@ const LoginPage = ({ onNavigate }) => {
         </div>
 
         <div className="bg-white rounded-xl shadow-xl p-8">
-          {/* 3. Tambahkan `noValidate` untuk mematikan validasi browser */}
           <form className="space-y-6" onSubmit={handleSubmit} noValidate>
             {/* Username Input */}
             <div>
@@ -119,7 +112,6 @@ const LoginPage = ({ onNavigate }) => {
                   placeholder="Masukkan username atau email"
                 />
               </div>
-              {/* 4. Tampilkan pesan error di bawah input */}
               {errors.username && (
                 <p className="mt-1 text-sm text-red-600">{errors.username}</p>
               )}
@@ -202,7 +194,6 @@ const LoginPage = ({ onNavigate }) => {
                   )}
                 </button>
               </div>
-              {/* 4. Tampilkan pesan error di bawah input */}
               {errors.password && (
                 <p className="mt-1 text-sm text-red-600">{errors.password}</p>
               )}
