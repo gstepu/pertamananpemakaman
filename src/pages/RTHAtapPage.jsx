@@ -44,99 +44,16 @@ const RTHAtapPage = ({ onNavigate }) => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <svg
-            className="w-full h-full"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 100 100"
-          >
-            <defs>
-              <pattern
-                id="rooftopGrid"
-                width="20"
-                height="20"
-                patternUnits="userSpaceOnUse"
-              >
-                <rect
-                  x="2"
-                  y="2"
-                  width="16"
-                  height="6"
-                  fill="currentColor"
-                  opacity="0.3"
-                />
-                <rect
-                  x="2"
-                  y="12"
-                  width="16"
-                  height="6"
-                  fill="currentColor"
-                  opacity="0.2"
-                />
-                <circle
-                  cx="10"
-                  cy="10"
-                  r="2"
-                  fill="currentColor"
-                  opacity="0.4"
-                />
-              </pattern>
-            </defs>
-            <rect width="100" height="100" fill="url(#rooftopGrid)" />
-          </svg>
-        </div>
-
-        {/* Decorative Elements */}
-        <div className="absolute top-10 left-10 opacity-15 animate-float">
-          <svg className="w-32 h-32" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" />
-          </svg>
-        </div>
-
-        {/* Content */}
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center">
-            <div className="mb-6">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full backdrop-blur-sm mb-4">
-                <svg
-                  className="w-10 h-10 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" />
-                </svg>
-              </div>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
-              RTH Bangunan Atap
-            </h1>
-            <p className="text-xl md:text-2xl opacity-90 max-w-4xl mx-auto leading-relaxed">
-              Memanfaatkan Atap Bangunan untuk Green Roof dan Urban Farming
-            </p>
-
-            {/* Stats */}
-            <div className="mt-8 flex flex-wrap justify-center gap-8 text-center">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
-                <div className="text-2xl font-bold">30%</div>
-                <div className="text-sm opacity-90">Penghematan Energi</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
-                <div className="text-2xl font-bold">50%</div>
-                <div className="text-sm opacity-90">Pengurangan Runoff</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
-                <div className="text-2xl font-bold">5°C</div>
-                <div className="text-sm opacity-90">Penurunan Suhu</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="container mx-auto px-6 py-12">
+        {/* Page Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+            RTH Bangunan Atap
+          </h1>
+          <p className="text-lg text-gray-600">
+            Memanfaatkan Atap Bangunan untuk Green Roof dan Urban Farming
+          </p>
+        </div>
         {/* Breadcrumb */}
         <nav className="flex mb-8" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
