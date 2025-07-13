@@ -71,9 +71,8 @@ const HeroCarousel = () => {
           <div className="absolute inset-0 z-20 flex items-center">
             <div className="container mx-auto px-6">
               <div className="max-w-3xl text-white">
-                <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">{slide.title}</h1>
-                <h2 className="text-xl md:text-2xl font-medium mb-6 text-green-100">{slide.subtitle}</h2>
-                <p className="text-lg md:text-xl mb-8 text-green-50 leading-relaxed">{slide.description}</p>
+                <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">{slide.title}</h1>
+                <p className="text-sm md:text-base mb-8 text-green-50 leading-relaxed">{slide.description}</p>
                 <div className="flex flex-col sm:flex-row gap-4">
                 </div>
               </div>
@@ -119,10 +118,10 @@ const HeroCarousel = () => {
           <input
             type="text"
             placeholder="Cari informasi makam, layanan, atau lokasi..."
-            className="w-full py-4 px-6 pr-14 rounded-full text-gray-800 bg-white/95 backdrop-blur-sm shadow-lg focus:outline-none focus:ring-4 focus:ring-green-300 placeholder-gray-500"
+            className="w-full py-2 px-4 pr-12 rounded-full text-gray-800 bg-white/95 backdrop-blur-sm shadow-lg focus:outline-none focus:ring-4 focus:ring-green-300 placeholder-gray-500"
           />
-          <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-green-700 hover:bg-green-800 text-white rounded-full p-3 w-12 h-12 transition-all duration-200">
-            <Search className="w-5 h-5" />
+          <button className="absolute right-3 top-1/2 -translate-y-1/2 bg-green-700 hover:bg-green-800 text-white rounded-full w-8 h-8 flex items-center justify-center transition-all duration-200">
+            <Search className="w-4 h-4" />
           </button>
         </div>
       </div>
