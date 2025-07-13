@@ -136,19 +136,17 @@ const KTHProfilePage = ({ onNavigate }) => {
     setExpandedItem(expandedItem === itemId ? null : itemId);
   };
 
-  // MODIFIKASI: Fungsi untuk menangani logika unduhan
   const handleDownload = () => {
     const link = document.createElement("a");
-    // Path file PDF harus disesuaikan pada aplikasi nyata
-    link.href = "/files/profil-kth-jakarta.pdf";
-    link.download = "Profil-KTH-Jakarta.pdf";
+    // 1. Path diubah ke file profilkth.pdf
+    link.href = "/files/profilkth.pdf";
+    // 2. Nama file unduhan diubah menjadi profilkth.pdf
+    link.download = "profilkth.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
 
-    // Menutup modal dan menampilkan notifikasi
     setIsModalOpen(false);
-    alert("Profil KTH Anda sedang diunduh...");
   };
 
   return (
@@ -167,7 +165,6 @@ const KTHProfilePage = ({ onNavigate }) => {
             kesejahteraan masyarakat.
           </p>
 
-          {/* --- MODIFIKASI DI SINI --- */}
           {/* Tombol baru untuk membuka modal unduhan */}
           <button
             onClick={() => setIsModalOpen(true)}
@@ -372,7 +369,6 @@ const KTHProfilePage = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* --- MODIFIKASI DI SINI --- */}
       {/* Render modal konfirmasi unduhan */}
       <ConfirmationModal
         isOpen={isModalOpen}

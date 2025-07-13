@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 
-const Header = ({ onNavigate }) => {
+const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [isProfileDropdownOpen, setProfileDropdownOpen] = useState(false);
 
-  // Update dropdown items untuk menambahkan "Katalog Produk"
   const navLinks = [
-    { name: "Beranda", href: "#" },
+    { name: "Beranda", href: "#", action: "LandingPage" },
+    { name: "Profil", href: "#" },
     {
       name: "Layanan",
       href: "#",
@@ -17,41 +18,60 @@ const Header = ({ onNavigate }) => {
         { name: "Cek Data Makam", href: "#" },
         { name: "Informasi Retribusi", href: "#" },
         { name: "Izin Pemakaman", href: "#" },
+        {
+          name: "E-Book Panduan Teknis Pekerjaan Lanskap (E-PATELA)",
+          href: "/files/ebook.pdf",
+          target: "_blank",
+        },
+        { name: "Profil KTH", href: "#", action: "Kthprofile" },
         { name: "Katalog Produk", href: "#", action: "catalog" },
         { name: "Peta TPU & RTH", href: "#", action: "map" },
         { name: "Jadwal Acara Taman", href: "#", action: "park-schedule" },
+        {
+          name: "Permohonan Pemangkasan Pohon",
+          href: "#",
+          action: "tree-application",
+        },
+        {
+          name: "Permohonan Bibit Tanaman",
+          href: "#",
+          action: "seedling-application",
+        },
+        {
+          name: "Santunan Pohon Tumbang",
+          href: "#",
+          action: "tree-fall-claim",
+        },
       ],
     },
-    { name: "Berita dan Informasi", href: "#" },
-    { name: "Dasar Hukum", href: "#" },
-    { name: "Tentang Kami", href: "#" },
+    { name: "Berita", href: "#" },
+    { name: "Regulasi", href: "#" },
+    { name: "Kontak", href: "#" },
   ];
 
-  // Update handleDropdownClick function
-  const handleDropdownClick = (action) => {
-    if (action === "park-schedule") {
-      onNavigate("park-schedule");
-    }
-    if (action === "map") {
-      onNavigate("map");
-    }
-    if (action === "catalog") {
-      onNavigate("catalog");
+  const handleLinkClick = (e, action) => {
+    if (action) {
+      e.preventDefault();
+      onNavigate(action);
     }
     setServicesDropdownOpen(false);
+    setProfileDropdownOpen(false);
+    setMobileMenuOpen(false);
+  };
+
+  const handleLogoutClick = () => {
+    onLogout();
+    setProfileDropdownOpen(false);
+    setMobileMenuOpen(false);
   };
 
   return (
     <header className="bg-white/80 backdrop-blur-md shadow-md sticky top-0 z-50">
       <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
         <div className="flex items-center space-x-4">
-          <img
-            src="public/images/logo.png"
-            alt="Logo DKI"
-            className="h-10"
-          />
+          <img src="/images/logo.png" alt="Logo DKI" className="h-10" />
           <span className="text-lg font-bold text-gray-800">
-            Dinas Pertamanan dan Pemakaman DKI Jakarta
+            Dinas Pertamanan dan Hutan Kota DKI Jakarta
           </span>
         </div>
 
@@ -83,19 +103,20 @@ const Header = ({ onNavigate }) => {
                     </svg>
                   </button>
                   {isServicesDropdownOpen && (
-                    <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
+                    <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
                       <div className="py-2">
                         {link.dropdownItems.map((item) => (
                           <a
                             key={item.name}
                             href={item.href}
                             className="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              if (item.action) {
-                                handleDropdownClick(item.action);
-                              }
-                            }}
+                            onClick={(e) => handleLinkClick(e, item.action)}
+                            target={item.target}
+                            rel={
+                              item.target === "_blank"
+                                ? "noopener noreferrer"
+                                : undefined
+                            }
                           >
                             {item.name}
                           </a>
@@ -108,23 +129,64 @@ const Header = ({ onNavigate }) => {
                 <a
                   href={link.href}
                   className="text-gray-600 hover:text-green-800 transition"
+                  onClick={(e) => handleLinkClick(e, link.action)}
                 >
                   {link.name}
                 </a>
               )}
             </div>
           ))}
-          {/* Login Button for Desktop */}
-          <a
-            href="#login"
-            className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg transition duration-200 font-medium"
-            onClick={(e) => {
-              e.preventDefault();
-              onNavigate("login");
-            }}
-          >
-            Login
-          </a>
+
+          {!isLoggedIn ? (
+            <a
+              href="#login"
+              className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg transition duration-200 font-medium"
+              onClick={(e) => handleLinkClick(e, "login")}
+            >
+              Login
+            </a>
+          ) : (
+            <div className="relative">
+              <button
+                onClick={() => setProfileDropdownOpen(!isProfileDropdownOpen)}
+                className="flex items-center justify-center h-10 w-10 rounded-full bg-green-700 text-white hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
+                </svg>
+              </button>
+
+              {isProfileDropdownOpen && (
+                <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
+                  <div className="py-2">
+                    <a
+                      href="#"
+                      className="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors"
+                      onClick={(e) => handleLinkClick(e, "account-profile")}
+                    >
+                      Profil
+                    </a>
+                    <button
+                      onClick={handleLogoutClick}
+                      className="w-full text-left block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors"
+                    >
+                      Log out
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -173,12 +235,13 @@ const Header = ({ onNavigate }) => {
                         key={item.name}
                         href={item.href}
                         className="block py-1 text-sm text-gray-500 hover:text-green-800"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (item.action) {
-                            handleDropdownClick(item.action);
-                          }
-                        }}
+                        onClick={(e) => handleLinkClick(e, item.action)}
+                        target={item.target}
+                        rel={
+                          item.target === "_blank"
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
                       >
                         {item.name}
                       </a>
@@ -190,23 +253,38 @@ const Header = ({ onNavigate }) => {
               <a
                 href={link.href}
                 className="block py-2 text-gray-600 hover:text-green-800"
+                onClick={(e) => handleLinkClick(e, link.action)}
               >
                 {link.name}
               </a>
             )}
           </div>
         ))}
-        {/* Login Button for Mobile */}
-        <a
-          href="#login"
-          className="block mt-3 bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg transition duration-200 font-medium text-center"
-          onClick={(e) => {
-            e.preventDefault();
-            onNavigate("login");
-          }}
-        >
-          Login
-        </a>
+        {!isLoggedIn ? (
+          <a
+            href="#login"
+            className="block mt-3 bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg transition duration-200 font-medium text-center"
+            onClick={(e) => handleLinkClick(e, "login")}
+          >
+            Login
+          </a>
+        ) : (
+          <div className="pt-2 mt-2 border-t border-gray-200">
+            <a
+              href="#"
+              className="block py-2 text-gray-600 hover:text-green-800"
+              onClick={(e) => handleLinkClick(e, "account-profile")}
+            >
+              Profil
+            </a>
+            <button
+              onClick={handleLogoutClick}
+              className="block w-full text-left py-2 text-gray-600 hover:text-green-800"
+            >
+              Log out
+            </button>
+          </div>
+        )}
       </div>
     </header>
   );
