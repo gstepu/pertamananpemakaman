@@ -22,6 +22,7 @@ import SeedlingApplicationPage from "./pages/SeedlingApplication";
 import TreeFallClaimPage from "./pages/TreeFallClaimPage";
 import AccountProfilePage from "./pages/AccountProfilePage";
 import CemeteryDataSearchPage from "./pages/CemeteryPlotApplication";
+import CemeteryAvailabilityPage from "./pages/CemeteryAvailabilityPage";
 
 const Notification = ({ message, onClear }) => {
   useEffect(() => {
@@ -101,6 +102,8 @@ export default function App() {
         return <TreeFallClaimPage onNavigate={handleNavigate} />;
       case "cemetery-search":
         return <CemeteryDataSearchPage onNavigate={handleNavigate} />;
+      case "cemetery-availability":
+        return <CemeteryAvailabilityPage onNavigate={handleNavigate} />;
       default:
         return <LandingPage onNavigate={handleNavigate} />;
     }

@@ -24,7 +24,7 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
           name: "Informasi Pemakaman",
           children: [
             { name: "Cek Data Makam", href: "#", action: "cemetery-search" },
-            { name: "Ketersediaan Petak Makam", href: "#" },
+            { name: "Ketersediaan Petak Makam", href: "#", action: "cemetery-availability" },
             { name: "Penanganan Jenazah Terlantar", href: "#", action: "burial-permit" },
           ],
         },
