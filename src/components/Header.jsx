@@ -135,32 +135,11 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
-<<<<<<< HEAD
                   {((link.name === "Layanan" && isServicesDropdownOpen) ||
                     (link.name === "Berita" && isNewsDropdownOpen)) && (
                     <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
                       <div className="py-2">
                         {link.dropdownItems.map((item) => (
-=======
-                  {isServicesDropdownOpen && (
-                    <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 z-50 w-[280px] py-2">
-                      {link.dropdownItems.map((item) =>
-                        item.children ? (
-                          <div key={item.name} className="px-4">
-                            <button
-                              onClick={() => toggleSubmenu(item.name)}
-                              className="flex justify-between items-center w-full text-left text-sm text-gray-700 hover:text-green-700 py-2"
-                            >
-                              {item.name}
-                              <svg
-                                className={`w-4 h-4 transform transition-transform ${
-                                  expandedSubmenu === item.name ? "rotate-90" : ""
-                                }`}
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                               </svg>
                             </button>
                             {expandedSubmenu === item.name && (
