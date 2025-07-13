@@ -87,7 +87,7 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
       case "keputusan-gubernur":
         return {
           title: "Keputusan Gubernur DKI Jakarta",
-          subtitle: "Kebijakan operasional dan implementasi RTH",
+          subtitle: "Kebijakan operasional dan implementasi pertamanan",
           color: "orange",
           regulations: [
             {
@@ -95,7 +95,7 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
               title: "Kepgub No. 38 Tahun 2012",
               subtitle: "Tentang Bangunan Gedung Hijau",
               description:
-                "Pedoman pembangunan gedung ramah lingkungan dengan integrasi RTH",
+                "Pedoman pembangunan gedung ramah lingkungan dengan integrasi infrastruktur hijau",
               link: "#",
             },
             {
