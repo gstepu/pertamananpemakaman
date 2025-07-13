@@ -44,7 +44,6 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
         {
           name: "Permohonan",
           children: [
-            { name: "Permohonan Izin Penggunaan Taman", href: "#", action: "park-schedule" },
             { name: "Permohonan Bibit Tanaman", href: "#", action: "seedling-application" },
             { name: "Permohonan Pemangkasan Pohon", href: "#", action: "tree-application" },
             { name: "Santunan Pohon Tumbang", href: "#", action: "tree-fall-claim" },
@@ -108,7 +107,7 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
         <div className="flex items-center space-x-3">
           <img src="/images/logo.png" alt="Logo DKI" className="h-10" />
           <span className="text-base font-semibold text-gray-800">
-            Dinas Pertamanan dan Hutan Kota DKI Jakarta
+            Dinas Pertamanan dan Pemakaman DKI Jakarta
           </span>
         </div>
 

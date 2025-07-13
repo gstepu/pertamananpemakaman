@@ -1,128 +1,86 @@
+"use client"
+import { MapPin, Phone, Mail } from "lucide-react";
+
 const Footer = () => {
   return (
-    <footer className="bg-green-800 text-white">
-      <div className="container mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="bg-green-800 text-white text-sm">
+      <div className="container mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Logo dan Deskripsi */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-4 mb-4">
+          <div className="md:col-span-2">
+            <div className="flex items-center mb-4">
               <img
-                src="https://placehold.co/40x40/ffffff/047857?text=DKI"
+                src="/images/logo.png"
                 alt="Logo DKI"
-                className="h-10"
+                className="h-10 w-10 mr-3"
               />
-              <span className="text-xl font-bold">
-                Dinas Pertamanan dan Hutan Kota DKI Jakarta
+              <span className="text-lg font-semibold leading-tight">
+                Dinas Pertamanan dan Pemakaman DKI Jakarta
               </span>
             </div>
-            <p className="text-green-100 mb-4">
-              Melayani masyarakat DKI Jakarta dalam pengelolaan ruang terbuka
-              hijau dan penyediaan layanan digital untuk kemudahan akses
-              informasi dan pengajuan pemakaian fasilitas taman.
+            <p className="text-green-100 leading-relaxed">
+              Melayani masyarakat Jakarta dalam pengelolaan ruang terbuka hijau dan penyediaan layanan digital untuk akses informasi serta pengajuan fasilitas taman dan pemakaman.
             </p>
           </div>
 
           {/* Menu Layanan */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Layanan Digital</h3>
+            <h3 className="text-base font-semibold mb-3">Layanan Digital</h3>
             <ul className="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="text-green-100 hover:text-white transition"
-                >
-                  Jadwal Acara Taman
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-green-100 hover:text-white transition"
-                >
-                  Pengajuan Pemakaian
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-green-100 hover:text-white transition"
-                >
-                  Informasi Retribusi
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-green-100 hover:text-white transition"
-                >
-                  Peta Lokasi Taman
-                </a>
-              </li>
+              {[
+                { label: "Cek Data Makam", href: "#", action: "cemetery-search"},
+                { label: "Jadwal Penggunaan Taman", href: "#", action: "park-schedule"},
+                { label: "Permohonan Pemangkasan Pohon", href: "#", action: "tree-application"},
+                { label: "Peta TPU dan RTH", href: "#" },
+              ].map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    className="text-green-100 hover:text-white transition-colors duration-200"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Kontak */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Hubungi Kami</h3>
-            <div className="space-y-2 text-green-100">
-              <p className="flex items-center">
-                <svg
-                  className="w-4 h-4 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+            <h3 className="text-base font-semibold mb-3">Hubungi Kami</h3>
+            <ul className="space-y-3 text-green-100 text-sm">
+              <li className="flex items-start gap-2">
+                <div className="pt-1">
+                  <MapPin className="w-5 h-5 flex-shrink-0" />
+                </div>
+                <a
+                  href="https://www.google.com/maps?q=Jl.+AIPDA+KS.+TUBUN+No+1,+Petamburan,+Tanah+Abang,+Jakarta+Pusat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition leading-relaxed"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                </svg>
-                Jl. Gunung Sahari Raya No. 2, Jakarta Pusat
-              </p>
-              <p className="flex items-center">
-                <svg
-                  className="w-4 h-4 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
-                (021) 4204531
-              </p>
-              <p className="flex items-center">
-                <svg
-                  className="w-4 h-4 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-                pertamanan@jakarta.go.id
-              </p>
-            </div>
+                  Jl. AIPDA KS. TUBUN No 1, Kel. Petamburan, Tanah Abang, Jakarta Pusat
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Phone className="w-5 h-5" />
+                <a href="tel:0215328454" className="hover:text-white transition">
+                  (021) 532 8454
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Mail className="w-5 h-5" />
+                <a href="mailto:distama@jakarta.go.id" className="hover:text-white transition">
+                  distama@jakarta.go.id
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="border-t border-green-700 mt-8 pt-6 text-center">
-          <p className="text-green-100">
-            © {new Date().getFullYear()} Dinas Pertamanan dan Hutan Kota DKI
-            Jakarta. Seluruh Hak Cipta Dilindungi.
-          </p>
+        {/* Footer Bottom */}
+        <div className="border-t border-green-700 mt-10 pt-6 text-center text-green-100 text-xs">
+          © {new Date().getFullYear()} Dinas Pertamanan dan Hutan Kota DKI Jakarta. Seluruh Hak Cipta Dilindungi.
         </div>
       </div>
     </footer>

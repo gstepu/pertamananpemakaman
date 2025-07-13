@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import {
   ChevronLeft,
   ChevronRight,
-  Calendar,
   MapPin,
   FileText,
   BarChart3,
@@ -12,7 +11,22 @@ import {
   Users,
   Clock,
   Search,
+  CalendarCheck,
+  Trees,
+  Sprout,
 } from "lucide-react"
+
+// Tambahkan ini di bagian import di atas
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  CartesianGrid,
+  Legend
+} from "recharts";
 
 // Carousel Gambar Tampilan Awal
 const HeroCarousel = () => {
@@ -140,16 +154,16 @@ const ServiceCard = ({ icon, title, description, href, action, onNavigate }) => 
         onNavigate(action)
       }
     }}
-    className={`group bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 ${
-      action ? "cursor-pointer" : ""
-    }`}
+    className={`group bg-white p-4 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 ${action ? "cursor-pointer" : ""} flex flex-col justify-between h-full`}
   >
-    <div className="text-green-700 mb-6 group-hover:scale-110 transition-transform duration-300">{icon}</div>
-    <h3 className="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-700 transition-colors duration-300">
-      {title}
-    </h3>
-    <p className="text-gray-600 leading-relaxed">{description}</p>
-    <div className="mt-4 text-green-700 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center">
+    <div>
+      <div className="text-green-700 mb-6 group-hover:scale-110 transition-transform duration-300">{icon}</div>
+      <h3 className="text-xl font-bold mb-3 text-gray-800 group-hover:text-green-700 transition-colors duration-300">
+        {title}
+      </h3>
+      <p className="text-gray-600 leading-relaxed">{description}</p>
+    </div>
+    <div className="mt-6 text-green-700 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center">
       Akses Layanan
       <ChevronRight className="w-4 h-4 ml-1" />
     </div>
@@ -159,42 +173,42 @@ const ServiceCard = ({ icon, title, description, href, action, onNavigate }) => 
 const ServicesSection = ({ onNavigate }) => {
   const services = [
     {
-      icon: <Calendar className="w-12 h-12" />,
-      title: "Pendaftaran Pemakaman",
-      description: "Layanan pendaftaran dan penjadwalan pemakaman dengan sistem online yang mudah dan cepat.",
-      action: "burial-registration",
+      icon: <Search className="w-12 h-12" />,
+      title: "Cek Data Makam",
+      description: "Cari informasi lokasi makam, nama jenazah, dan status lahan secara real-time melalui sistem digital kami.",
+      action: "cemetery-search",
+    },
+    {
+      icon: <CalendarCheck className="w-12 h-12" />,
+      title: "Jadwal Penggunaan Taman",
+      description: "Lihat jadwal kegiatan, acara, atau pemanfaatan ruang terbuka hijau dan taman di wilayah DKI Jakarta..",
+      action: "park-schedule",
+    },
+    {
+      icon: <Trees className="w-12 h-12" />,
+      title: "Permohonan Pemangkasan Pohon",
+      description: "Ajukan permintaan pemangkasan pohon yang berisiko membahayakan atau mengganggu lingkungan sekitar.",
+      action: "tree-application",
     },
     {
       icon: <MapPin className="w-12 h-12" />,
-      title: "Informasi Lokasi Makam",
-      description: "Pencarian dan informasi detail lokasi makam di seluruh area pemakaman DKI Jakarta.",
-      action: "grave-location",
-    },
-    {
-      icon: <FileText className="w-12 h-12" />,
-      title: "Administrasi & Perizinan",
-      description: "Pengurusan dokumen, surat-menyurat, dan berbagai perizinan terkait pemakaman.",
-      action: "administration",
-    },
-    {
-      icon: <Users className="w-12 h-12" />,
-      title: "Layanan Keluarga",
-      description: "Bantuan dan konsultasi untuk keluarga dalam proses pemakaman dan perawatan makam.",
-      action: "family-services",
+      title: "Peta TPU dan RTH",
+      description: "Jelajahi peta interaktif untuk menemukan lokasi Tempat Pemakaman Umum (TPU) dan Ruang Terbuka Hijau (RTH) di Jakarta.",
+      action: "map",
     },
   ]
 
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">Layanan Utama</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        <div className="text-center mb-5">
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">Layanan Utama</h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-6">
             Kami menyediakan berbagai layanan digital yang memudahkan masyarakat dalam mengakses informasi dan layanan
             pemakaman di DKI Jakarta.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mt-4">
           {services.map((service) => (
             <ServiceCard key={service.title} {...service} onNavigate={onNavigate} />
           ))}
@@ -211,24 +225,24 @@ const NewsCard = ({ imageUrl, date, title, excerpt, category }) => (
       <img
         src={imageUrl || "/placeholder.svg?height=300&width=400"}
         alt={title}
-        className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+        className="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-300"
       />
       <div className="absolute top-4 left-4">
         <span className="bg-green-700 text-white px-3 py-1 rounded-full text-sm font-medium">{category}</span>
       </div>
     </div>
-    <div className="p-6">
+    <div className="p-3">
       <div className="flex items-center text-sm text-gray-500 mb-3">
         <Clock className="w-4 h-4 mr-2" />
         {date}
       </div>
-      <h3 className="font-bold text-xl mb-3 text-gray-800 group-hover:text-green-700 transition-colors duration-300 line-clamp-2">
+      <h3 className="font-semibold text-base mb-3 text-gray-800 group-hover:text-green-700 transition-colors duration-300 line-clamp-2">
         {title}
       </h3>
-      <p className="text-gray-600 leading-relaxed mb-4 line-clamp-3">{excerpt}</p>
-      <button className="text-green-700 hover:text-green-800 font-semibold transition-colors duration-200 flex items-center group">
+      <p className="text-sm text-gray-600 leading-relaxed mb-4 line-clamp-3">{excerpt}</p>
+      <button className="text-green-700 hover:text-green-800 text-base font-semibold transition-colors duration-200 flex items-center group">
         Baca Selengkapnya
-        <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" />
+        <ChevronRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform duration-200" />
       </button>
     </div>
   </article>
@@ -265,21 +279,21 @@ const NewsSection = () => {
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">Berita & Informasi Terkini</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Ikuti perkembangan terbaru dari program dan kegiatan Dinas Pertamanan dan Pemakaman DKI Jakarta.
+        <div className="text-center mb-5">
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">Berita dan Informasi</h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-3">
+            Ikuti perkembangan terbaru dari kegiatan Dinas Pertamanan dan Pemakaman DKI Jakarta.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-5">
           {newsItems.map((item, index) => (
             <NewsCard key={index} {...item} />
           ))}
         </div>
         <div className="text-center">
-          <button className="bg-green-700 text-white font-semibold py-4 px-8 rounded-lg hover:bg-green-800 transition-all duration-200 inline-flex items-center transform hover:scale-105">
+          <button className="bg-green-700 text-white font-semibold text-base py-2 px-4 rounded-lg hover:bg-green-800 transition-all duration-200 inline-flex items-center transform hover:scale-105">
             Lihat Semua Berita
-            <ChevronRight className="w-5 h-5 ml-2" />
+            <ChevronRight className="w-4 h-4 ml-2" />
           </button>
         </div>
       </div>
@@ -313,41 +327,74 @@ const StatisticsSection = () => {
       trend: "up",
     },
     {
-      icon: <MapPin className="w-8 h-8" />,
-      title: "Lokasi Tersedia",
-      value: "3,456",
+      icon: <CalendarCheck className="w-8 h-8" />,
+      title: "Pengajuan Pemakaian Taman",
+      value: "215",
       change: "-5%",
       trend: "down",
     },
     {
-      icon: <FileText className="w-8 h-8" />,
-      title: "Dokumen Diproses",
-      value: "892",
+      icon: <Trees className="w-8 h-8" />,
+      title: "Permohonan Pemangkasan Pohon",
+      value: "734",
       change: "+8%",
       trend: "up",
     },
     {
-      icon: <Clock className="w-8 h-8" />,
-      title: "Rata-rata Waktu Layanan",
-      value: "2.3 hari",
+      icon: <Sprout className="w-8 h-8" />,
+      title: "Permohonan Bibit Tanaman",
+      value: "116",
       change: "-15%",
       trend: "up",
     },
   ]
 
+  // Tambahkan data dummy grafik di dalam StatisticsSection
+  const chartData = [
+    { name: "Jan", pemakaman: 110, taman: 20, pohon: 55, bibit: 10 },
+    { name: "Feb", pemakaman: 130, taman: 25, pohon: 50, bibit: 20 },
+    { name: "Mar", pemakaman: 140, taman: 15, pohon: 60, bibit: 25 },
+    { name: "Apr", pemakaman: 120, taman: 30, pohon: 45, bibit: 18 },
+    { name: "Mei", pemakaman: 125, taman: 18, pohon: 65, bibit: 22 },
+    { name: "Jun", pemakaman: 135, taman: 20, pohon: 58, bibit: 15 },
+  ];
+
+  const aggregateData = {
+    week: [
+      { name: "Mingguan", total: 370 },
+    ],
+    month: [
+      { name: "Jan", total: 195 },
+      { name: "Feb", total: 225 },
+      { name: "Mar", total: 240 },
+      { name: "Apr", total: 213 },
+      { name: "Mei", total: 230 },
+      { name: "Jun", total: 228 },
+    ],
+    quarter: [
+      { name: "Q1", total: 660 },
+      { name: "Q2", total: 671 },
+    ],
+    year: [
+      { name: "2023", total: 1230 },
+      { name: "2024", total: 1340 },
+      { name: "2025", total: 1331 },
+    ],
+  };
+
   return (
     <section className="py-20 bg-gradient-to-br from-green-50 to-gray-50">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">Statistik Pelayanan Pemakaman</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">Statistik Pelayanan Pemakaman</h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-6">
             Data dan statistik pelayanan pemakaman untuk transparansi dan evaluasi kinerja layanan publik.
           </p>
         </div>
 
         {/* Filter Controls */}
-        <div className="bg-white rounded-xl shadow-lg p-6 mb-12">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+        <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-start">
             <div className="flex items-center gap-4">
               <label className="text-gray-700 font-semibold">Periode:</label>
               <select
@@ -376,15 +423,11 @@ const StatisticsSection = () => {
                 ))}
               </select>
             </div>
-            <button className="bg-green-700 text-white px-6 py-2 rounded-lg hover:bg-green-800 transition-colors duration-200 flex items-center">
-              <BarChart3 className="w-4 h-4 mr-2" />
-              Export Data
-            </button>
           </div>
         </div>
 
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {stats.map((stat, index) => (
             <div
               key={index}
@@ -410,24 +453,25 @@ const StatisticsSection = () => {
         {/* Chart Placeholder */}
         <div className="bg-white rounded-xl shadow-lg p-8">
           <h3 className="text-2xl font-bold text-gray-800 mb-6">
-            Grafik Pelayanan{" "}
-            {selectedPeriod === "month"
+            Grafik Total Layanan {selectedPeriod === "month"
               ? "Bulanan"
               : selectedPeriod === "week"
                 ? "Mingguan"
                 : selectedPeriod === "quarter"
                   ? "Triwulan"
-                  : "Tahunan"}{" "}
-            {selectedYear}
+                  : "Tahunan"} {selectedYear}
           </h3>
-          <div className="h-80 bg-gray-50 rounded-lg flex items-center justify-center">
-            <div className="text-center">
-              <BarChart3 className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-500 text-lg">Grafik akan ditampilkan di sini</p>
-              <p className="text-gray-400 text-sm">
-                Data periode {selectedPeriod} tahun {selectedYear}
-              </p>
-            </div>
+          <div className="h-96 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={aggregateData[selectedPeriod]} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="total" fill="#047857" name="Total Layanan" />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </div>
       </div>
