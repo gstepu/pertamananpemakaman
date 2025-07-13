@@ -36,8 +36,9 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
         };
       case "peraturan-pemerintah":
         return {
-          title: "Peraturan Pemerintah",
-          subtitle: "Regulasi tingkat pusat untuk implementasi RTH",
+          title: "Peraturan Pemerintah Terkait Pertamanan",
+          subtitle:
+            "Regulasi tingkat pusat untuk pengelolaan pertamanan dan hutan kota",
           color: "green",
           regulations: [
             {
@@ -45,7 +46,7 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
               title: "PP No. 63 Tahun 2002",
               subtitle: "Tentang Hutan Kota",
               description:
-                "Mengatur penyelenggaraan hutan kota sebagai bagian dari RTH publik",
+                "Mengatur penyelenggaraan hutan kota sebagai bagian dari infrastruktur hijau publik",
               link: "#",
             },
             {
@@ -53,7 +54,7 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
               title: "PP No. 15 Tahun 2010",
               subtitle: "Tentang Penyelenggaraan Penataan Ruang",
               description:
-                "Petunjuk teknis pelaksanaan penataan ruang termasuk penyediaan RTH",
+                "Petunjuk teknis pelaksanaan penataan ruang termasuk penyediaan kawasan hijau",
               link: "#",
             },
           ],
