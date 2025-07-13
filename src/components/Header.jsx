@@ -51,11 +51,11 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
       ],
     },
     {
-      name: "Berita",
+      name: "Berita dan Informasi",
       href: "#",
       hasDropdown: true,
       dropdownItems: [
-        { name: "Berita dan Informasi", href: "#", action: "news" },
+        { name: "Berita", href: "#", action: "news" },
         { name: "Informasi RTH", href: "#", action: "rth-info" },
       ],
     },
