@@ -41,91 +41,16 @@ const RTHPekaranganPage = ({ onNavigate }) => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-green-600 to-green-800 text-white py-20 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <svg
-            className="w-full h-full"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 100 100"
-          >
-            <defs>
-              <pattern
-                id="gardenGrid"
-                width="20"
-                height="20"
-                patternUnits="userSpaceOnUse"
-              >
-                <circle cx="5" cy="5" r="3" fill="currentColor" opacity="0.3" />
-                <circle
-                  cx="15"
-                  cy="15"
-                  r="3"
-                  fill="currentColor"
-                  opacity="0.3"
-                />
-                <path
-                  d="M0,10 Q10,5 20,10 Q10,15 0,10"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  fill="none"
-                  opacity="0.2"
-                />
-              </pattern>
-            </defs>
-            <rect width="100" height="100" fill="url(#gardenGrid)" />
-          </svg>
-        </div>
-
-        {/* Decorative Elements */}
-        <div className="absolute top-10 left-10 opacity-15 animate-float">
-          <svg className="w-32 h-32" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z" />
-          </svg>
-        </div>
-
-        {/* Content */}
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center">
-            <div className="mb-6">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full backdrop-blur-sm mb-4">
-                <svg
-                  className="w-10 h-10 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z" />
-                </svg>
-              </div>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
-              RTH Pekarangan
-            </h1>
-            <p className="text-xl md:text-2xl opacity-90 max-w-4xl mx-auto leading-relaxed">
-              Mengoptimalkan Pekarangan Rumah untuk Taman dan Urban Farming
-            </p>
-
-            {/* Stats */}
-            <div className="mt-8 flex flex-wrap justify-center gap-8 text-center">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
-                <div className="text-2xl font-bold">70%</div>
-                <div className="text-sm opacity-90">Hemat Belanja Sayur</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
-                <div className="text-2xl font-bold">2m²</div>
-                <div className="text-sm opacity-90">Luas Minimal</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
-                <div className="text-2xl font-bold">365</div>
-                <div className="text-sm opacity-90">Hari Panen</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="container mx-auto px-6 py-12">
+        {/* Page Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+            RTH Pekarangan
+          </h1>
+          <p className="text-lg text-gray-600">
+            Mengoptimalkan Pekarangan Rumah untuk Taman dan Urban Farming
+          </p>
+        </div>
         {/* Breadcrumb */}
         <nav className="flex mb-8" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
@@ -337,7 +262,7 @@ const RTHPekaranganPage = ({ onNavigate }) => {
                 <li>• Jahe, kunyit, temulawak</li>
                 <li>• Lidah buaya, kumis kucing</li>
                 <li>• Serai, pandan wangi</li>
-                <li>• Daun mint, oregano</li>
+                <li>�� Daun mint, oregano</li>
               </ul>
             </div>
             <div className="bg-purple-50 p-6 rounded-lg">
