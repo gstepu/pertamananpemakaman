@@ -123,22 +123,12 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
               {link.hasDropdown ? (
                 <div className="relative">
                   <button
-<<<<<<< HEAD
                     className="text-gray-600 hover:text-green-800 transition flex items-center"
                     onClick={() =>
                       toggleDropdown(
                         link.name === "Layanan" ? "services" : "news",
                       )
                     }
-=======
-                    className={`text-sm transition flex items-center ${
-                      activeMenu === link.name ? "text-green-800 font-semibold" : "text-gray-600 hover:text-green-800"
-                    }`}
-                    onClick={() => {
-                      setServicesDropdownOpen(!isServicesDropdownOpen);
-                      setActiveMenu(link.name);
-                    }}
->>>>>>> origin/main
                   >
                     {link.name}
                     <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
