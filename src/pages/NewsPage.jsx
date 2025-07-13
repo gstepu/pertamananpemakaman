@@ -249,8 +249,12 @@ const NewsPage = ({ onNavigate }) => {
               🔥 Berita Terkini
             </h2>
             <div className="relative">
-              <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">
-                {newsData.slice(0, 6).map((news) => (
+              <div
+                className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide"
+                id="trending-container"
+                style={{ scrollBehavior: "smooth" }}
+              >
+                {filteredNews.slice(0, 6).map((news) => (
                   <div
                     key={news.id}
                     className="flex-shrink-0 w-80 bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
