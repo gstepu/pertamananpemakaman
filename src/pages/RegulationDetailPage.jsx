@@ -110,8 +110,8 @@ const RegulationDetailPage = ({ onNavigate, type }) => {
         };
       default:
         return {
-          title: "Regulasi RTH",
-          subtitle: "Kumpulan regulasi terkait Ruang Terbuka Hijau",
+          title: "Regulasi Pertamanan",
+          subtitle: "Kumpulan regulasi terkait pertamanan dan hutan kota",
           color: "gray",
           regulations: [],
         };
