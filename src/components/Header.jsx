@@ -57,7 +57,7 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
       hasDropdown: true,
       dropdownItems: [
         { name: "Berita", href: "#" },
-        { name: "Informasi", href: "#" },
+        { name: "Informasi RTH", href: "#" },
       ],
     },
     { name: "Dasar Hukum", href: "#" },
@@ -67,7 +67,8 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
       dropdownItems: [
         { name: "Struktur Organisasi", href: "#" },
         { name: "Visi & Misi", href: "#" },
-        { name: "Kontak", href: "#" },
+        { name: "Tujuan Pokok dan Fungsi", href: "#" },
+         { name: "Sejarah", href: "#" },
       ],
     },
 
