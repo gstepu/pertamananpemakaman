@@ -24,15 +24,31 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
           name: "Informasi Pemakaman",
           children: [
             { name: "Cek Data Makam", href: "#", action: "cemetery-search" },
-            { name: "Ketersediaan Petak Makam", href: "#", action: "cemetery-availability" },
-            { name: "Penanganan Jenazah Terlantar", href: "#", action: "burial-permit" },
+            {
+              name: "Ketersediaan Petak Makam",
+              href: "#",
+              action: "cemetery-availability",
+            },
+            {
+              name: "Penanganan Jenazah Terlantar",
+              href: "#",
+              action: "burial-permit",
+            },
           ],
         },
         {
           name: "Pertamanan dan Kehutanan",
           children: [
-            { name: "Jadwal Penggunaan Taman", href: "#", action: "park-schedule" },
-            { name: "Profil Kelompok Tani Hutan (KTH)", href: "#", action: "Kthprofile" },
+            {
+              name: "Jadwal Penggunaan Taman",
+              href: "#",
+              action: "park-schedule",
+            },
+            {
+              name: "Profil Kelompok Tani Hutan (KTH)",
+              href: "#",
+              action: "Kthprofile",
+            },
             { name: "Katalog Produk KTH", href: "#", action: "catalog" },
             {
               name: "E-Book Panduan Teknis Pekerjaan Lanskap (E-PATELA)",
@@ -44,9 +60,21 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
         {
           name: "Permohonan",
           children: [
-            { name: "Permohonan Bibit Tanaman", href: "#", action: "seedling-application" },
-            { name: "Permohonan Pemangkasan Pohon", href: "#", action: "tree-application" },
-            { name: "Santunan Pohon Tumbang", href: "#", action: "tree-fall-claim" },
+            {
+              name: "Permohonan Bibit Tanaman",
+              href: "#",
+              action: "seedling-application",
+            },
+            {
+              name: "Permohonan Pemangkasan Pohon",
+              href: "#",
+              action: "tree-application",
+            },
+            {
+              name: "Santunan Pohon Tumbang",
+              href: "#",
+              action: "tree-fall-claim",
+            },
           ],
         },
         { name: "Peta TPU & RTH", href: "#", action: "map" },
@@ -56,22 +84,25 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
       name: "Berita dan Informasi",
       hasDropdown: true,
       dropdownItems: [
-        { name: "Berita", href: "#" },
-        { name: "Informasi RTH", href: "#" },
+        { name: "Berita", href: "#", action: "news" },
+        { name: "Informasi RTH", href: "#", action: "rth-info" },
       ],
     },
-    { name: "Dasar Hukum", href: "#" },
+    { name: "Dasar Hukum", href: "#", action: "regulation" },
     {
       name: "Tentang Kami",
       hasDropdown: true,
       dropdownItems: [
-        { name: "Struktur Organisasi", href: "#" },
-        { name: "Visi & Misi", href: "#" },
-        { name: "Tujuan Pokok dan Fungsi", href: "#" },
-         { name: "Sejarah", href: "#" },
+        {
+          name: "Struktur Organisasi",
+          href: "#",
+          action: "struktur-organisasi",
+        },
+        { name: "Visi & Misi", href: "#", action: "visi-misi" },
+        { name: "Tujuan Pokok dan Fungsi", href: "#", action: "tugas-fungsi" },
+        { name: "Sejarah", href: "#", action: "sejarah" },
       ],
     },
-
   ];
 
   const handleLinkClick = (e, action) => {
@@ -80,7 +111,7 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
       onNavigate(action);
       setActiveMenu("Layanan");
     }
-    setServicesDropdownOpen(false);
+    setOpenDropdown(null);
     setProfileDropdownOpen(false);
     setMobileMenuOpen(false);
   };
@@ -91,7 +122,7 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
       onNavigate(action);
     }
     setActiveMenu(name);
-    setServicesDropdownOpen(false);
+    setOpenDropdown(null);
     setProfileDropdownOpen(false);
     setMobileMenuOpen(false);
   };
@@ -119,16 +150,30 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
                 <div className="relative">
                   <button
                     className={`text-sm transition flex items-center ${
-                      activeMenu === link.name ? "text-green-800 font-semibold" : "text-gray-600 hover:text-green-800"
+                      activeMenu === link.name
+                        ? "text-green-800 font-semibold"
+                        : "text-gray-600 hover:text-green-800"
                     }`}
                     onClick={() => {
-                      setOpenDropdown((prev) => (prev === link.name ? null : link.name));
+                      setOpenDropdown((prev) =>
+                        prev === link.name ? null : link.name,
+                      );
                       setActiveMenu(link.name);
                     }}
                   >
                     {link.name}
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    <svg
+                      className="w-4 h-4 ml-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
                     </svg>
                   </button>
                   {openDropdown === link.name && (
@@ -143,13 +188,20 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
                               {item.name}
                               <svg
                                 className={`w-4 h-4 transform transition-transform ${
-                                  expandedSubmenu === item.name ? "rotate-90" : ""
+                                  expandedSubmenu === item.name
+                                    ? "rotate-90"
+                                    : ""
                                 }`}
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
                               >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M9 5l7 7-7 7"
+                                />
                               </svg>
                             </button>
                             {expandedSubmenu === item.name && (
@@ -159,9 +211,15 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
                                     key={sub.name}
                                     href={sub.href}
                                     className="block py-1 text-sm text-gray-600 hover:bg-green-50 hover:text-green-700 rounded px-2"
-                                    onClick={(e) => handleLinkClick(e, sub.action)}
+                                    onClick={(e) =>
+                                      handleLinkClick(e, sub.action)
+                                    }
                                     target={sub.target}
-                                    rel={sub.target === "_blank" ? "noopener noreferrer" : undefined}
+                                    rel={
+                                      sub.target === "_blank"
+                                        ? "noopener noreferrer"
+                                        : undefined
+                                    }
                                   >
                                     {sub.name}
                                   </a>
@@ -178,7 +236,7 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
                           >
                             {item.name}
                           </a>
-                        )
+                        ),
                       )}
                     </div>
                   )}
@@ -187,7 +245,9 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
                 <a
                   href={link.href}
                   className={`text-sm transition ${
-                    activeMenu === link.name ? "text-green-800 font-semibold" : "text-gray-600 hover:text-green-800"
+                    activeMenu === link.name
+                      ? "text-green-800 font-semibold"
+                      : "text-gray-600 hover:text-green-800"
                   }`}
                   onClick={(e) => handleTopNavClick(e, link.name, link.action)}
                 >
@@ -211,8 +271,18 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
                 onClick={() => setProfileDropdownOpen(!isProfileDropdownOpen)}
                 className="flex items-center justify-center h-10 w-10 rounded-full bg-green-700 text-white hover:bg-green-800"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
                 </svg>
               </button>
               {isProfileDropdownOpen && (
@@ -243,16 +313,26 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
           className="md:hidden text-gray-700"
           onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
           </svg>
         </button>
       </nav>
 
       {/* Mobile Navigation */}
       <div
-        className={`$
-          {isMobileMenuOpen ? "block" : "hidden"
+        className={`${
+          isMobileMenuOpen ? "block" : "hidden"
         } md:hidden px-6 pb-4 border-t border-gray-200 bg-white/95 backdrop-blur-sm`}
       >
         {navLinks.map((link) => (
@@ -261,10 +341,14 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
               <div>
                 <button
                   className={`block w-full text-left py-2 ${
-                    activeMenu === link.name ? "text-green-800 font-semibold" : "text-gray-600 hover:text-green-800"
+                    activeMenu === link.name
+                      ? "text-green-800 font-semibold"
+                      : "text-gray-600 hover:text-green-800"
                   }`}
                   onClick={() => {
-                    setOpenDropdown((prev) => (prev === link.name ? null : link.name));
+                    setOpenDropdown((prev) =>
+                      prev === link.name ? null : link.name,
+                    );
                     setActiveMenu(link.name);
                   }}
                 >
@@ -288,9 +372,15 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
                                   key={sub.name}
                                   href={sub.href}
                                   className="block py-1 text-sm text-gray-600 hover:text-green-700"
-                                  onClick={(e) => handleLinkClick(e, sub.action)}
+                                  onClick={(e) =>
+                                    handleLinkClick(e, sub.action)
+                                  }
                                   target={sub.target}
-                                  rel={sub.target === "_blank" ? "noopener noreferrer" : undefined}
+                                  rel={
+                                    sub.target === "_blank"
+                                      ? "noopener noreferrer"
+                                      : undefined
+                                  }
                                 >
                                   {sub.name}
                                 </a>
@@ -307,7 +397,7 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
                         >
                           {item.name}
                         </a>
-                      )
+                      ),
                     )}
                   </div>
                 )}
@@ -316,7 +406,9 @@ const Header = ({ onNavigate, isLoggedIn, onLogout }) => {
               <a
                 href={link.href}
                 className={`text-sm block py-2 ${
-                  activeMenu === link.name ? "text-green-800 font-semibold" : "text-gray-600 hover:text-green-800"
+                  activeMenu === link.name
+                    ? "text-green-800 font-semibold"
+                    : "text-gray-600 hover:text-green-800"
                 }`}
                 onClick={(e) => handleTopNavClick(e, link.name, link.action)}
               >
